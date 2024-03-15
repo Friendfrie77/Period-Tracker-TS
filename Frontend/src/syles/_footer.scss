@@ -1,0 +1,13 @@
+footer{
+    background-color: $login-input-background;
+    color: $textcolor;
+    text-align: center;
+    font-size: var(--fs-cal);
+    position: relative;
+    width: 100%;
+    grid-area: 'footer';
+    a{
+        text-decoration: none;
+        color: $textcolor;
+    }
+}
