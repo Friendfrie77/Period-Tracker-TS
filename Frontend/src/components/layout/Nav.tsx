@@ -1,17 +1,10 @@
-import {useState} from 'react';
 import { NavLink } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import logo2 from '../../assets/images/logo2.svg'
+import { useOpenModals } from '../../hooks/useOpenModals';
 //need to set up state for hooks
-
-// interface NavProps {
-//     onDataSentLogin: (message: boolean) => void,
-//     onDataSentReg: (message: boolean) => void
-// }
 const Nav: React.FC = () =>{
-    const [loginModalOpen, setLoginModalOpen] = useState<boolean>(false);
-    const [registerModalOpen, setRegisterModalOpen] = useState<boolean>(false);
-    console.log(loginModalOpen, registerModalOpen)
+    const {toggleLogin, toggleRegister} = useOpenModals();
     //usePeriod hook imports
     //placeholders for those imports
     const token : number = 0; 
@@ -22,12 +15,6 @@ const Nav: React.FC = () =>{
     }
     const guestLogoutButton = () =>{
 
-    }
-    const openLogin = () =>{
-        setLoginModalOpen(true)
-    }
-    const openRegister = () =>{
-        setRegisterModalOpen(true)
     }
 
     const navBar = (
@@ -70,10 +57,10 @@ const Nav: React.FC = () =>{
                         ):(
                             <>
                             <li className='nav-item'>
-                                <button className='nav-button' onClick={openLogin}>Login</button>
+                                <button className='nav-button' onClick={toggleLogin}>Login</button>
                             </li>
                             <li className='nav-item'>
-                                <button className='nav-button' onClick={openRegister}>Register</button>
+                                <button className='nav-button' onClick={toggleRegister}>Register</button>
                             </li>
                             </>
                         )}

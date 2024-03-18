@@ -22,3 +22,4 @@ const passwordRegex = (newPassword:string, confirmNewPassword:string) : password
 }
 
 export {passwordRegex};
+export type {passwordRegexResults};

@@ -3,7 +3,6 @@ import Nav from './components/layout/Nav';
 import Footer from './components/layout/Footer';
 import HelloWorld from './components/Hello';
 import LoginModal from './components/modal/LoginModal';
-// import './styles/styles.css';
 import './syles/syles.css';
 function App() {
   

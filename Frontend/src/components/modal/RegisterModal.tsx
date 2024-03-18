@@ -2,7 +2,7 @@ import { Form } from "react-final-form";
 import Spinner from "../layout/Spinner";
 import { AiOutlineClose } from "react-icons/ai";
 import { emailRegex } from "../../utils/emailRegx";
-import { passwordRegex } from "../../utils/passwordRegex";
+import { passwordRegex, passwordRegexResults} from "../../utils/passwordRegex";
 import UserTextField from "../userInputFields/UserTextField";
 //Reg hook
 
@@ -48,14 +48,55 @@ const RegisterModal: React.FC = () =>{
                         }
                         if (!values.passwordConfirm){
                             errors.passwordConfirm = 'Required'
-                        }else{
-                            const regex = passwordRegex(values.password, values.passwordConfirm)
+                        }
+                        if(values.password && values.passwordConfirm){
+                            const regex:passwordRegexResults = passwordRegex(values.password, values.passwordConfirm)
+                            if(!regex.isVaild){
+                                errors.password = regex.msg
+                            }
+                        }
+                        if(values.email){
+                            const regex:boolean = emailRegex(values.email).isVaild
                             if(!regex){
-                                errors.password = regex
+                                errors.email = 'Email not vaild'
                             }
                         }
                         return errors;
                     }}
+                    render = {({handleSubmit, valid
+                    })=>(
+                        <form onSubmit={handleSubmit}>
+                            <UserTextField 
+                                fieldName = 'email'
+                                type='email'
+                                spanHTMLFor='email'
+                                span = 'Email'
+                                isDisabled = {false}
+                            />
+                            <UserTextField 
+                                fieldName = 'username'
+                                type='text'
+                                spanHTMLFor='username'
+                                span = 'Username'
+                                isDisabled = {false}
+                            />
+                            <UserTextField 
+                                fieldName = 'password'
+                                type='password'
+                                spanHTMLFor='password'
+                                span = 'Password'
+                                isDisabled = {false}
+                            />
+                            <UserTextField 
+                                fieldName = 'passwordConfirm'
+                                type='password'
+                                spanHTMLFor='passwordConfirm'
+                                span = 'Confirm Password'
+                                isDisabled = {false}
+                            />
+                            <button type= "submit" disabled = {!valid}>Submit</button>
+                        </form>
+                    )}
                 />
             </section>
         )

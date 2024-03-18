@@ -3,6 +3,10 @@ import Spinner from "../layout/Spinner";
 import { AiOutlineClose } from "react-icons/ai";
 import { emailRegex } from "../../utils/emailRegx";
 import UserTextField from "../userInputFields/UserTextField";
+import { testUser } from "../../state/features/users/userSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
 //passwordRegex
 //use regSetup hook
 //userlogin hook
@@ -11,13 +15,20 @@ import UserTextField from "../userInputFields/UserTextField";
 
 const LoginModal: React.FC =() =>{
     //replace is loading with hook
+    const dispatch = useDispatch;
     const isLoading : boolean = false;
+    const username = useSelector((state)=> state.userName)
+    console.log(username)
+    const user = testUser;
     const onSubmit = async() =>{
         //replace with hook, figure out how to passed mixed type array
+        console.log(user)
+
     }
     const figureOutClose = () =>{
 
     }
+
     interface valuesTypes{
         email?: string, 
         password?: string
