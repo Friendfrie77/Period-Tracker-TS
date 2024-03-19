@@ -1,0 +1,63 @@
+.hero{
+    background-color: $color5;
+    height: 70%;
+    @include for-size(tablet-only){
+        height: auto;
+    }
+}
+.hero-wrapper{
+    max-width: 1440px;
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    margin: 0 auto;
+    padding: $box-padding;
+    justify-content: center;
+    justify-self: center;
+    @include for-size(tablet-only){
+        flex-direction: column;
+    }
+}
+.call-to-action{
+    color: $color2;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    h1{
+        font-size: var(--fs-hero);
+        text-align: center;
+    }
+    p{
+        font-size: var(--fs-body);
+    }
+    @include for-size(tablet-only){
+        width: 100%;
+    }
+}
+.cta-new-account{
+    text-align: center;
+    h2{
+        font-size: var(--fs-hero);
+    }
+}
+.cta-button{
+    width: 40%;
+    height: 4rem;
+    font-size: var(--fs-hero-button);
+    @include for-size(large-phone-only){
+        height: 2.5rem;
+        width: 60%;
+    }
+}
+.hero-img{
+    max-width: 50%;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    @include for-size(tablet-only){
+        margin: auto;
+    }
+    img{
+        margin-top: 5px;
+    }
+}

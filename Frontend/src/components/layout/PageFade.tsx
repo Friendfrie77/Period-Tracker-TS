@@ -1,11 +1,11 @@
 type PageFadeProps = {
-    content: React.ReactNode
+    children: React.ReactNode
 };
 
-const PageFade: React.FC<PageFadeProps> = ({content}) =>{
+const PageFade: React.FC<PageFadeProps> = ({children}) =>{
     return(
         <div className="page-fade">
-            {content}
+            {children}
         </div>
     )
 }

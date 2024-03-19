@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import {
     persistReducer,
     FLUSH,
@@ -10,11 +10,15 @@ import {
   } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
 import userSlicereducer from './features/users/userSlice'
-
+import modalsSlicereducer from "./features/modals/modalsSlice";
 const persistConfig = { key: "root", storage, version: 1 };
-const persistedReducer = persistReducer(persistConfig, userSlicereducer);
+
+const rootReducer = combineReducers({
+  user: persistReducer(persistConfig, userSlicereducer),
+  modal: modalsSlicereducer,
+});
 const store = configureStore({
-    reducer: persistedReducer,
+    reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: {
@@ -22,4 +26,7 @@ const store = configureStore({
         },
       }),
 });
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
 export {store}

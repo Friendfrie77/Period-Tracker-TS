@@ -10,6 +10,16 @@
     animation: pagefade 0.2s ease-in;
 }
 
+.text-field input:focus + .text-field-lable .text-field-span, .text-field input:valid + .text-field-lable .text-field-span{
+    translate: 0% -100%;
+    font-size: .65rem;
+    opacity: .2;
+}
+.text-field input:focus + .text-field-lable:after, .text-field input:valid + .text-field-lable:after{
+    translate: 100%;
+    opacity: 100%;
+}
+
 @keyframes pagefade {
     0% {opacity: 0%;}
     100% {opacity: 100%;}    

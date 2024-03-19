@@ -1,4 +1,4 @@
-#root{
+.wrapper{
     display: grid;
     grid-template-rows: auto 1fr auto;
     position: relative;
@@ -12,7 +12,35 @@
     position: relative;
     flex-grow: 1;
 }
-
+#root{
+    display: flex;
+    flex-direction: column;
+    background: $backgroundgrad;
+    animation: gradient 25s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    flex-grow: 1;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.flex-row-to-col {
+    display: flex;
+    flex-direction: row;
+    @include for-size(tablet-only) {
+      flex-direction: column;
+    }
+  }
+  .flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
 /* CSS for Spinner animation */
 .loading{
     background-image: url('../assets/images/loading-background.svg');

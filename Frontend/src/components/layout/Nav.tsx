@@ -4,7 +4,7 @@ import logo2 from '../../assets/images/logo2.svg'
 import { useOpenModals } from '../../hooks/useOpenModals';
 //need to set up state for hooks
 const Nav: React.FC = () =>{
-    const {toggleLogin, toggleRegister} = useOpenModals();
+    const {toggleLoginCall, toggleRegisterCall} = useOpenModals();
     //usePeriod hook imports
     //placeholders for those imports
     const token : number = 0; 
@@ -57,10 +57,10 @@ const Nav: React.FC = () =>{
                         ):(
                             <>
                             <li className='nav-item'>
-                                <button className='nav-button' onClick={toggleLogin}>Login</button>
+                                <button className='nav-button' onClick={toggleLoginCall}>Login</button>
                             </li>
                             <li className='nav-item'>
-                                <button className='nav-button' onClick={toggleRegister}>Register</button>
+                                <button className='nav-button' onClick={toggleRegisterCall}>Register</button>
                             </li>
                             </>
                         )}
