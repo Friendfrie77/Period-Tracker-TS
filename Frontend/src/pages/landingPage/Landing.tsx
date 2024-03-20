@@ -6,6 +6,7 @@ import { useOpenModals } from "../../hooks/useOpenModals";
 import Phone from "../../assets/images/phone-test.png";
 import Laptop from '../../assets/images/laptop.jpg'
 const LandingPage: React.FC = () =>{
+    console.log(import.meta.env.REACT_APP_TEST)
     const {loginModalOpen, registerModalOpen, toggleRegisterCall} = useOpenModals();
     const indexCardColors : {
         color1: string,

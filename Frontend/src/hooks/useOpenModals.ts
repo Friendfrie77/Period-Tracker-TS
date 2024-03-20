@@ -13,7 +13,6 @@ const useOpenModals = (): {loginModalOpen:boolean, registerModalOpen: boolean, t
     const toggleRegisterCall = () =>{
         dispatch(toggleRegister())
     }
-    console.log(loginModalOpen)
     return {loginModalOpen, toggleLoginCall, registerModalOpen, toggleRegisterCall}
 }
 export {useOpenModals}

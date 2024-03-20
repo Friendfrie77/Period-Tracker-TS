@@ -4,6 +4,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import { emailRegex } from "../../utils/emailRegx";
 import UserTextField from "../userInputFields/UserTextField";
 import { useOpenModals } from "../../hooks/useOpenModals";
+import useAuth from "../../hooks/useAuth";
+import useLoading from "../../hooks/useLoading";
 //passwordRegex
 //use regSetup hook
 //userlogin hook
@@ -11,10 +13,11 @@ import { useOpenModals } from "../../hooks/useOpenModals";
 //figure out props
 
 const LoginModal: React.FC =() =>{
-    //replace is loading with hook
-    const isLoading : boolean = false;
+    const {isLoading} = useLoading();
+    const {login} = useAuth();
     const {toggleLoginCall} = useOpenModals();
-    const onSubmit = async() =>{
+    const onSubmit = async(values:valuesTypes) =>{
+        login(values);
     }
     interface valuesTypes{
         email?: string, 
