@@ -1,7 +1,6 @@
 import {createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-
 type  periodType = {
     startDate: string,
     endDate: string
@@ -9,8 +8,8 @@ type  periodType = {
 type previodPeriodType = periodType[]
 
 type user = {
-    userName: string;
-    userId: number;
+    username: string;
+    _id: number;
     role: string;
     email: string;
     token: string;
@@ -27,8 +26,8 @@ type user = {
 }
 
 const testUser:user = {
-    userName: 'John Doe',
-    userId: 123,
+    username: 'John Doe',
+    _id: 123,
     role: 'user',
     email: 'john@example.com',
     token: 'some-token',
@@ -61,6 +60,11 @@ const userSlice = createSlice({
         setLogout: (state) =>{
             state.loginUser = null;
         },
+        setToken: (state, action:PayloadAction<string>) =>{
+            if(state.loginUser){
+                state.loginUser.token = action.payload
+            }
+        },
         setPreviodPeriod: (state, action:PayloadAction<previodPeriodType>) =>{
             if(state.loginUser){
                 state.loginUser.previodPeriod = action.payload
@@ -69,7 +73,7 @@ const userSlice = createSlice({
     }
 })
 
-export const {setLogin, setLogout, setPreviodPeriod} = userSlice.actions;
+export const {setLogin, setLogout, setToken, setPreviodPeriod} = userSlice.actions;
 export default userSlice.reducer;
 export {testUser};
 export type{user}

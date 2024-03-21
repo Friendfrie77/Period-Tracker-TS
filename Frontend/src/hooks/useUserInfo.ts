@@ -7,8 +7,8 @@ const useUserInfo = () =>{
     }
     type previodPeriodType = periodType[]
 
-    const userName:string|undefined = useAppSelector((state) => state.user?.loginUser?.userName);
-    const userId: number|undefined = useAppSelector((state) => state.user?.loginUser?.userId);
+    const username:string|undefined = useAppSelector((state) => state.user?.loginUser?.username);
+    const userId: number|undefined = useAppSelector((state) => state.user?.loginUser?._id);
     const role: string|undefined = useAppSelector((state) => state.user?.loginUser?.role);
     const email: string|undefined = useAppSelector((state) => state.user?.loginUser?.email);
     const token:string|undefined = useAppSelector((state) => state.user?.loginUser?.token);
@@ -23,7 +23,7 @@ const useUserInfo = () =>{
     const previodPeriod: previodPeriodType|undefined|null = useAppSelector((state) => state.user?.loginUser?.previodPeriod)
     const notifications: boolean|undefined = useAppSelector((state) => state.user?.loginUser?.notifications)
 
-    return{userName, userId, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previodPeriod, notifications}
+    return{username, userId, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previodPeriod, notifications}
 }
 
 export{useUserInfo}

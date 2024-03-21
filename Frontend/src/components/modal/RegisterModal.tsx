@@ -5,17 +5,18 @@ import { emailRegex } from "../../utils/emailRegx";
 import { passwordRegex, passwordRegexResults} from "../../utils/passwordRegex";
 import UserTextField from "../userInputFields/UserTextField";
 import { useOpenModals } from "../../hooks/useOpenModals";
-//Reg hook
+import useAuth from "../../hooks/useAuth";
 
 
 //figure out props
 
 const RegisterModal: React.FC = () =>{
     const {toggleRegisterCall} = useOpenModals();
+    const {register} = useAuth();
     //replace is loading with hook
     const isLoading : boolean = false;
-    const onSubmit = async() =>{
-        //replace with hook, figure out how to passed mixed type array
+    const onSubmit = async(values:valuesTypes) =>{
+        register(values)
     }
     interface valuesTypes{
         email?: string, 

@@ -14,10 +14,13 @@ import useLoading from "../../hooks/useLoading";
 
 const LoginModal: React.FC =() =>{
     const {isLoading} = useLoading();
-    const {login} = useAuth();
+    const {login, logout} = useAuth();
     const {toggleLoginCall} = useOpenModals();
-    const onSubmit = async(values:valuesTypes) =>{
-        login(values);
+    // const onSubmit = async(values:valuesTypes) =>{
+    //     login(values);
+    // }
+    const onSubmit = async() =>{
+        logout()
     }
     interface valuesTypes{
         email?: string, 
