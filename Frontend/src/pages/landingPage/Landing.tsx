@@ -5,10 +5,7 @@ import IndexInfoCard from "../../components/indexPageCard/InfoCard";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import Phone from "../../assets/images/phone-test.png";
 import Laptop from '../../assets/images/laptop.jpg';
-import {useUserInfo} from '../../hooks/useUserInfo';
 const LandingPage: React.FC = () =>{
-    const userName = useUserInfo();
-    console.log(userName)
     const {loginModalOpen, registerModalOpen, toggleRegisterCall} = useOpenModals();
     const indexCardColors : {
         color1: string,

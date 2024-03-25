@@ -8,21 +8,21 @@ type  periodType = {
 type previodPeriodType = periodType[]
 
 type user = {
-    username: string;
-    _id: number;
-    role: string;
-    email: string;
-    token: string;
-    cycle: number | null;
-    avgLength: number | null;
-    periodStartDate: string | null;
-    periodEndDate: string | null;
-    daysTillPeriod: number | null;
-    daysLeftPeriod: number | null;
-    canBleed: boolean;
-    isBleeding: boolean;
-    previodPeriod: previodPeriodType| null;
-    notifications: boolean;
+    username: string | undefined;
+    _id: number | undefined;
+    role: string | undefined;
+    email: string | undefined;
+    token: string | undefined;
+    cycle: number | null | undefined;
+    avgLength: number | null | undefined;
+    periodStartDate: string | null | undefined;
+    periodEndDate: string | null | undefined;
+    daysTillPeriod: number | null | undefined;
+    daysLeftPeriod: number | null | undefined;
+    canBleed: boolean | undefined;
+    isBleeding: boolean | undefined;
+    previodPeriod: previodPeriodType| null | undefined;
+    notifications: boolean | undefined;
 }
 
 const testUser:user = {

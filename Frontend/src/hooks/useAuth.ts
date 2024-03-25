@@ -32,7 +32,7 @@ const useAuth =() =>{
             loading();
         }
     }
-
+    //need to handle if not ok
     const register = async (values:registerValuesTypes) =>{
         loading()
         const {email, username, password} = values;
