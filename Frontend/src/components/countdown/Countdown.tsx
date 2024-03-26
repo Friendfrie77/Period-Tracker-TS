@@ -10,14 +10,15 @@ type CountdownProps = {
     message?: string
 }
 
-const renderTime = (dimension?:string, time?:number, message?:string) =>{
-    if(dimension && time)
-    return(
-        <div className="countdown-wrapper">
-            <div className="days-left"><span>{time}&nbsp;{dimension}</span></div>
-        </div> 
-    );
-    else{
+const renderTime = (dimension?:string|null , time?:number|null, message?:string) =>{
+    if(dimension && time){
+        return(
+            <div className="countdown-wrapper">
+                <div className="days-left"><span>{time}&nbsp;{dimension}</span></div>
+            </div> 
+        );
+    }else if(message){
+        console.log('taaaest')
         return(
             <div className='countdown-wrapper'>
                 <div className='days-left'><span>{message}</span></div>
@@ -37,7 +38,6 @@ const Countdown: React.FC<CountdownProps> = ({startDate, endDate, color1, color2
         }
     }
     const {duration, remainingTime, half, quarter} = neededInfo();
-    console.log(remainingTime, duration)
     const timerProps: {
         isPlaying: boolean,
         size: number,
@@ -65,7 +65,7 @@ const Countdown: React.FC<CountdownProps> = ({startDate, endDate, color1, color2
                         {duration ? (
                             renderTime('days', getTime(duration-(duration - remainingTime)))
                         ):(
-                            renderTime(message)
+                            renderTime(null, null, message)
                         )}
                     </span>
                 )}

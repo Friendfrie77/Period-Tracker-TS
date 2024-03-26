@@ -105,19 +105,19 @@ select {
 /* bebas-neue-regular - latin */
 @font-face {
   font-family: "Bebas Neue";
-  src: url("./../fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.eot");
-  src: local("Bebas Neue"), url("../fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.woff2") format("woff2"), url("../fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.woff") format("woff"), url("../fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.ttf") format("truetype");
+  src: url("../assets/fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.eot");
+  src: local("Bebas Neue"), url("../assets/fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.woff2") format("woff2"), url("../assets/fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.woff") format("woff"), url("../assets/fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.ttf") format("truetype");
 }
 /* Comfortaa */
 @font-face {
   font-family: "Comfortaa";
-  src: url("./../fonts/Comfortaa/Comfortaa-Light.ttf");
-  src: local("Comfortaa"), url("../fonts/Comfortaa/Comfortaa-Light.ttf") format("truetype");
+  src: url("../assets/fonts/Comfortaa/Comfortaa-Light.ttf");
+  src: local("Comfortaa"), url("../assets/fonts/Comfortaa/Comfortaa-Light.ttf") format("truetype");
 }
 @font-face {
   font-family: "Varela_Round";
-  src: url("../fonts/Varela_Round/VarelaRound-Regular.ttf");
-  src: local("Varela_Round"), url("../fonts/Varela_Round/VarelaRound-Regular.ttf") format("truetype");
+  src: url("../assets/fonts/Varela_Round/VarelaRound-Regular.ttf");
+  src: local("Varela_Round"), url("../assets/fonts/Varela_Round/VarelaRound-Regular.ttf") format("truetype");
 }
 p,
 span,
@@ -901,4 +901,61 @@ select:-webkit-autofill:focus {
 
 .card-cta-button-container {
   margin-top: 15px;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+}
+.countdown-timer div:first-child {
+  max-width: 500px !important;
+  max-height: 500px !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+.countdown-timer svg {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+}
+.countdown-timer svg path:first-child {
+  stroke: #eae8ff !important;
+}
+.countdown-timer span {
+  display: flex;
+  justify-self: center;
+}
+
+.period-countdown {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+.period-countdown h2 {
+  color: #eae8ff;
+  font-size: var(--fs-header);
+  padding-bottom: 1rem;
+}
+
+.inner-circle {
+  position: relative;
+}
+.inner-circle span {
+  color: #eae8ff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--fs-header);
+}
+
+.countdown-wrapper {
+  font-size: 3rem;
+}
+
+.days-left span {
+  font-size: var(--fs-header);
+  color: #eae8ff !important;
 }/*# sourceMappingURL=syles.css.map */

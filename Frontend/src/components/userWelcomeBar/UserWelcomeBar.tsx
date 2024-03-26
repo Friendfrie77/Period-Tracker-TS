@@ -1,8 +1,8 @@
 import DateStrip from './DateStrip'
 type UserWelcomeBarProps = {
-    userName: string,
-    periodStartDate: string,
-    periodEndDate: string,
+    userName?: string,
+    periodStartDate?: string,
+    periodEndDate?: string,
 }
 const UserWelcomeBar: React.FC<UserWelcomeBarProps> = ({userName, periodStartDate, periodEndDate}) =>{
     const content =(

@@ -5,6 +5,7 @@ import cors from "cors";
 import bodyParser from "body-parser"
 import corsOptions from "../config/corsOptions.js"
 import dbCon from "../config/dbCon.js"
+import genAllPeriods from "../utils/genGuestPeriodInfo.js"
 
 const app = express();
 dotenv.config();
@@ -13,6 +14,7 @@ dbCon();
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use('/auth', authRouter);
+
 
 app.listen(port, ()=>{
     console.log(`Listening at http://localhost:${port}`)

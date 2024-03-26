@@ -96,29 +96,29 @@ $box-padding: 1rem;
 /* bebas-neue-regular - latin */
 @font-face {
   font-family: "Bebas Neue";
-  src: url("./../fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.eot");
+  src: url("../assets/fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.eot");
   src: local("Bebas Neue"),
-    url("../fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.woff2")
+    url("../assets/fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.woff2")
       format("woff2"),
-    url("../fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.woff")
+    url("../assets/fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.woff")
       format("woff"),
-    url("../fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.ttf")
+    url("../assets/fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.ttf")
       format("truetype");
 }
 
 /* Comfortaa */
 @font-face {
   font-family: "Comfortaa";
-  src: url("./../fonts/Comfortaa/Comfortaa-Light.ttf");
+  src: url("../assets/fonts/Comfortaa/Comfortaa-Light.ttf");
   src: local("Comfortaa"),
-    url("../fonts/Comfortaa/Comfortaa-Light.ttf") format("truetype");
+    url("../assets/fonts/Comfortaa/Comfortaa-Light.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Varela_Round";
-  src: url("../fonts/Varela_Round/VarelaRound-Regular.ttf");
+  src: url("../assets/fonts/Varela_Round/VarelaRound-Regular.ttf");
   src: local("Varela_Round"),
-    url("../fonts/Varela_Round/VarelaRound-Regular.ttf") format("truetype");
+    url("../assets/fonts/Varela_Round/VarelaRound-Regular.ttf") format("truetype");
 }
 
 $Copy-Font: "Varela_Round", Sans-Serif;
@@ -233,6 +233,7 @@ h4 {
 @import './landingPage';
 @import './animations';
 @import './infoCard';
+@import './countdownTimer';
 // @import "./wrappers";
 // @import "./layouts";
 // @import "./index";

@@ -1,0 +1,54 @@
+.countdown-timer{
+    display: flex;
+    justify-content: center;
+    div:first-child{
+        max-width: 500px !important;
+        max-height: 500px !important;
+        height: 100% !important;
+        width: 100% !important;
+    }
+    svg{
+        max-width: 100%;
+        height: auto;
+        max-height: 500px;
+        path:first-child{
+            stroke: $textcolor !important;
+        }
+    }
+    span{
+        display: flex;
+        justify-self: center;
+    }
+}
+.period-countdown{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    padding: $box-padding;
+    h2{
+        color: $textcolor;
+        font-size: var(--fs-header);
+        padding-bottom: $box-padding;
+    }
+}
+.inner-circle{
+    position: relative;
+    span{
+        color: $textcolor;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: var(--fs-header);
+    }
+}
+.countdown-wrapper{
+    font-size: 3rem
+}
+.days-left{
+    span{
+        font-size: var(--fs-header);
+        color: $textcolor !important;
+    }
+}
