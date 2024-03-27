@@ -1,17 +1,17 @@
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import logo2 from '../../assets/images/logo2.svg'
 import { useOpenModals } from '../../hooks/useOpenModals';
+import useUserInfo from "../../hooks/useUserInfo";
+import useAuth from "../../hooks/useAuth";
 //need to set up state for hooks
 const Nav: React.FC = () =>{
     const {toggleLoginCall, toggleRegisterCall} = useOpenModals();
-    //usePeriod hook imports
-    //placeholders for those imports
-    const token : number = 0; 
-    const role : string = '';
+    const {isAuth, role} = useUserInfo();
+    const {logout} = useAuth();
     //useLogout Hook
     const dispatchLogout = () =>{
-
+        logout();
     }
     const guestLogoutButton = () =>{
 
@@ -29,9 +29,9 @@ const Nav: React.FC = () =>{
                         <div className='mobile-nav' id = 'mobile-nav'></div>
                     </label>
                     <ul className='nav-links' id='nav-links'>
-                        {token ? (
+                        {isAuth ? (
                             <>
-                            <li className='nav-item'>
+                            {/* <li className='nav-item'>
                                 <NavLink to='/home'>Home</NavLink>
                             </li>
                             <li className='nav-item'>
@@ -39,7 +39,7 @@ const Nav: React.FC = () =>{
                             </li>
                             <li className='nav-item'>
                                 <NavLink to='/profile'>Profile</NavLink>
-                            </li>
+                            </li> */}
                             {role === 'User' ?(
                                 <li className='logout'>
                                     <button onClick = {dispatchLogout}>

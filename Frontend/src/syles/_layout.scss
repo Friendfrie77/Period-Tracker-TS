@@ -12,6 +12,10 @@
     position: relative;
     flex-grow: 1;
 }
+.wrapper-no-nav{
+    display: flex;
+    flex-grow: 1;
+}
 #root{
     display: flex;
     flex-direction: column;
@@ -26,6 +30,10 @@
     flex-direction: column;
     width: 100%;
 }
+.content-no-nav{
+    display: flex;
+    flex-grow: 1;
+}
 .flex-row-to-col {
     display: flex;
     flex-direction: row;
@@ -39,8 +47,14 @@
     justify-content: center;
     align-items: center;
   }
-  
-  
+  .header-text{
+    color: $textcolor;
+    font-size: var(--fs-header);
+  }
+  .body-text{
+    color:$textcolor;
+    font-size: var(--fs-body);
+  }
 /* CSS for Spinner animation */
 .loading{
     background-image: url('../assets/images/loading-background.svg');

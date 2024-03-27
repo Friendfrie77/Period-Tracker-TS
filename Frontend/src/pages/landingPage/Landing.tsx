@@ -48,7 +48,7 @@ const LandingPage: React.FC = () =>{
                     contentTypeTwo='txt'
                     txtContentType='text'
                     hasButton={true}
-                    link='/demo'
+                    link='/accountsetup'
                     buttonTxt='Demo Now'
                     contentImg={Laptop}
                     txtHeader="Tracking Your Period: Made Easy"

@@ -65,7 +65,7 @@ const userSlice = createSlice({
                 state.loginUser.token = action.payload
             }
         },
-        setPreviodPeriod: (state, action:PayloadAction<previodPeriodType>) =>{
+        setPrevPeriod: (state, action:PayloadAction<previodPeriodType>) =>{
             if(state.loginUser){
                 state.loginUser.previodPeriod = action.payload
             }
@@ -73,7 +73,7 @@ const userSlice = createSlice({
     }
 })
 
-export const {setLogin, setLogout, setToken, setPreviodPeriod} = userSlice.actions;
+export const {setLogin, setLogout, setToken, setPrevPeriod} = userSlice.actions;
 export default userSlice.reducer;
 export {testUser};
 export type{user}
