@@ -2,6 +2,8 @@
 import { useAppSelector, useAppDispatch } from "./useRedux";
 import { setPrevPeriod } from "../state/features/users/userSlice";
 import dayjs from "dayjs";
+import useLoading from "./useLoading";
+const APIURL = import.meta.env.VITE_APIURL
 type  periodType = {
     startDate: string,
     endDate: string
@@ -15,6 +17,7 @@ type datesType = {
 }
 const useUserInfo = ()=>{
     const dispatch = useAppDispatch();
+    const {loading} = useLoading();
     //any userinfo needed for the app
     const username:string|undefined = useAppSelector((state) => state.user?.loginUser?.username);
     const _id:number|undefined = useAppSelector((state) => state.user?.loginUser?._id);
@@ -59,8 +62,16 @@ const useUserInfo = ()=>{
     }
 
     //sending periods from account setup to server
-    const sendUserPrevPeriods = (previodPeriod:previodPeriodType) =>{
-        console.log(previodPeriod)
+    const sendUserPrevPeriods = async (previodPeriod:previodPeriodType) =>{
+        loading();
+        const data = {_id, role, previodPeriod}
+        const prevPeriodAPICall = await fetch(`${APIURL}/data/addNewPrevPeriods`,{
+            method: 'Post',
+            mode: "cors",
+            headers:{Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json'},
+            body: JSON.stringify(data)
+        })
     }
 
     

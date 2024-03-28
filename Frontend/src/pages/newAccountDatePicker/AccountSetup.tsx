@@ -13,7 +13,7 @@ const AccountSetup: React.FC = () =>{
         endDate?: Date;
         key?: string;
     }
-    const isAuth = false;
+    const isAuth = true;
     const{previodPeriod, updateUserDates, sendUserPrevPeriods} = useUserInfo();
     const {isLoading} = useLoading();
     const [date, setDate] = useState<datesType[]>([

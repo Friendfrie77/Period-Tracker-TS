@@ -1,6 +1,7 @@
 import express from "express"
 import dotenv from "dotenv";
 import authRouter from "../routes/auth.js"
+import userDataRouter from "../routes/userData.js"
 import cors from "cors";
 import bodyParser from "body-parser"
 import corsOptions from "../config/corsOptions.js"
@@ -14,6 +15,7 @@ dbCon();
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use('/auth', authRouter);
+app.use('/data', userDataRouter)
 
 
 app.listen(port, ()=>{

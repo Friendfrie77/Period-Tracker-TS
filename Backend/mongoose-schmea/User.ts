@@ -42,25 +42,25 @@ const userSchema = new Schema({
         type: Date,
         default: null,
       },
-      periodEndDate: {
-        type: Date,
-        default: null,
+    periodEndDate: {
+      type: Date,
+      default: null,
       },
-      daysTill: {
-        type: Number,
-        default: null,
+    daysTill: {
+      type: Number,
+      default: null,
       },
-      canBleed: {
-        type: Boolean,
-        default: false,
+    canBleed: {
+      type: Boolean,
+      default: false,
       },
-      isBleeding: {
-        type: Boolean,
-        default: false,
+    isBleeding: {
+      type: Boolean,
+      default: false,
       },
-      previousPeriod: {
-        type: Array,
-        default: [],
+    previousPeriod: {
+      type: Array,
+      default: [],
       },
 })
 
@@ -79,6 +79,28 @@ userSchema.pre("save", function(next){
     next();
   }
 })
+
+userSchema.methods.authPassword = function(password:string, callback){
+  bcrypt.compare(password, this.password, function(err, same){
+    if(err){
+      callback(err)
+    }else{
+      callback(err, same)
+    }
+  })
+}
+
+userSchema.methods.hashNewPass = function(password:string){
+  const newPassword = bcrypt.hash(password, salt);
+  return newPassword;
+}
+
+// userSchema.methods.sortPrevPeriod = function(user){
+//   let sorted = true;
+//   for(let i = 0; i < user.previodPeriod.length - 1; i++){
+//     if(user.previodPeriod[i][0] > user.previodPeriod)
+//   }
+// }
 
 const user = model("user", userSchema)
 export default user;
