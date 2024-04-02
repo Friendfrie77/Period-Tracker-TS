@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Spinner from "../../components/layout/Spinner"
 import useLoading from "../../hooks/useLoading"
 import useUserInfo from "../../hooks/useUserInfo"
+import useDemoAccount from "../../hooks/useDemoAccount";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import { DateRange } from 'react-date-range';
 import {Form} from 'react-final-form';
@@ -13,8 +14,9 @@ const AccountSetup: React.FC = () =>{
         endDate?: Date;
         key?: string;
     }
-    const isAuth = true;
+    const isAuth = false;
     const{previodPeriod, updateUserDates, sendUserPrevPeriods} = useUserInfo();
+    const {setupDemoAccount} = useDemoAccount();
     const {isLoading} = useLoading();
     const [date, setDate] = useState<datesType[]>([
         {
@@ -26,8 +28,8 @@ const AccountSetup: React.FC = () =>{
     const accountInfoButton = () =>{
         sendUserPrevPeriods(previodPeriod)
     }
-    const demoAccountbutton = () =>{
-        
+    const demoAccountbutton = (val) =>{
+        setupDemoAccount(val, previodPeriod)
     }
     useEffect(() =>{
         updateUserDates(date)

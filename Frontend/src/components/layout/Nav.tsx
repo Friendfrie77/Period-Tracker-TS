@@ -14,7 +14,7 @@ const Nav: React.FC = () =>{
         logout();
     }
     const guestLogoutButton = () =>{
-
+        logout();
     }
 
     const navBar = (

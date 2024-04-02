@@ -4,7 +4,7 @@ type  periodType = {
     startDate: string,
     endDate: string
 }
-type guestPeriodInfo = periodType[];
+type guestPeriodInfo = periodType[] | undefined;
 const todaysDate:Date = new Date();
 let [cycle, avgLength] = [25, 5];
 const addRandomDays = (dayToAdd:number, num:number) =>{

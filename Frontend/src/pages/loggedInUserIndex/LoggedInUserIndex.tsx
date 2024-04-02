@@ -25,7 +25,7 @@ const LoggedInUserIndex = () =>{
             ): <UserWelcomeBar userName={username}/>}
             {needInfo ? (
                 <NeedInfo />
-            ): null}
+            ): (<h1>{periodStartDate}-{periodEndDate}</h1>)}
         </main>
     )
     return content
