@@ -34,8 +34,12 @@ const useUserInfo = ()=>{
     const isBleeding : boolean|undefined = useAppSelector((state) => state.user?.loginUser?.isBleeding);
     const previodPeriod: previodPeriodType|undefined|null = useAppSelector((state) => state.user?.loginUser?.previodPeriod)
     const notifications: boolean|undefined = useAppSelector((state) => state.user?.loginUser?.notifications)
-    const isAuth: boolean = !!token 
-
+    const isAuth: boolean = !!token
+    let cycleStartDate: string | null = null
+    if(typeof cycle === 'number'){
+        cycleStartDate = dayjs(periodStartDate).subtract(cycle, 'days').format()
+    }
+    const todaysDate:string = dayjs().format()
     //helper functions
     //checks if a period date is in the current list of logged periods
     const checkIfDateIsPresent = (loggedPeriods:previodPeriodType, period:previodPeriodType) => {
@@ -75,7 +79,7 @@ const useUserInfo = ()=>{
     }
 
     
-    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previodPeriod, notifications, isAuth, updateUserDates, sendUserPrevPeriods}
+    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previodPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates, sendUserPrevPeriods}
 }
 
 

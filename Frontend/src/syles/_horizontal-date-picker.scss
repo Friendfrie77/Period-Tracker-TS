@@ -1,0 +1,60 @@
+.horizontal-date-picker{
+    height:100px;
+    max-width: 95vw;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+.dM{
+    height: 100%;
+    width: 100%;
+    padding: 0px !important;
+}
+.Kq, .Ez{
+    margin-top: 36px !important;
+    padding: 0px 5px !important;
+    svg{
+        fill: $color6 !important;
+        height: 30px !important;
+        width: 30px !important;
+    }
+    &::after{
+        display: none !important;
+    }
+}
+.dr{
+    height: 100% !important;
+}
+.Tx{
+    font-family: $Copy-Font;
+    margin: 0px !important;
+    min-height: 100%;
+    z-index: 0 !important;
+
+}
+
+._3n{
+    margin: 0px 3vw !important;
+    min-height: 100% !important;
+    line-height: 25px !important;
+}
+.Lx, ._1g{
+    font-size: 2rem !important;
+    color: $textcolor !important;
+    @include for-size(small-phone){
+        font-size: 1.5rem !important;
+    }
+}
+.FC ._1g{
+    background-color: transparent !important;
+}
+.or{
+    background-color: transparent !important;
+    .Lx, ._1g{
+        color: #ED2939 !important;
+    }
+}
+.jb{
+    color: $textcolor !important;
+    font-family: $Copy-Font !important;
+}

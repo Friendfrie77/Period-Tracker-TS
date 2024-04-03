@@ -7,7 +7,7 @@ type UserWelcomeBarProps = {
 const UserWelcomeBar: React.FC<UserWelcomeBarProps> = ({userName, periodStartDate, periodEndDate}) =>{
     const content =(
         <div className='homepage-header'>
-            <h1>Welcome back {userName}</h1>
+            <h1>Welcome back {userName},</h1>
             {periodStartDate && periodEndDate ?(
                 <DateStrip
                     startDate={periodStartDate}

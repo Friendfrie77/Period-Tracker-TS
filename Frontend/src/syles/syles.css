@@ -854,6 +854,17 @@ select:-webkit-autofill:focus {
     opacity: 100%;
   }
 }
+@keyframes gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
 /*end css for any ending animations */
 .info-card {
   max-width: 1440px;
@@ -992,6 +1003,16 @@ select:-webkit-autofill:focus {
 }
 .account-setup-wrapper p {
   padding-bottom: 1rem;
+}
+
+.homepage-header {
+  max-width: 2100px;
+  margin: 0 auto 0 auto;
+}
+.homepage-header h1 {
+  padding-left: 1rem;
+  font-size: var(--fs-welcome);
+  color: #eae8ff;
 }
 
 .rdrCalendarWrapper {
@@ -1551,4 +1572,74 @@ select:-webkit-autofill:focus {
   text-align: left;
   color: #849095;
   padding: 0.833em;
+}
+
+.horizontal-date-picker {
+  height: 100px;
+  max-width: 95vw;
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+
+.dM {
+  height: 100%;
+  width: 100%;
+  padding: 0px !important;
+}
+
+.Kq, .Ez {
+  margin-top: 36px !important;
+  padding: 0px 5px !important;
+}
+.Kq svg, .Ez svg {
+  fill: #5cffc9 !important;
+  height: 30px !important;
+  width: 30px !important;
+}
+.Kq::after, .Ez::after {
+  display: none !important;
+}
+
+.dr {
+  height: 100% !important;
+}
+
+.Tx {
+  font-family: "Varela_Round", Sans-Serif;
+  margin: 0px !important;
+  min-height: 100%;
+  z-index: 0 !important;
+}
+
+._3n {
+  margin: 0px 3vw !important;
+  min-height: 100% !important;
+  line-height: 25px !important;
+}
+
+.Lx, ._1g {
+  font-size: 2rem !important;
+  color: #eae8ff !important;
+}
+@media (max-width: 320px) {
+  .Lx, ._1g {
+    font-size: 1.5rem !important;
+  }
+}
+
+.FC ._1g {
+  background-color: transparent !important;
+}
+
+.or {
+  background-color: transparent !important;
+}
+.or .Lx, .or ._1g {
+  color: #ED2939 !important;
+}
+
+.jb {
+  color: #eae8ff !important;
+  font-family: "Varela_Round", Sans-Serif !important;
 }/*# sourceMappingURL=syles.css.map */

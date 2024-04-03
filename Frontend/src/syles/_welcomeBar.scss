@@ -1,0 +1,9 @@
+.homepage-header{
+    max-width: 2100px;
+    margin: 0 auto 0 auto;
+    h1{
+        padding-left: 1rem;
+        font-size: var(--fs-welcome);
+        color: $textcolor
+    }
+}

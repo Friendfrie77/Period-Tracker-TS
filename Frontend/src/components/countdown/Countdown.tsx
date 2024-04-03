@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { CountdownCircleTimer} from "react-countdown-circle-timer";
 import useTimerData from "../../hooks/useTimerData";
 type CountdownProps = {
-    startDate?: Date,
-    endDate?: Date,
+    startDate?: Date | string | null,
+    endDate?: Date | string | null,
     color1?: string,
     color2?: string,
     color3?: string,
@@ -38,6 +38,7 @@ const Countdown: React.FC<CountdownProps> = ({startDate, endDate, color1, color2
         }
     }
     const {duration, remainingTime, half, quarter} = neededInfo();
+    console.log((getTime(duration-(duration - remainingTime))))
     const timerProps: {
         isPlaying: boolean,
         size: number,
