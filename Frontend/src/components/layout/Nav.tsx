@@ -4,6 +4,7 @@ import logo2 from '../../assets/images/logo2.svg'
 import { useOpenModals } from '../../hooks/useOpenModals';
 import useUserInfo from "../../hooks/useUserInfo";
 import useAuth from "../../hooks/useAuth";
+import { NavLink } from "react-router-dom";
 //need to set up state for hooks
 const Nav: React.FC = () =>{
     const {toggleLoginCall, toggleRegisterCall} = useOpenModals();
@@ -36,10 +37,10 @@ const Nav: React.FC = () =>{
                             </li>
                             <li className='nav-item'>
                                 <NavLink to='/periodinfo'>Period Info</NavLink>
-                            </li>
+                            </li> */}
                             <li className='nav-item'>
                                 <NavLink to='/profile'>Profile</NavLink>
-                            </li> */}
+                            </li>
                             {role === 'User' ?(
                                 <li className='logout'>
                                     <button onClick = {dispatchLogout}>

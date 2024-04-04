@@ -5,7 +5,7 @@ type  periodType = {
     startDate: string,
     endDate: string
 }
-type previodPeriodType = periodType[]
+type previousPeriod = periodType[]
 
 type user = {
     username: string | undefined;
@@ -21,7 +21,7 @@ type user = {
     daysLeftPeriod: number | null | undefined;
     canBleed: boolean | undefined;
     isBleeding: boolean | undefined;
-    previodPeriod: previodPeriodType| null | undefined;
+    previousPeriod: previousPeriod| null | undefined;
     notifications: boolean | undefined;
 }
 
@@ -39,7 +39,7 @@ const testUser:user = {
     daysLeftPeriod: null,
     canBleed: false,
     isBleeding: false,
-    previodPeriod: null,
+    previousPeriod: null,
     notifications: true
 };
 interface userState {
@@ -65,9 +65,9 @@ const userSlice = createSlice({
                 state.loginUser.token = action.payload
             }
         },
-        setPrevPeriod: (state, action:PayloadAction<previodPeriodType>) =>{
+        setPrevPeriod: (state, action:PayloadAction<previousPeriod>) =>{
             if(state.loginUser){
-                state.loginUser.previodPeriod = action.payload
+                state.loginUser.previousPeriod = action.payload
             }
         }
     }

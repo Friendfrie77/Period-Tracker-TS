@@ -19,6 +19,7 @@ const setupDemoAccount = async (req, res) =>{
             previousPeriod: loggedPeriods
         })
         const userData = user.sendUserInfo(user);
+        user.save();
         const userID = {id: user._id}
         const accessToken: string = jwt.sign(userID, process.env.ACCESS_TOKEN_SECRET);
         res.status(201).json({userData, accessToken})

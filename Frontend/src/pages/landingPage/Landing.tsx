@@ -5,8 +5,10 @@ import IndexInfoCard from "../../components/indexPageCard/InfoCard";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import Phone from "../../assets/images/phone-test.png";
 import Laptop from '../../assets/images/laptop.jpg';
+import {useNavigate} from 'react-router-dom';
 const LandingPage: React.FC = () =>{
-    const {loginModalOpen, registerModalOpen, toggleRegisterCall} = useOpenModals();
+    const navigate = useNavigate();
+    const {loginModalOpen, registerModalOpen, toggleRegisterCall, toggleNavCall} = useOpenModals();
     const indexCardColors : {
         color1: string,
         color2: string,
@@ -21,6 +23,10 @@ const LandingPage: React.FC = () =>{
         color5: '#8FDDC3',
         color6: '#5CFFC9',
         textColor:'#EAE8FF',
+    }
+    const demoAccount = () =>{
+        toggleNavCall();
+        navigate('/accountsetup',{state: {fromApp: true}} )
     }
     const content = (
         <main className="content">
@@ -48,7 +54,9 @@ const LandingPage: React.FC = () =>{
                     contentTypeTwo='txt'
                     txtContentType='text'
                     hasButton={true}
-                    link='/accountsetup'
+                    buttonLink = {false}
+                    link = '/'
+                    buttonFunction={demoAccount}
                     buttonTxt='Demo Now'
                     contentImg={Laptop}
                     txtHeader="Tracking Your Period: Made Easy"

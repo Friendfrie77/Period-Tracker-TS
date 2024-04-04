@@ -3,17 +3,20 @@ import Spinner from "../../components/layout/Spinner"
 import useLoading from "../../hooks/useLoading"
 import useUserInfo from "../../hooks/useUserInfo"
 import useDemoAccount from "../../hooks/useDemoAccount";
-import { useOpenModals } from "../../hooks/useOpenModals";
 import { DateRange } from 'react-date-range';
 import {Form} from 'react-final-form';
 import UserTextField from "../../components/userInputFields/UserTextField";
+import { useLocation, useNavigate } from "react-router-dom";
 const AccountSetup: React.FC = () =>{
-    const {toggleNavCall} = useOpenModals()
     type datesType = {
         startDate?: Date;
         endDate?: Date;
         key?: string;
     }
+    type valTypes ={
+        username: string;
+    }
+    const navigate = useNavigate();
     const isAuth = false;
     const{previodPeriod, updateUserDates, sendUserPrevPeriods} = useUserInfo();
     const {setupDemoAccount} = useDemoAccount();
@@ -28,13 +31,19 @@ const AccountSetup: React.FC = () =>{
     const accountInfoButton = () =>{
         sendUserPrevPeriods(previodPeriod)
     }
-    const demoAccountbutton = (val) =>{
+    const demoAccountbutton = (val:valTypes) =>{
         setupDemoAccount(val, previodPeriod)
     }
     useEffect(() =>{
         updateUserDates(date)
         //eslint-disable-next-line react-hooks/exhaustive-deps
     },[date])
+    useEffect(() =>{
+        if(!state?.fromApp){
+            navigate('/')
+        }   
+    })
+    const {state} = useLocation();
     const content = isLoading? <Spinner /> : (
         <main className="content-no-nav flex-center">
             <section className="flex-center account-setup-wrapper">
@@ -63,7 +72,7 @@ const AccountSetup: React.FC = () =>{
                 ): (
                     <Form 
                         onSubmit={demoAccountbutton}
-                        validate={values =>{
+                        validate={(values:valTypes)=>{
                             const errors:{
                                 username?: string
                             } = {};
@@ -89,7 +98,7 @@ const AccountSetup: React.FC = () =>{
             </section>
        </main>
     )
-    return content
+    return content;
 }
 
 export default AccountSetup

@@ -4,7 +4,6 @@ import { toggleLogin, toggleRegister, toggleNav } from "../state/features/modals
 const useOpenModals = (): {loginModalOpen:boolean, registerModalOpen: boolean, toggleLoginCall: () => void, toggleRegisterCall: () => void, toggleNavCall: () => void} =>{
     const loginModalOpen = useAppSelector((state) => state.modal.loginModal)
     const registerModalOpen = useAppSelector((state) => state.modal.registerModal)
-
     const dispatch = useAppDispatch()
     const toggleLoginCall = () =>{
         dispatch(toggleLogin())

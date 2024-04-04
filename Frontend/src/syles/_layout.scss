@@ -55,6 +55,9 @@
     color:$textcolor;
     font-size: var(--fs-body);
   }
+  .padding-bottom-1rem{
+    padding-bottom: 1rem;
+  }
 /* CSS for Spinner animation */
 .loading{
     background-image: url('../assets/images/loading-background.svg');

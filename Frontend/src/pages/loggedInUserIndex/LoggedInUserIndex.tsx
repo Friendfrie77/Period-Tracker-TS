@@ -5,10 +5,10 @@ import Spinner from "../../components/layout/Spinner";
 import UserWelcomeBar from "../../components/userWelcomeBar/UserWelcomeBar";
 import NeedInfo from "./NeedInfo";
 import HasInfo from "./HasInfo";
-const LoggedInUserIndex = () =>{
+const LoggedInUserIndex:React.FC = () =>{
     const [needInfo, setInfo] = useState(true)
     const {isLoading} = useLoading();
-    const {username, periodStartDate, periodEndDate} = useUserInfo()
+    const {periodStartDate, periodEndDate} = useUserInfo()
     const checkInfo = () =>{
         if(periodStartDate && periodEndDate){
             setInfo(false)
@@ -19,9 +19,7 @@ const LoggedInUserIndex = () =>{
     })
     const content = isLoading ? <Spinner /> : (
         <main className="content">
-            {periodStartDate && periodEndDate?(
-                <UserWelcomeBar userName={username} periodStartDate={periodStartDate} periodEndDate={periodEndDate} />
-            ): <UserWelcomeBar userName={username}/>}
+                <UserWelcomeBar showDateStrip ={true} />
             {needInfo ? (
                 <NeedInfo />
             ): (<HasInfo />)}

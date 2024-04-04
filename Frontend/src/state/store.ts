@@ -17,7 +17,7 @@ const persistConfig = { key: "root", storage, version: 1 };
 const rootReducer = combineReducers({
   user: persistReducer(persistConfig, userSlicereducer),
   modal: modalsSlicereducer,
-  loading: loadingSlicereducer
+  loading: loadingSlicereducer,
 });
 const store = configureStore({
     reducer: rootReducer,

@@ -8,7 +8,7 @@ type  periodType = {
     startDate: string,
     endDate: string
 }
-export type previodPeriodType = periodType[] | undefined | null
+export type previousPeriod = periodType[] | undefined | null
 
 type datesType = {
     startDate?: Date;
@@ -18,6 +18,8 @@ type datesType = {
 const useUserInfo = ()=>{
     const dispatch = useAppDispatch();
     const {loading} = useLoading();
+    // const test = useAppSelector((state) => state.user?.loginUser)
+    // console.log(test)
     //any userinfo needed for the app
     const username:string|undefined = useAppSelector((state) => state.user?.loginUser?.username);
     const _id:number|undefined = useAppSelector((state) => state.user?.loginUser?._id);
@@ -32,7 +34,7 @@ const useUserInfo = ()=>{
     const daysLeftPeriod: number|undefined|null = useAppSelector((state) => state.user?.loginUser?.daysLeftPeriod);
     const canBleed: boolean|undefined = useAppSelector((state) => state.user?.loginUser?.canBleed);
     const isBleeding : boolean|undefined = useAppSelector((state) => state.user?.loginUser?.isBleeding);
-    const previodPeriod: previodPeriodType|undefined|null = useAppSelector((state) => state.user?.loginUser?.previodPeriod)
+    const previousPeriod: previousPeriod|undefined|null = useAppSelector((state) => state.user?.loginUser?.previousPeriod)
     const notifications: boolean|undefined = useAppSelector((state) => state.user?.loginUser?.notifications)
     const isAuth: boolean = !!token
     let cycleStartDate: string | null = null
@@ -42,7 +44,7 @@ const useUserInfo = ()=>{
     const todaysDate:string = dayjs().format()
     //helper functions
     //checks if a period date is in the current list of logged periods
-    const checkIfDateIsPresent = (loggedPeriods:previodPeriodType, period:previodPeriodType) => {
+    const checkIfDateIsPresent = (loggedPeriods:previousPeriod, period:previousPeriod) => {
         const result = loggedPeriods.some(dateSet => dateSet.startDate === period[0].startDate || dateSet.endDate === period[0].endDate);
         return result;
     }
@@ -53,12 +55,12 @@ const useUserInfo = ()=>{
             endDate: dayjs(dates[0].endDate).format('YYYY-MM-DD')
         }]
         if(period[0].startDate !== period[0].endDate){
-            if(previodPeriod === null || previodPeriod === undefined){
+            if(previousPeriod === null || previousPeriod === undefined){
                 dispatch(setPrevPeriod(period))
             }else{
-                if(!checkIfDateIsPresent(previodPeriod, period)){
+                if(!checkIfDateIsPresent(previousPeriod, period)){
                     dispatch(
-                        setPrevPeriod([...previodPeriod, ...period])
+                        setPrevPeriod([...previousPeriod, ...period])
                     )
                 }
             }
@@ -66,9 +68,9 @@ const useUserInfo = ()=>{
     }
 
     //sending periods from account setup to server
-    const sendUserPrevPeriods = async (previodPeriod:previodPeriodType) =>{
+    const sendUserPrevPeriods = async (previousPeriod:previodPeriodType) =>{
         loading();
-        const data = {_id, role, previodPeriod}
+        const data = {_id, role, previousPeriod}
         const prevPeriodAPICall = await fetch(`${APIURL}/data/addNewPrevPeriods`,{
             method: 'Post',
             mode: "cors",
@@ -79,7 +81,7 @@ const useUserInfo = ()=>{
     }
 
     
-    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previodPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates, sendUserPrevPeriods}
+    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates, sendUserPrevPeriods}
 }
 
 

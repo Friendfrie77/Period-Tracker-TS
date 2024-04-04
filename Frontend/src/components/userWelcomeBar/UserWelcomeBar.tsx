@@ -1,14 +1,14 @@
 import DateStrip from './DateStrip'
-type UserWelcomeBarProps = {
-    userName?: string,
-    periodStartDate?: string,
-    periodEndDate?: string,
+import useUserInfo from "../../hooks/useUserInfo";
+type UserWelcomeBarProps ={
+    showDateStrip: boolean
 }
-const UserWelcomeBar: React.FC<UserWelcomeBarProps> = ({userName, periodStartDate, periodEndDate}) =>{
+const UserWelcomeBar: React.FC<UserWelcomeBarProps> = ({showDateStrip}) =>{
+    const {username, periodStartDate, periodEndDate} = useUserInfo()
     const content =(
         <div className='homepage-header'>
-            <h1>Welcome back {userName},</h1>
-            {periodStartDate && periodEndDate ?(
+            <h1>Welcome back {username},</h1>
+            {periodStartDate && periodEndDate && showDateStrip ?(
                 <DateStrip
                     startDate={periodStartDate}
                     endDate={periodEndDate}

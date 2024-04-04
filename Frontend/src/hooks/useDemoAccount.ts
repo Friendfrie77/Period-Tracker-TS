@@ -4,6 +4,7 @@ const APIURL = import.meta.env.VITE_APIURL
 import { setLogin, setToken } from "../state/features/users/userSlice";
 import { useAppDispatch} from "./useRedux"
 import { useNavigate } from "react-router-dom";
+import { useOpenModals } from "./useOpenModals";
 
 type setupDemoAccountValTypes = {
     username: string
@@ -13,6 +14,7 @@ const useDemoAccount = () =>{
     const navigate = useNavigate();
     const {loading} = useLoading();
     const dispatch = useAppDispatch()
+    const {toggleNavCall} = useOpenModals();
     const setupDemoAccount = async(val:setupDemoAccountValTypes, previodPeriod?:previodPeriodType) =>{
         loading();
         const username = val.username
@@ -27,9 +29,11 @@ const useDemoAccount = () =>{
         });
         if(testAPICall.ok){
             const userData = await testAPICall.json()
+            console.log(userData.userData)
             dispatch(setLogin(userData.userData))
             dispatch(setToken(userData.accessToken))
             loading();
+            toggleNavCall();
             navigate('/')
         }
     }

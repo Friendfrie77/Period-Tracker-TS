@@ -14,9 +14,11 @@ type InfoCardProps ={
     hasLink: boolean,
     link: string,
     buttonTxt?: string,
+    buttonLink?: boolean,
+    buttonFunction?: () => void;
     linkTxt?: string,
 }
-const IndexInfoCard: React.FC<InfoCardProps> =({styles, contentTypeOne, contentTypeTwo, txtHeader, txtContentType, txtContent, contentImg, imgAlt, hasButton, hasLink, link, buttonTxt, linkTxt}) =>{
+const IndexInfoCard: React.FC<InfoCardProps> =({styles, contentTypeOne, contentTypeTwo, txtHeader, txtContentType, txtContent, contentImg, imgAlt, hasButton, hasLink, link, buttonTxt, linkTxt, buttonLink, buttonFunction}) =>{
     const content = (
         <section className='info-card' style={styles}>
             <div className='card-content-wrapper flex-row-to-col'>
@@ -37,7 +39,9 @@ const IndexInfoCard: React.FC<InfoCardProps> =({styles, contentTypeOne, contentT
                         <div>
                             {hasButton ?(
                                 <div className = 'card-cta-button-container'>
-                                    <NavLink className='card-cta-button' to={link}>{buttonTxt}</NavLink>
+                                    {buttonLink ?(
+                                        <NavLink className='card-cta-button' to={link}>{buttonTxt}</NavLink>
+                                    ): <button className="card-cta-button" onClick = {buttonFunction}>{buttonTxt}</button>}
                                 </div>
                             ): hasLink ?(
                                 <NavLink className='card-cta-link' to={link}>{linkTxt} <span>&#8594;</span></NavLink>
@@ -66,7 +70,9 @@ const IndexInfoCard: React.FC<InfoCardProps> =({styles, contentTypeOne, contentT
                         <div>
                             {hasButton ?(
                                 <div className = 'card-cta-button-container'>
-                                    <NavLink className='card-cta-button' to={link}>{buttonTxt}</NavLink>
+                                    {buttonLink ?(
+                                        <NavLink className='card-cta-button' to={link}>{buttonTxt}</NavLink>
+                                    ): <button className="card-cta-button" onClick = {buttonFunction}>{buttonTxt}</button>}
                                 </div>
                             ): hasLink ?(
                                 <NavLink className='card-cta-link' to={link}>{linkTxt} <span>&#8594;</span></NavLink>

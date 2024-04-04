@@ -12,7 +12,7 @@ const HomePageCountdown: React.FC<HomePageCountdownProps> = ({startDate, endDate
         <div className="flex-center">
             <h2 className="header-text">{headerMessage}</h2>
             <Countdown startDate={startDate} endDate={endDate} message={countdownMessage} />
-            <div className="flex-center">
+            <div className="flex-center padding-bottom-1rem">
                 <label className="body-text" htmlFor="check-period">{buttonLable}</label>
                 <button className="button" name='check-period' onClick={buttonFunction}>Yes</button>
             </div>
