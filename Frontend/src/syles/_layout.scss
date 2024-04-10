@@ -58,6 +58,10 @@
   .padding-bottom-1rem{
     padding-bottom: 1rem;
   }
+  .subheader-text{
+    color: $textcolor;
+    font-size: var(--fs-subheader);
+  }
 /* CSS for Spinner animation */
 .loading{
     background-image: url('../assets/images/loading-background.svg');

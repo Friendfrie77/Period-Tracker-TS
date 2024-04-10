@@ -1,0 +1,32 @@
+.calander{
+    max-height: 1000px;
+    min-height: 500px;
+    height: 100%;
+    position: relative;
+    padding: $box-padding;
+    max-width: 1400px;
+}
+.profile-cal{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    max-width: 1400px;
+    width: 100%;
+    height: 100%;
+}
+
+.stat-card{
+    color: $textcolor;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    align-self: center;
+    margin: 20px 0px;
+    background-color: $color2;
+    padding: $box-padding;
+    border-radius: $radius;
+    box-shadow: $drop-shadow-wrappers;
+    span{
+        font-size: var(--fs-body);
+    }
+}
