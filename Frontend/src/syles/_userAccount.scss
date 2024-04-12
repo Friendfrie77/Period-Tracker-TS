@@ -35,23 +35,17 @@
         font-size: var(--fs-header);
         padding-bottom: 1.5rem;
     }
-    button{
-        box-shadow: $drop-shadow-wrappers;
-        width: 95%;
-        height: 2rem;
-        margin: 2rem 0px;
-        font-size: 1.5rem;
-        background-color: $button-color;
-        border-radius: $radius;
-        border: none;
-        color: $textcolor
-    }
-    hr{
-        width: 100%;
-        background-color: $color2;
-        height: 2px;
-        border: none;
-    }
+    // button{
+    //     box-shadow: $drop-shadow-wrappers;
+    //     width: 95%;
+    //     height: 2rem;
+    //     margin: 2rem 0px;
+    //     font-size: 1.5rem;
+    //     background-color: $button-color;
+    //     border-radius: $radius;
+    //     border: none;
+    //     color: $textcolor
+    // }
     @include for-size(phone-only){
         width: 100%;
     }
@@ -171,4 +165,11 @@ select:-webkit-autofill:focus {
 .span-error {
     border: 1px solid red !important;
     color: red !important;
+}
+.hr-fullpage{
+    width: 100%;
+}
+.account-reg{
+    grid-area: 4/1/5/8;
+
 }

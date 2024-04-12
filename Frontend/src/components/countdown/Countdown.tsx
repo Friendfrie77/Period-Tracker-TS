@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { CountdownCircleTimer} from "react-countdown-circle-timer";
 import useTimerData from "../../hooks/useTimerData";
 type CountdownProps = {
-    startDate?: Date | string | null,
-    endDate?: Date | string | null,
-    color1?: string,
+    startDate?: Date | null,
+    endDate?: Date | null,
+    color1: string,
     color2?: string,
     color3?: string,
     message?: string
@@ -28,7 +28,6 @@ const renderTime = (dimension?:string|null , time?:number|null, message?:string)
 }
 const Countdown: React.FC<CountdownProps> = ({startDate, endDate, color1, color2, color3, message}) =>{
     const {calcNeededInfo, timerKey, setTimerKey, getTime} = useTimerData();
-
     const neededInfo = () =>{
         if(startDate && endDate){
             const {duration, remainingTime, half, quarter} = calcNeededInfo(startDate, endDate)
@@ -39,6 +38,7 @@ const Countdown: React.FC<CountdownProps> = ({startDate, endDate, color1, color2
     }
     const {duration, remainingTime, half, quarter} = neededInfo();
     console.log((getTime(duration-(duration - remainingTime))))
+    console.log(`#${color1}`, `#${color2}`, `#${color3}`)
     const timerProps: {
         isPlaying: boolean,
         size: number,
@@ -50,14 +50,15 @@ const Countdown: React.FC<CountdownProps> = ({startDate, endDate, color1, color2
     }
     useEffect(() =>{
         setTimerKey(prev => prev + 1)
+        // eslint-disable-next-line
     },[endDate])
     const content = (
         <div className="countdown-timer">
             <CountdownCircleTimer
             {...timerProps}
             key = {timerKey}
-            colors={                
-            "#9000ff"}
+            colors = {[`#${color1}`, `#${color2}`, `#${color3}`]}
+            colorsTime={[duration, half, quarter]}
             duration={duration}
             initialRemainingTime={remainingTime}
             >

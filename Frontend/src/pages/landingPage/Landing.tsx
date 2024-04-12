@@ -73,8 +73,8 @@ const LandingPage: React.FC = () =>{
                     linkTxt="Find out more"
                     contentImg={Laptop}
                     txtHeader="Privacy Focused "
-                    txtContent="" 
-                    txtContentType={""} 
+                    txtContent={""} 
+                    txtContentType={"text"} 
                     imgAlt={""} 
                     link={""}                
                     />

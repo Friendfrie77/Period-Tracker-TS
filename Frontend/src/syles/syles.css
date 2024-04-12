@@ -172,6 +172,15 @@ h4 {
   pointer-events: none;
 }
 
+.button-link {
+  background-color: transparent;
+  border: none;
+  color: #5cffc9;
+}
+.button-link:hover {
+  color: #eae8ff;
+}
+
 .message {
   text-align: center;
   color: #eae8ff;
@@ -611,23 +620,6 @@ footer a {
   font-size: var(--fs-header);
   padding-bottom: 1.5rem;
 }
-.login-wrapper button {
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
-  width: 95%;
-  height: 2rem;
-  margin: 2rem 0px;
-  font-size: 1.5rem;
-  background-color: #af4d98;
-  border-radius: 5px;
-  border: none;
-  color: #eae8ff;
-}
-.login-wrapper hr {
-  width: 100%;
-  background-color: #241e4e;
-  height: 2px;
-  border: none;
-}
 @media (max-width: 425px) {
   .login-wrapper {
     width: 100%;
@@ -752,6 +744,14 @@ select:-webkit-autofill:focus {
 .span-error {
   border: 1px solid red !important;
   color: red !important;
+}
+
+.hr-fullpage {
+  width: 100%;
+}
+
+.account-reg {
+  grid-area: 4/1/5/8;
 }
 
 .hero {

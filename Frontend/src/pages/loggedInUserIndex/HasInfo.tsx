@@ -1,14 +1,14 @@
 import HomePageCountdown from "../../components/countdown/HomePageCountdown";
 import useUserInfo from "../../hooks/useUserInfo";
+import dayjs from "dayjs";
 const HasInfo = () =>{
-    const {periodStartDate, periodEndDate, canBleed, isBleeding, cycleStartDate, cycle} = useUserInfo();
-    console.log(periodStartDate, cycle)
+    const {periodStartDate, periodEndDate, canBleed, isBleeding, cycleStartDate} = useUserInfo();
     const content = (
         <>
             {!canBleed && !isBleeding ?(
-                <HomePageCountdown startDate={cycleStartDate} endDate={periodStartDate} headerMessage="Your next period is in" buttonLable="Has your period started?" />
+                <HomePageCountdown startDate={dayjs(cycleStartDate).toDate()} endDate={dayjs(periodStartDate).toDate()} headerMessage="Your next period is in" buttonLable="Has your period started?" />
             ) : isBleeding ?(
-                <HomePageCountdown startDate={periodStartDate} endDate={periodEndDate} headerMessage="Your period should be over in" buttonLable="Has your period ended?" />
+                <HomePageCountdown startDate={dayjs(periodStartDate).toDate()} endDate={dayjs(periodEndDate).toDate()} headerMessage="Your period should be over in" buttonLable="Has your period ended?" />
             ) : (
                 <HomePageCountdown countdownMessage="Today" headerMessage="Your period might be here" buttonLable="Has your period started?" />
             )}

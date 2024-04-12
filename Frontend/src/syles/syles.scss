@@ -157,6 +157,14 @@ h4 {
   font-size: var(--fs-body);
   @include button-mixin;
 }
+.button-link{
+  background-color: transparent;
+  border: none;
+  color: $color6;
+  &:hover {
+    color: $textcolor;
+  }
+}
 .message {
   text-align: center;
   color: $textcolor;

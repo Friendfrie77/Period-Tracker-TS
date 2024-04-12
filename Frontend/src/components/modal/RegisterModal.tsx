@@ -94,7 +94,7 @@ const RegisterModal: React.FC = () =>{
                             span = 'Confirm Password'
                             isDisabled = {false}
                         />
-                        <button type= "submit" disabled = {!valid}>Submit</button>
+                        <button type= "submit" className="button" disabled = {!valid}>Submit</button>
                     </form>
                 )}
             />

@@ -14,11 +14,15 @@ import useLoading from "../../hooks/useLoading";
 
 const LoginModal: React.FC =() =>{
     const {isLoading} = useLoading();
-    const {login, logout} = useAuth();
-    const {toggleLoginCall} = useOpenModals();
+    const {logout} = useAuth();
+    const {toggleLoginCall, toggleRegisterCall} = useOpenModals();
     // const onSubmit = async(values:valuesTypes) =>{
     //     login(values);
     // }
+    const openReg = () =>{
+        toggleRegisterCall();
+        toggleLoginCall();
+    }
     const onSubmit = async() =>{
         logout()
     }
@@ -67,10 +71,14 @@ const LoginModal: React.FC =() =>{
                             span = 'Password'
                             isDisabled = {false}
                         />
-                        <button type= "submit" disabled = {!valid}>Submit</button>
+                        <button type= "submit" className="button" disabled = {!valid}>Login</button>
                     </form>
                 )}
                 />
+                <section className="account-reg flex-center">
+                    <hr className="hr-fullpage"></hr>
+                    <h3 className="body-text">New? <button className="button-link" onClick={openReg}>Create an account here &#8594;</button></h3>
+                </section>
         </section>
     )
     return content;
