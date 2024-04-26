@@ -148,6 +148,9 @@ h4 {
 .warning {
   color: red !important;
 }
+.success {
+  color: green !important;
+}
 .button {
   margin-top: 16px;
   width: 125px;
@@ -249,6 +252,7 @@ h4 {
 @import "./react-calendar-theme";
 @import "./horizontal-date-picker";
 @import "./big-cal/big-cal-styles";
+@import "./modals";
 // @import "./reactTelephoneInput";
 // @import "./period-stats";
 // @import "./infoCard";

@@ -5,12 +5,10 @@ type EventCalProps ={
 }
 const EventCal:React.FC<EventCalProps> = ({event}) =>{
     const localizer = dayjsLocalizer(dayjs);
-    // const views:string = 'month';
-    // console.log(test)
-    // console.log(events.event)
+
     const eventStyleGetter = (event) =>{
         const currentDate:Date = new Date();
-        const backgroundColor = event.end < currentDate ? 'gray': 'red';
+        const backgroundColor = event.end < currentDate ? '#E1BEE7': 'red';
         const style ={
             backgroundColor: backgroundColor,
             opacity: .95,

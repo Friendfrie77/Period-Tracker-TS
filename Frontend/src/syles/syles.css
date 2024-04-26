@@ -147,6 +147,10 @@ h4 {
   color: red !important;
 }
 
+.success {
+  color: green !important;
+}
+
 .button {
   margin-top: 16px;
   width: 125px;
@@ -325,9 +329,17 @@ h4 {
   padding-bottom: 1rem;
 }
 
+.box-padding {
+  padding: 1rem;
+}
+
 .subheader-text {
   color: #eae8ff;
   font-size: var(--fs-subheader);
+}
+
+.right-align {
+  align-self: end;
 }
 
 /* CSS for Spinner animation */
@@ -630,7 +642,6 @@ footer a {
   width: 95%;
   position: relative;
   height: 2.5rem;
-  margin-bottom: 2.2rem;
 }
 .text-field input {
   background-color: #4b203f !important;
@@ -2348,4 +2359,24 @@ button.rbc-input::-moz-focus-inner {
   height: 1px;
   background-color: #74ad31;
   pointer-events: none;
+}
+
+.modal-box {
+  position: absolute;
+  background-color: #5c0f47;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  z-index: 1;
+  border-radius: 5px;
+  color: #eae8ff;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .modal-box {
+    width: 95%;
+  }
 }/*# sourceMappingURL=syles.css.map */

@@ -58,9 +58,15 @@
   .padding-bottom-1rem{
     padding-bottom: 1rem;
   }
+  .box-padding{
+    padding: $box-padding;
+  }
   .subheader-text{
     color: $textcolor;
     font-size: var(--fs-subheader);
+  }
+  .right-align{
+    align-self: end;
   }
 /* CSS for Spinner animation */
 .loading{

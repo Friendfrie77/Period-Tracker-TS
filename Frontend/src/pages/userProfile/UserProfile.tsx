@@ -3,6 +3,8 @@ import {Events} from "../../classes/events";
 import useUserInfo from "../../hooks/useUserInfo";
 import EventCal from "../../components/eventCal/EventCal";
 import PeriodStatsCard from "../../components/periodStatsCard/PeriodStatsCard";
+import DeleteAccount from "../../components/modal/settingsModals/DeleteAccount";
+import PageFade from "../../components/layout/PageFade";
 const UserProfile:React.FC = () =>{
     const {periodStartDate, periodEndDate, previousPeriod} = useUserInfo();
     const checkUserInfo = () =>{
@@ -21,6 +23,7 @@ const UserProfile:React.FC = () =>{
                 />
             </section>
             <PeriodStatsCard />
+            <PageFade> <DeleteAccount/> </PageFade>
         </main>
     )
     return content
