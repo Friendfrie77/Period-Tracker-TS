@@ -30,3 +30,23 @@
         font-size: var(--fs-body);
     }
 }
+
+.setting-option{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    button{
+        width: 50%;
+        @include for-size(small-desktop){
+            width: 100%;
+        }
+    }
+}
+
+.password-change-form{
+    padding: 15px;
+    .text-field{
+        width: 50%;
+        margin-bottom: 20px;
+    }
+}

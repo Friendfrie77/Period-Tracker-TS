@@ -3,6 +3,9 @@ interface valuesTypes{
     username?: string,
     password?: string,
     passwordConfirm?: string
+    oldPassword?: string
 }
-
-export type {valuesTypes}
+type functionType = {
+    modalFunction: () =>void;
+}
+export type {valuesTypes, functionType}

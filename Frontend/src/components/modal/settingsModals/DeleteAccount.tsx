@@ -3,7 +3,9 @@ import UserTextField from '../../userInputFields/UserTextField';
 import { AiOutlineClose } from "react-icons/ai";
 import useUserInfo from '../../../hooks/useUserInfo';
 import { valuesTypes } from '../modals.types';
-const DeleteAccount: React.FC = ()=>{
+import type {functionType} from '../modals.types';
+
+const DeleteAccount: React.FC<functionType> = ({modalFunction})=>{
     const {role} = useUserInfo();
     const deleteAccountCall = () =>{
 
@@ -14,7 +16,7 @@ const DeleteAccount: React.FC = ()=>{
     }
     const content = (
         <div className='modal-box'>
-            <AiOutlineClose className="exit-button right-align" />
+            <AiOutlineClose className="exit-button right-align" onClick={modalFunction}/>
             <div className='flex-center box-padding'>
                 <h1 className='body-text padding-bottom-1rem'>{role === 'Guest' ? 'Any information need is not required on a guest account' : "Please enter your email adress to delete your account."}</h1>
                 <p className='body-text padding-bottom-1rem'>This will delete all data associated with the acount and can not be reversed.</p>

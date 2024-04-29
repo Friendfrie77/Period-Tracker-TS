@@ -342,6 +342,14 @@ h4 {
   align-self: end;
 }
 
+.center-align {
+  align-self: center;
+}
+
+.display-none {
+  display: none !important;
+}
+
 /* CSS for Spinner animation */
 .loading {
   background-image: url("../assets/images/loading-background.svg");
@@ -1069,6 +1077,28 @@ select:-webkit-autofill:focus {
 }
 .stat-card span {
   font-size: var(--fs-body);
+}
+
+.setting-option {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.setting-option button {
+  width: 50%;
+}
+@media (max-width: 1300px) {
+  .setting-option button {
+    width: 100%;
+  }
+}
+
+.password-change-form {
+  padding: 15px;
+}
+.password-change-form .text-field {
+  width: 50%;
+  margin-bottom: 20px;
 }
 
 .rdrCalendarWrapper {

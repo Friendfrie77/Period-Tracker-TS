@@ -68,6 +68,12 @@
   .right-align{
     align-self: end;
   }
+  .center-align{
+    align-self: center;
+  }
+  .display-none{
+    display: none !important;
+  }
 /* CSS for Spinner animation */
 .loading{
     background-image: url('../assets/images/loading-background.svg');

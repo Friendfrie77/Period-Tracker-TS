@@ -1,11 +1,16 @@
+import { useState } from "react";
 import UserWelcomeBar from "../../components/userWelcomeBar/UserWelcomeBar";
 import {Events} from "../../classes/events";
 import useUserInfo from "../../hooks/useUserInfo";
 import EventCal from "../../components/eventCal/EventCal";
 import PeriodStatsCard from "../../components/periodStatsCard/PeriodStatsCard";
-import DeleteAccount from "../../components/modal/settingsModals/DeleteAccount";
+import SettingsModal from "../../components/modal/settingsModals/Settings";
 import PageFade from "../../components/layout/PageFade";
 const UserProfile:React.FC = () =>{
+    const [settingOpen, setSettingOpen] = useState(false);
+    const openSetting = () =>{
+        setSettingOpen(!settingOpen)
+    }
     const {periodStartDate, periodEndDate, previousPeriod} = useUserInfo();
     const checkUserInfo = () =>{
         const events = new Events();
@@ -23,7 +28,12 @@ const UserProfile:React.FC = () =>{
                 />
             </section>
             <PeriodStatsCard />
-            <PageFade> <DeleteAccount/> </PageFade>
+            <div>
+                <button onClick={openSetting}>test</button>
+            </div>
+            {settingOpen &&
+                <PageFade> <SettingsModal setSettingOpen={openSetting}/> </PageFade>
+            }
         </main>
     )
     return content

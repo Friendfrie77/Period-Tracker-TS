@@ -50,7 +50,7 @@ const RegisterModal: React.FC = () =>{
                     }
                     if(values.password && values.passwordConfirm){
                         const regex:passwordRegexResults = passwordRegex(values.password, values.passwordConfirm)
-                        if(!regex.isVaild){
+                        if(!regex.isValid){
                             errors.password = regex.msg
                         }
                     }
