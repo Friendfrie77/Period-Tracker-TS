@@ -15,6 +15,7 @@ type datesType = {
     endDate?: Date;
     key?: string;
 }
+
 const useUserInfo = ()=>{
     const dispatch = useAppDispatch();
     const {loading} = useLoading();
@@ -22,7 +23,7 @@ const useUserInfo = ()=>{
     // console.log(test)
     //any userinfo needed for the app
     const username:string|undefined = useAppSelector((state) => state.user?.loginUser?.username);
-    const _id:number|undefined = useAppSelector((state) => state.user?.loginUser?._id);
+    const _id:number|undefined = useAppSelector((state) => state.user?.loginUser?.id);
     const role:string|undefined = useAppSelector((state) => state.user?.loginUser?.role);
     const email:string|undefined = useAppSelector((state) => state.user?.loginUser?.email);
     const token:string|undefined = useAppSelector((state) => state.user?.loginUser?.token);
@@ -42,6 +43,7 @@ const useUserInfo = ()=>{
         cycleStartDate = dayjs(periodStartDate).subtract(cycle, 'days').format()
     }
     const todaysDate:string = dayjs().format()
+    console.log(useAppSelector((state) => state.user?.loginUser))
     //helper functions
     //checks if a period date is in the current list of logged periods
     const checkIfDateIsPresent = (loggedPeriods:previousPeriod, period:previousPeriod) => {
@@ -80,8 +82,21 @@ const useUserInfo = ()=>{
         })
     }
 
+    const deleteAccount = async(role:string, email?:string) =>{
+        loading();
+        const data={_id, role, email}
+        console.log(data)
+        const deleteAccountAPICall = await fetch(`${APIURL}/auth/deleteAccount`,{
+            method: 'Post',
+            mode: 'cors',
+            headers:{Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json'},
+            body: JSON.stringify(data)
+        })
+        loading();
+    }
     
-    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates, sendUserPrevPeriods}
+    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates, sendUserPrevPeriods,deleteAccount}
 }
 
 

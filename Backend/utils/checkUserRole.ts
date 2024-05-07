@@ -4,6 +4,7 @@ type User = typeof user;
 type Demo = typeof demoSchema
 
 const findUser = async (role: string, id:string) =>{
+    console.log(role, id)
     if(role === "User"){
         const foundUser = await user.findById(id)
         return foundUser

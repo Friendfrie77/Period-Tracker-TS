@@ -6,9 +6,13 @@ const useLoading = () =>{
     const dispatch = useAppDispatch();
     const isLoading = useAppSelector((state => state.loading.isLoading));
     const loading = () =>{
-        setTimeout(() =>{
+        if(!isLoading){
+            setTimeout(() =>{
+                dispatch(toggleLoading());
+            }, 1000)
+        }else{
             dispatch(toggleLoading());
-        }, 1000)
+        }
     }
     return {isLoading, loading};
 }

@@ -18,9 +18,10 @@ const setupDemoAccount = async (req, res) =>{
             role: "Guest",
             previousPeriod: loggedPeriods
         })
-        const userData = user.sendUserInfo(user);
+        let userData = user.sendUserInfo(user);
         user.save();
         const userID = {id: user._id}
+        userData = {...userData, ...userID}
         const accessToken: string = jwt.sign(userID, process.env.ACCESS_TOKEN_SECRET);
         res.status(201).json({userData, accessToken})
     }catch(err){

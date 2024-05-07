@@ -4,17 +4,28 @@ import { AiOutlineClose } from "react-icons/ai";
 import useUserInfo from '../../../hooks/useUserInfo';
 import { valuesTypes } from '../modals.types';
 import type {functionType} from '../modals.types';
-
+import useLoading from "../../../hooks/useLoading";
+import Spinner from '../../layout/Spinner';
 const DeleteAccount: React.FC<functionType> = ({modalFunction})=>{
-    const {role} = useUserInfo();
-    const deleteAccountCall = () =>{
-
+    const {role, deleteAccount} = useUserInfo();
+    const {isLoading} = useLoading();
+    const deleteAccountCall = (values:valuesTypes) =>{
+        if(role){
+            if(Object.keys(values).length){
+                deleteAccount(role, values.email)
+            }else{
+                deleteAccount(role)
+            }
+        }
+        // if(role){
+        //     deleteAccount(role)
+        // }
     }
     const message = {
         type: 'success',
         message: ''
     }
-    const content = (
+    const content = isLoading? <Spinner/> : (
         <div className='modal-box'>
             <AiOutlineClose className="exit-button right-align" onClick={modalFunction}/>
             <div className='flex-center box-padding'>

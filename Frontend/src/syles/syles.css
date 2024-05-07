@@ -176,6 +176,26 @@ h4 {
   pointer-events: none;
 }
 
+.button-large {
+  background-color: #af4d98;
+  border: none;
+  border-radius: 5px;
+  color: #eae8ff;
+  transition: all 0.2s ease-in;
+  font-size: var(--fs-body);
+}
+.button-large:active {
+  transform: translateY(2px);
+}
+.button-large:hover {
+  background-color: #241e4e;
+  border-bottom: #5cffc9;
+}
+.button-large:disabled {
+  opacity: 50%;
+  pointer-events: none;
+}
+
 .button-link {
   background-color: transparent;
   border: none;

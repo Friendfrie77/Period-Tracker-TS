@@ -28,8 +28,8 @@ const UserProfile:React.FC = () =>{
                 />
             </section>
             <PeriodStatsCard />
-            <div>
-                <button onClick={openSetting}>test</button>
+            <div className="flex-center box-padding">
+                <button onClick={openSetting} className="button-large">Account Settings</button>
             </div>
             {settingOpen &&
                 <PageFade> <SettingsModal setSettingOpen={openSetting}/> </PageFade>

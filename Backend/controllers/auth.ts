@@ -1,7 +1,8 @@
 import user from "../mongoose-schmea/User.js";
 import demoSchema from "../mongoose-schmea/Demo.js";
 import jwt from 'jsonwebtoken'
-import {checkUserRole} from "../utils/checkUserRole.js"
+import findUser from "../utils/checkUserRole.js";
+import {reqBodyType} from "./controllers.type.js"
 //types for mongoose 
 type User = typeof user;
 type demo = typeof demoSchema
@@ -9,13 +10,13 @@ type demo = typeof demoSchema
 //Checks user role, returns the mongoose-schmea name needed for that role. 
 
 const login = async (req, res) =>{
-    type reqBodyType = {email: string, password: string}
+    // type reqBodyType = {email: string, password: string}
     const {email, password}: reqBodyType = req.body
     res.status(201).json({message: 'test'})
 }
 
 const register = async (req, res) =>{
-    type reqBodyType = {email : string, username: string, password: string};
+    // type reqBodyType = {email : string, username: string, password: string};
     const {email, username, password} : reqBodyType = req.body;
     const results = await user.exists({email: email})
     const isNewUser = true
@@ -39,4 +40,10 @@ const register = async (req, res) =>{
         console.log(err)
     }
 }
-export default {login, register}
+const deleteAccount = async(req, res) =>{
+    const {_id, email, role} : reqBodyType = req.body;
+    const foundUser = await findUser(role, _id)
+    
+}
+
+export default {login, register, deleteAccount}

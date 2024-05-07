@@ -160,6 +160,11 @@ h4 {
   font-size: var(--fs-body);
   @include button-mixin;
 }
+.button-large{
+  @include button-mixin;
+  font-size: var(--fs-body);
+  
+}
 .button-link{
   background-color: transparent;
   border: none;
