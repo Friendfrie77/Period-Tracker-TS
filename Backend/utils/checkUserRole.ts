@@ -3,8 +3,7 @@ import demoSchema from "../mongoose-schmea/Demo.js";
 type User = typeof user;
 type Demo = typeof demoSchema
 
-const findUser = async (role: string, id:string) =>{
-    console.log(role, id)
+const findUser = async (role: string, id:string) =>{    
     if(role === "User"){
         const foundUser = await user.findById(id)
         return foundUser
@@ -14,4 +13,14 @@ const findUser = async (role: string, id:string) =>{
     }
 }
 
-export default findUser
+const setRole = (role: string) =>{
+    let roleIs;
+    if(role === "User"){
+        roleIs = user;
+    }else{
+        roleIs = demoSchema
+    }
+    return roleIs
+}
+
+export default {findUser, setRole}

@@ -1,8 +1,9 @@
 import user from "../mongoose-schmea/User.js";
 import demoSchema from "../mongoose-schmea/Demo.js";
-import jwt from 'jsonwebtoken'
-import findUser from "../utils/checkUserRole.js";
-import {reqBodyType} from "./controllers.type.js"
+import jwt from 'jsonwebtoken';
+import checkUserRole from '../utils/checkUserRole.js';
+import type {reqBodyType} from "./controllers.type.js";
+import demo from "../mongoose-schmea/Demo.js";
 //types for mongoose 
 type User = typeof user;
 type demo = typeof demoSchema
@@ -42,8 +43,12 @@ const register = async (req, res) =>{
 }
 const deleteAccount = async(req, res) =>{
     const {_id, email, role} : reqBodyType = req.body;
-    const foundUser = await findUser(role, _id)
-    
+    const userRole = checkUserRole.setRole(role)
+    // if(userRole === user){
+        
+    // }
+    userRole.deleteOne({_id: _id}).exec();
+    res.status(200).json({message: "User Deleted"})
 }
 
 export default {login, register, deleteAccount}

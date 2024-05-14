@@ -1,8 +1,10 @@
 //hook for userInfo
 import { useAppSelector, useAppDispatch } from "./useRedux";
-import { setPrevPeriod } from "../state/features/users/userSlice";
+import { setPrevPeriod, setLogout } from "../state/features/users/userSlice";
 import dayjs from "dayjs";
 import useLoading from "./useLoading";
+import { redirect } from "react-router-dom";
+
 const APIURL = import.meta.env.VITE_APIURL
 type  periodType = {
     startDate: string,
@@ -43,7 +45,7 @@ const useUserInfo = ()=>{
         cycleStartDate = dayjs(periodStartDate).subtract(cycle, 'days').format()
     }
     const todaysDate:string = dayjs().format()
-    console.log(useAppSelector((state) => state.user?.loginUser))
+    // console.log(useAppSelector((state) => state.user?.loginUser))
     //helper functions
     //checks if a period date is in the current list of logged periods
     const checkIfDateIsPresent = (loggedPeriods:previousPeriod, period:previousPeriod) => {
@@ -92,8 +94,14 @@ const useUserInfo = ()=>{
             headers:{Authorization: `Bearer ${token}`,
             "Content-Type": 'application/json'},
             body: JSON.stringify(data)
-        })
-        loading();
+        });
+        const res = await deleteAccountAPICall;
+        console.log(res)
+        if(res.status === 200){
+            dispatch(setLogout())
+            redirect('/')
+            loading();
+        }
     }
     
     return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates, sendUserPrevPeriods,deleteAccount}
