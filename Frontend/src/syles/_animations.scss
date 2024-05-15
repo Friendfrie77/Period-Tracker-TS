@@ -7,7 +7,12 @@
     right: 0;
     bottom: 0;
     top: 0;
-    animation: pagefade 0.2s ease-in;
+    animation: pagefade 0.45s ease-in;
+}
+
+.fade-in{
+    animation: fadeIn 0.3s ease-in-out;
+    // animation-delay: .1s;
 }
 
 .text-field input:focus + .text-field-lable .text-field-span, .text-field input:valid + .text-field-lable .text-field-span{
@@ -20,6 +25,14 @@
     opacity: 100%;
 }
 
+@keyframes fadeIn{
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
 @keyframes pagefade {
     0% {opacity: 0%;}
     100% {opacity: 100%;}    

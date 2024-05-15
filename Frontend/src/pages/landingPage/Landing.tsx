@@ -6,6 +6,7 @@ import { useOpenModals } from "../../hooks/useOpenModals";
 import Phone from "../../assets/images/phone-test.png";
 import Laptop from '../../assets/images/laptop.jpg';
 import {useNavigate} from 'react-router-dom';
+import AlertMessage from "../../components/alertMessage/AlertMessage";
 const LandingPage: React.FC = () =>{
     const navigate = useNavigate();
     const {loginModalOpen, registerModalOpen, toggleRegisterCall, toggleNavCall} = useOpenModals();
@@ -30,6 +31,7 @@ const LandingPage: React.FC = () =>{
     }
     const content = (
         <main className="content">
+            <AlertMessage/>
             <section className="hero">
                 <div className="hero-wrapper">
                     <div className="call-to-action">

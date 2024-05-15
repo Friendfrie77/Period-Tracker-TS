@@ -242,6 +242,7 @@ h4 {
     color: $color5;
   }
 }
+
 @import './layout';
 @import './nav';
 @import './footer';
@@ -258,6 +259,7 @@ h4 {
 @import "./horizontal-date-picker";
 @import "./big-cal/big-cal-styles";
 @import "./modals";
+@import "./alert-message";
 // @import "./reactTelephoneInput";
 // @import "./period-stats";
 // @import "./infoCard";

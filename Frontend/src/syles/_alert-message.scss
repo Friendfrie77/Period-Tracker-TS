@@ -1,0 +1,68 @@
+.message-container{
+    position: absolute;
+    background-color: $color2;
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 400px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: $box-padding;
+    border-radius: $radius;
+}
+.animated-checkmark{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+.circle{
+    min-width: 100px;
+    min-height: 100px;
+    width: 350px;
+    height: 350px;
+    border: 10px solid green;
+    background-color: transparent;
+    display: inline-block;
+    border-radius: 50%;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.checkmark {
+    width: 200px; /* Adjust size of the checkmark */
+    height: 80px; /* Adjust size of the checkmark */
+    border-bottom: 9px solid #fff; /* Color and thickness of the checkmark */
+    border-left: 9px solid #fff; /* Adjusted for left-facing checkmark */
+    transform: rotate(-45deg); /* Rotate the checkmark */
+    position: absolute; /* Position the checkmark relative to the circle container */
+    border-radius: 2px;
+  }
+
+.checkmark-circle{
+    animation: checkmark-circle 2s .2s forwards;
+}
+@keyframes checkmark-circle {
+    0%{
+        rotate: 0deg;
+        opacity: 5%;
+        border-color: transparent  transparent transparent transparent;
+    }
+    // 50%{
+    //     transform: rotate(180deg);
+    //     opacity: 50%;
+    //     border-color: transparent transparent green transparent;
+    // }
+    100%{
+        rotate: 360deg;
+        opacity: 100%;
+        border-color: green;
+    }
+}
