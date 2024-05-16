@@ -2472,7 +2472,6 @@ button.rbc-input::-moz-focus-inner {
   min-height: 100px;
   width: 350px;
   height: 350px;
-  border: 10px solid green;
   background-color: transparent;
   display: inline-block;
   border-radius: 50%;
@@ -2481,22 +2480,87 @@ button.rbc-input::-moz-focus-inner {
   justify-content: center;
   align-items: center;
   position: relative;
+  border: 10px solid transparent;
+}
+.circle.error {
+  --border-color: red;
+}
+.circle.success {
+  --border-color: green;
 }
 
 .checkmark {
-  width: 200px; /* Adjust size of the checkmark */
-  height: 80px; /* Adjust size of the checkmark */
-  border-bottom: 9px solid #fff; /* Color and thickness of the checkmark */
-  border-left: 9px solid #fff; /* Adjusted for left-facing checkmark */
-  transform: rotate(-45deg); /* Rotate the checkmark */
-  position: absolute; /* Position the checkmark relative to the circle container */
+  width: 200px;
+  height: 80px;
+  border-bottom: 9px solid #fff;
+  border-left: 9px solid #fff;
+  transform: rotate(-45deg);
+  position: absolute;
   border-radius: 2px;
 }
 
-.checkmark-circle {
-  animation: checkmark-circle 2s 0.2s forwards;
+.x-mark {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+}
+.x-mark::before, .x-mark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 0%;
+  border-radius: 4px;
+  background-color: red;
+}
+.x-mark::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.x-mark::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.x-mark.x-mark-animation-before::before {
+  animation: x-mark-animation-keyframe-before 0.2s ease-in forwards;
+}
+.x-mark.x-mark-animation-after::after {
+  animation: x-mark-animation-keyframe-after 0.2s ease-in forwards;
 }
 
+.checkmark-circle {
+  animation: checkmark-circle 0.5s ease-in forwards;
+}
+
+@keyframes x-mark-animation-keyframe-before {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    background-color: red;
+    height: 100%;
+  }
+}
+@keyframes x-mark-animation-keyframe-after {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  65% {
+    opacity: 1;
+  }
+  100% {
+    height: 100%;
+    background-color: red;
+  }
+}
 @keyframes checkmark-circle {
   0% {
     rotate: 0deg;
@@ -2506,6 +2570,6 @@ button.rbc-input::-moz-focus-inner {
   100% {
     rotate: 360deg;
     opacity: 100%;
-    border-color: green;
+    border-color: var(--border-color);
   }
 }/*# sourceMappingURL=syles.css.map */

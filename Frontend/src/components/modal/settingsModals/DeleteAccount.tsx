@@ -2,12 +2,16 @@ import {Form} from 'react-final-form';
 import UserTextField from '../../userInputFields/UserTextField';
 import { AiOutlineClose } from "react-icons/ai";
 import useUserInfo from '../../../hooks/useUserInfo';
+import useAuth from '../../../hooks/useAuth';
 import { valuesTypes } from '../modals.types';
 import type {functionType} from '../modals.types';
 import useLoading from "../../../hooks/useLoading";
 import Spinner from '../../layout/Spinner';
+import { useMessage } from '../../../context/MessageContext/MessageContext';
 const DeleteAccount: React.FC<functionType> = ({modalFunction})=>{
-    const {role, deleteAccount} = useUserInfo();
+    const {role} = useUserInfo();
+    const {message, messageType} = useMessage()
+    const {deleteAccount} = useAuth();
     const {isLoading} = useLoading();
     const deleteAccountCall = (values:valuesTypes) =>{
         if(role){
@@ -20,10 +24,6 @@ const DeleteAccount: React.FC<functionType> = ({modalFunction})=>{
         // if(role){
         //     deleteAccount(role)
         // }
-    }
-    const message = {
-        type: 'success',
-        message: ''
     }
     const content = isLoading? <Spinner/> : (
         <div className='modal-box'>
@@ -44,7 +44,7 @@ const DeleteAccount: React.FC<functionType> = ({modalFunction})=>{
                     }}
                     render = {({handleSubmit, vaild}) =>(
                         <form onSubmit={handleSubmit} className='flex-center'>
-                            <span className={`${message.type === 'error' ? 'warning' : 'success'} body-text`}>{message.message}</span>
+                            <span className={`${messageType === 'error' ? 'warning' : 'success'} body-text`}>{message}</span>
                             <UserTextField
                                 fieldName = "email"
                                 type = 'email'

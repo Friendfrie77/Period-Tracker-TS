@@ -1,10 +1,9 @@
 //hook for userInfo
 import { useAppSelector, useAppDispatch } from "./useRedux";
-import { setPrevPeriod, setLogout } from "../state/features/users/userSlice";
+import { setPrevPeriod} from "../state/features/users/userSlice";
 import dayjs from "dayjs";
 import useLoading from "./useLoading";
 import { redirect } from "react-router-dom";
-
 const APIURL = import.meta.env.VITE_APIURL
 type  periodType = {
     startDate: string,
@@ -83,28 +82,8 @@ const useUserInfo = ()=>{
             body: JSON.stringify(data)
         })
     }
-
-    const deleteAccount = async(role:string, email?:string) =>{
-        loading();
-        const data={_id, role, email}
-        console.log(data)
-        const deleteAccountAPICall = await fetch(`${APIURL}/auth/deleteAccount`,{
-            method: 'Post',
-            mode: 'cors',
-            headers:{Authorization: `Bearer ${token}`,
-            "Content-Type": 'application/json'},
-            body: JSON.stringify(data)
-        });
-        const res = await deleteAccountAPICall;
-        console.log(res)
-        if(res.status === 200){
-            dispatch(setLogout())
-            redirect('/')
-            loading();
-        }
-    }
     
-    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates, sendUserPrevPeriods,deleteAccount}
+    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates, sendUserPrevPeriods}
 }
 
 

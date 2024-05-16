@@ -4,7 +4,7 @@ type messageType = 'error' | 'success' | null;
 interface MessageContextType{
     message: string | null;
     messageType: messageType | null; 
-    messageState: (message: string | null, type: messageType | null) => void;
+    setMessageState: (message: string | null, type: messageType | null) => void;
 }
 
 interface MessageProviderProps {
@@ -16,12 +16,12 @@ const MessageContext = createContext<MessageContextType | undefined>(undefined);
 const MessageProvider: React.FC<MessageProviderProps> = ({children}) =>{
     const [message, setMessage] = useState<string | null>(null);
     const [messageType, setMessageType] = useState<messageType | null>(null)
-    const messageState = (message: string | null, type:messageType | null ) =>{
+    const setMessageState = (message: string | null, type:messageType | null ) =>{
         setMessage(message)
         setMessageType(type)
     }
     return(
-        <MessageContext.Provider value = {{message, messageType, messageState}}>
+        <MessageContext.Provider value = {{message, messageType, setMessageState}}>
             {children}
         </MessageContext.Provider>
     )

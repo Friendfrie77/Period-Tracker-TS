@@ -3,9 +3,14 @@ import useLoading from "./useLoading";
 const APIURL = import.meta.env.VITE_APIURL
 import { useAppSelector, useAppDispatch} from "./useRedux"
 import { setLogin, setLogout, setToken } from "../state/features/users/userSlice";
+import useUserInfo from "./useUserInfo";
+import { useMessage } from "../context/MessageContext/MessageContext";
+import { redirect } from "react-router-dom";
 const useAuth =() =>{
     const dispatch = useAppDispatch()
     const {loading} = useLoading();
+    const {token, _id} = useUserInfo();
+    const {setMessageState} = useMessage();
     interface loginValuesTypes{
         email?: string, 
         password?: string
@@ -55,7 +60,29 @@ const useAuth =() =>{
     const logout = () =>{
         dispatch(setLogout())
     }
-    return {login, register, logout}
+
+    const deleteAccount = async(role:string, email?:string) =>{
+        loading();
+        const data={_id, role, email}
+        const deleteAccountAPICall = await fetch(`${APIURL}/auth/deleteAccount`,{
+            method: 'Post',
+            mode: 'cors',
+            headers:{Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json'},
+            body: JSON.stringify(data)
+        });
+        const res = await deleteAccountAPICall.json();
+        if(deleteAccountAPICall.ok){
+            setMessageState(res.message, 'success')
+            dispatch(setLogout())
+            redirect('/')
+            loading();
+        }else{
+            setMessageState(res.message, 'error')
+            loading();
+        }
+    }
+    return {login, register, logout, deleteAccount}
 }
 
 export default useAuth;

@@ -47,7 +47,7 @@ const deleteAccount = async(req, res) =>{
     // if(userRole === user){
         
     // }
-    userRole.deleteOne({_id: _id}).exec();
+    // userRole.deleteOne({_id: _id}).exec();
     res.status(200).json({message: "User Deleted"})
 }
 

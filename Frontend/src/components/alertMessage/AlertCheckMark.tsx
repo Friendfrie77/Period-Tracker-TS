@@ -10,13 +10,20 @@ const AlertCheckMark: React.FC<AlertCheckMarkProps> = ({showCheckMark, animation
     const circleOver = () =>{
         setCircleOver(true)
     }
+    console.log(isCircleOver)
     const content = showCheckMark ? (
         <div className="animated-checkmark">
             <div className={`circle ${messageType} ${animationClass}`} onAnimationEnd={circleOver}>
                 <div className={`${messageType} ${isCircleOver ? 'checkmark' : null}`}></div>
             </div>
         </div>
-    ) : null
+    ) : (
+        <div className="animated-checkmark">
+            <div className={`circle ${messageType} ${animationClass}`} onAnimationEnd={circleOver}>
+                <div className={`x-mark ${isCircleOver ? 'x-mark-animation-before x-mark-animation-after' : null}`}></div>
+            </div>
+        </div>
+    )
 
     return content
 }

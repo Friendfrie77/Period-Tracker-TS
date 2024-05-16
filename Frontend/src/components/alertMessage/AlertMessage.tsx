@@ -5,19 +5,19 @@ import PageFade from "../layout/PageFade";
 import AlertCheckMark from "./AlertCheckMark";
 const AlertMessage: React.FC = () =>{
     const [isSecondAnimation, setisSecondAnimation] = useState(false)
-    const {message, messageState, messageType} = useMessage();
+    const {message, setMessageState, messageType} = useMessage();
     const clearMessage = () =>{
-        messageState(null, null)
+        setMessageState(null, null)
     }
     const pageFadeInOver = () =>{
         setisSecondAnimation(true)
     }
-    messageState('Account deleted', 'success')
+    // messageState('Account deleted', 'error')
     const content = message ? (
         <PageFade>
             <div className={`message-container fade-in ${messageType}`} onAnimationEnd={pageFadeInOver}>
                 <AiOutlineClose className="right-align" onClick={clearMessage}></AiOutlineClose>
-                <AlertCheckMark showCheckMark= {true} animationClass={`${isSecondAnimation ? 'checkmark-circle' : null}`} innerAnimationClass ={``} />
+                <AlertCheckMark showCheckMark= {false} animationClass={`${isSecondAnimation ? 'checkmark-circle' : null}`} />
                 <span>{message}</span>
             </div>
         </PageFade>
