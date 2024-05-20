@@ -60,7 +60,9 @@ const useAuth =() =>{
     const logout = () =>{
         dispatch(setLogout())
     }
-
+    const userPhoneNotfication = async () =>{
+        setMessageState('test', 'success');
+    }
     const deleteAccount = async(role:string, email?:string) =>{
         loading();
         const data={_id, role, email}
@@ -82,7 +84,7 @@ const useAuth =() =>{
             loading();
         }
     }
-    return {login, register, logout, deleteAccount}
+    return {login, register, logout, deleteAccount, userPhoneNotfication}
 }
 
 export default useAuth;

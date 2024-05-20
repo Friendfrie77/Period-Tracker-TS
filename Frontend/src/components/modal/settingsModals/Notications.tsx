@@ -2,15 +2,24 @@ import { useState } from "react";
 import type { functionType } from "../modals.types";
 import { AiOutlineClose } from "react-icons/ai";
 import useUserInfo from '../../../hooks/useUserInfo';
+import useAuth from '../../../hooks/useAuth';
+import { useMessage } from "../../../context/MessageContext/MessageContext";
+import AlertMessage from "../../alertMessage/AlertMessage";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/high-res.css';
 const Notication:React.FC<functionType> =({modalFunction}) =>{
     const {notifications} = useUserInfo();
+    const {message} = useMessage();
+    const {userPhoneNotfication} = useAuth();
     const [phoneNumber, setPhoneNumber] = useState('')
     const numberChange = (number:string) =>{
         setPhoneNumber(number)
     }
-    const content = (
+    const onSubmit = () =>{
+        userPhoneNotfication()
+        console.log(phoneNumber)
+    }
+    const content = message ? <AlertMessage /> : (
         <div className="modal-box">
             <AiOutlineClose className="exit-button right-align" onClick={modalFunction} />
             <div className="flex-center box-padding">
@@ -30,7 +39,7 @@ const Notication:React.FC<functionType> =({modalFunction}) =>{
                         country={'us'}
                         value={phoneNumber}
                     />
-                    <button className="button" type="submit">Submit</button>
+                    <button className="button" type="submit" onClick={onSubmit}>Submit</button>
                     </div>
                 )
                 }

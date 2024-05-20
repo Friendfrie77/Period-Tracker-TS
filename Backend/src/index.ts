@@ -18,7 +18,6 @@ app.use(cors(corsOptions));
 app.use('/auth', authRouter);
 app.use('/data', userDataRouter)
 app.use('/demo', demoRouter)
-
 app.listen(port, ()=>{
     console.log(`Listening at http://localhost:${port}`)
 })
