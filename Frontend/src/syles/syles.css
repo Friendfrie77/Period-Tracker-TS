@@ -335,6 +335,10 @@ h4 {
   align-items: center;
 }
 
+.flex-row-gap-1rem {
+  row-gap: 1rem;
+}
+
 .header-text {
   color: #eae8ff;
   font-size: var(--fs-header);
@@ -670,6 +674,7 @@ footer a {
   width: 95%;
   position: relative;
   height: 2.5rem;
+  margin-bottom: 5%;
 }
 .text-field input {
   background-color: #4b203f !important;
@@ -2441,6 +2446,15 @@ button.rbc-input::-moz-focus-inner {
   .modal-box {
     width: 95%;
   }
+}
+
+.modal-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  grid-area: 3/2/3/6;
+  color: #eae8ff;
 }
 
 .message-container {

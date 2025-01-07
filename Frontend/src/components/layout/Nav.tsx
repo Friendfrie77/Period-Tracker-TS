@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import { NavLink } from "react-router-dom";
 //need to set up state for hooks
 const Nav: React.FC = () =>{
-    const {toggleLoginCall, toggleRegisterCall} = useOpenModals();
+    const {toggleLoginCall, toggleRegisterCall, toggleLocalModal} = useOpenModals();
     const {isAuth, role} = useUserInfo();
     const {logout} = useAuth();
     //useLogout Hook
@@ -32,10 +32,10 @@ const Nav: React.FC = () =>{
                     <ul className='nav-links' id='nav-links'>
                         {isAuth ? (
                             <>
-                            {/* <li className='nav-item'>
-                                <NavLink to='/home'>Home</NavLink>
-                            </li>
                             <li className='nav-item'>
+                                <NavLink to='/'>Home</NavLink>
+                            </li>
+                            {/* <li className='nav-item'>
                                 <NavLink to='/periodinfo'>Period Info</NavLink>
                             </li> */}
                             <li className='nav-item'>
@@ -62,6 +62,9 @@ const Nav: React.FC = () =>{
                             </li>
                             <li className='nav-item'>
                                 <button className='nav-button' onClick={toggleRegisterCall}>Register</button>
+                            </li>
+                            <li className="nav-item">
+                                <button className='nav-button' onClick={toggleLocalModal}>Local Account</button>
                             </li>
                             </>
                         )}

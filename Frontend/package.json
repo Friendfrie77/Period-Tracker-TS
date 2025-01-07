@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@e965/xlsx": "^0.20.3",
     "@meinefinsternis/react-horizontal-date-picker": "^1.0.1",
     "@reduxjs/toolkit": "^2.2.1",
     "date-fns": "^3.6.0",

@@ -3,13 +3,15 @@ import {createSlice } from "@reduxjs/toolkit";
 type modalStateType = {
     loginModal: boolean,
     registerModal: boolean,
-    showNav: boolean
+    showNav: boolean,
+    localModal: boolean
 }
 
 const initialState: modalStateType = {
     loginModal: false,
     registerModal: false,
-    showNav: true
+    showNav: true,
+    localModal: false
 }
 
 const modalSlice = createSlice({
@@ -24,9 +26,12 @@ const modalSlice = createSlice({
         },
         toggleNav : (state) =>{
             state.showNav = !state.showNav
+        },
+        toggleLocal : (state) =>{
+            state.localModal = !state.localModal
         }
     }
 })
 
-export const {toggleLogin, toggleRegister, toggleNav} = modalSlice.actions;
+export const {toggleLogin, toggleRegister, toggleNav, toggleLocal} = modalSlice.actions;
 export default modalSlice.reducer;

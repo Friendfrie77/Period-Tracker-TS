@@ -1,6 +1,7 @@
 import PageFade from "../../components/layout/PageFade";
 import LoginModal from "../../components/modal/LoginModal";
 import RegisterModal from "../../components/modal/RegisterModal";
+import LocalModal from "../../components/modal/LocalModal";
 import IndexInfoCard from "../../components/indexPageCard/InfoCard";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import Phone from "../../assets/images/phone-test.png";
@@ -9,7 +10,7 @@ import {useNavigate} from 'react-router-dom';
 import AlertMessage from "../../components/alertMessage/AlertMessage";
 const LandingPage: React.FC = () =>{
     const navigate = useNavigate();
-    const {loginModalOpen, registerModalOpen, toggleRegisterCall, toggleNavCall} = useOpenModals();
+    const {loginModalOpen, registerModalOpen, localModalOpen, toggleLocalModal, toggleRegisterCall, toggleNavCall} = useOpenModals();
     const indexCardColors : {
         color1: string,
         color2: string,
@@ -89,6 +90,11 @@ const LandingPage: React.FC = () =>{
             {registerModalOpen &&
                 <PageFade>
                     <RegisterModal />
+                </PageFade>
+            }
+            {localModalOpen &&
+                <PageFade>
+                    <LocalModal />
                 </PageFade>
             }
         </main>
