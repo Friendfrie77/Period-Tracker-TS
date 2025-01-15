@@ -4,4 +4,10 @@ type  periodType = {
 }
 type previodPeriodType = periodType[] | undefined | null
 
-export type {previodPeriodType, periodType}
+type localUserFile = [
+    {
+        startDate: Date,
+        endDate: Date
+    }
+]
+export type {previodPeriodType, periodType, localUserFile}

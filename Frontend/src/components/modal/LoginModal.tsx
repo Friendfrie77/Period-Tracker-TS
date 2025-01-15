@@ -6,19 +6,11 @@ import UserTextField from "../userInputFields/UserTextField";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import useAuth from "../../hooks/useAuth";
 import useLoading from "../../hooks/useLoading";
-//passwordRegex
-//use regSetup hook
-//userlogin hook
-
-//figure out props
 
 const LoginModal: React.FC =() =>{
     const {isLoading} = useLoading();
     const {logout} = useAuth();
     const {toggleLoginCall, toggleRegisterCall} = useOpenModals();
-    // const onSubmit = async(values:valuesTypes) =>{
-    //     login(values);
-    // }
     const openReg = () =>{
         toggleRegisterCall();
         toggleLoginCall();
