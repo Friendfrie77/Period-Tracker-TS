@@ -1,18 +1,12 @@
 import {Field} from 'react-final-form';
+import type {UserFieldProps} from './inputFields.types'
 
-type UserTextFieldProps ={
-    fieldName: string,
-    type: string,
-    isDisabled: boolean,
-    spanHTMLFor: string,
-    span: string
-}
-const UserTextField: React.FC<UserTextFieldProps> =({fieldName, type, isDisabled, spanHTMLFor, span}) =>{
+const UserTextField: React.FC<UserFieldProps> =({fieldName, type, isDisabled, spanHTMLFor, span}) =>{
     const userField =(
         <Field name = {`${fieldName}`}>
             {({input, meta}) =>(
                 <div className='text-field'>
-                    <input {...input} type = {`${type}`} disabled = {isDisabled} required />
+                    <input {...input} type = {`${type}`} disabled = {isDisabled} />
                     <label htmlFor={spanHTMLFor} className={`text-field-lable ${meta.error && meta.touched && !meta.active  ? `span-error` : ''}`}>
                         <span className={`text-field-span ${isDisabled ? 'input-disabled' : ''}`}>{span}</span>
                     </label>

@@ -1,4 +1,4 @@
-import demoData from "../controllers/demoData";
+import demoData from "../controllers/demoData.js";
 import express from "express"
 
 const demoRouter = express.Router();

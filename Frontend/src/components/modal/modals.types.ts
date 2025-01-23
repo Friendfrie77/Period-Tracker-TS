@@ -3,7 +3,8 @@ interface valuesTypes{
     username?: string,
     password?: string,
     passwordConfirm?: string
-    oldPassword?: string
+    oldPassword?: string,
+    file?:File|FileList
 }
 type functionType = {
     modalFunction: () =>void;

@@ -2,15 +2,18 @@
 import useLoading from "./useLoading";
 const APIURL = import.meta.env.VITE_APIURL
 import { useAppSelector, useAppDispatch} from "./useRedux"
-import { setLogin, setLogout, setToken } from "../state/features/users/userSlice";
+import { setLogin, setLogout, setToken} from "../state/features/users/userSlice";
+import type { user } from "../state/features/users/userSlice";
 import useUserInfo from "./useUserInfo";
 import { useMessage } from "../context/MessageContext/MessageContext";
 import { redirect } from "react-router-dom";
+import type { valuesTypes } from "../components/modal/modals.types";
+
 const useAuth =() =>{
     const dispatch = useAppDispatch()
     const {loading} = useLoading();
     const {token, _id} = useUserInfo();
-    const {setMessageState} = useMessage();
+    const {setMessageState, message} = useMessage();
     interface loginValuesTypes{
         email?: string, 
         password?: string
@@ -19,6 +22,13 @@ const useAuth =() =>{
         email?: string,
         username?: string,
         password?: string
+    }
+
+    const isAuth = () =>{
+        if(token){
+            return true
+        }
+        return false
     }
     const login = async (values:loginValuesTypes) =>{
         loading()
@@ -52,9 +62,37 @@ const useAuth =() =>{
         })
         if(regAPICall.ok){
             const newUser = await regAPICall.json();
-            console.log(newUser)
             dispatch(setLogin(newUser.newUser))
             dispatch(setToken(newUser.accessToken))
+        }
+    }
+    
+    const localAccount = async (values:valuesTypes):Promise<string|boolean> =>{
+        loading()
+        const localAPICall = await fetch(`${APIURL}/local/localAccountSetup`, {
+            method: 'Post',
+            mode: "cors",
+        })
+        const res = await localAPICall.json()
+        if(localAPICall.ok){
+            if(message){
+                setMessageState(null, null)
+            }
+            // console.log(values.username)
+            const localUser:user = {
+                username: values.username,
+                token: res.token,
+                role: "local",
+                email: 'localUser',
+                id: 'localUser'
+            }
+            dispatch(setLogin(localUser))
+            loading()
+            return res
+        }else{
+            setMessageState(res.message, 'error')
+            loading()
+            return false 
         }
     }
     const logout = () =>{
@@ -84,7 +122,7 @@ const useAuth =() =>{
             loading();
         }
     }
-    return {login, register, logout, deleteAccount, userPhoneNotfication}
+    return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth}
 }
 
 export default useAuth;

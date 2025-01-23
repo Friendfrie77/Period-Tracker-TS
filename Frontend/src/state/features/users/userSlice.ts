@@ -9,20 +9,20 @@ type previousPeriod = periodType[]
 
 type user = {
     username: string | undefined;
-    id: number | undefined;
-    role: string | undefined;
-    email: string | undefined;
+    id: number | undefined | 'localUser';
+    role: 'user'| 'local'| 'demo' | undefined;
+    email: string | undefined | 'localUser';
     token: string | undefined;
-    cycle: number | null | undefined;
-    avgLength: number | null | undefined;
-    periodStartDate: string | null | undefined;
-    periodEndDate: string | null | undefined;
-    daysTillPeriod: number | null | undefined;
-    daysLeftPeriod: number | null | undefined;
-    canBleed: boolean | undefined;
-    isBleeding: boolean | undefined;
-    previousPeriod: previousPeriod| null | undefined;
-    notifications: boolean | undefined;
+    cycle?: number | null | undefined;
+    avgLength?: number | null | undefined;
+    periodStartDate?: string | null | undefined;
+    periodEndDate?: string | null | undefined;
+    daysTillPeriod?: number | null | undefined;
+    daysLeftPeriod?: number | null | undefined;
+    canBleed?: boolean | undefined;
+    isBleeding?: boolean | undefined;
+    previousPeriod?: previousPeriod| null | undefined;
+    notifications?: boolean | undefined;
 }
 
 const testUser:user = {
@@ -69,11 +69,17 @@ const userSlice = createSlice({
             if(state.loginUser){
                 state.loginUser.previousPeriod = action.payload
             }
+        },
+        setPeriodCycleLength: (state, action:PayloadAction<{cycle: number, avgLength: number|null|undefined}>) =>{
+            if(state.loginUser){
+                state.loginUser.cycle = action.payload.cycle;
+                state.loginUser.avgLength = action.payload.avgLength;
+            }
         }
     }
 })
 
-export const {setLogin, setLogout, setToken, setPrevPeriod} = userSlice.actions;
+export const {setLogin, setLogout, setToken, setPrevPeriod, setPeriodCycleLength} = userSlice.actions;
 export default userSlice.reducer;
 export {testUser};
 export type{user}

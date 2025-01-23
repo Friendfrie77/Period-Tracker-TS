@@ -7,9 +7,6 @@ import UserTextField from "../userInputFields/UserTextField";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import useAuth from "../../hooks/useAuth";
 
-
-//figure out props
-
 const RegisterModal: React.FC = () =>{
     const {toggleRegisterCall} = useOpenModals();
     const {register} = useAuth();

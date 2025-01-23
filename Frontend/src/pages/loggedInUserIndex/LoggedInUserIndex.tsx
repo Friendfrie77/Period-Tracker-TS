@@ -8,8 +8,9 @@ import HasInfo from "./HasInfo";
 const LoggedInUserIndex:React.FC = () =>{
     const [needInfo, setInfo] = useState(true)
     const {isLoading} = useLoading();
-    const {periodStartDate, periodEndDate} = useUserInfo()
+    const {periodStartDate, periodEndDate, cycle, avgLength} = useUserInfo()
     const checkInfo = () =>{
+        console.log(cycle, avgLength)
         if(periodStartDate && periodEndDate){
             setInfo(false)
         }

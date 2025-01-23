@@ -2,14 +2,15 @@
 import { useAppSelector, useAppDispatch } from "./useRedux";
 import { setPrevPeriod} from "../state/features/users/userSlice";
 import dayjs from "dayjs";
-import useLoading from "./useLoading";
-import { redirect } from "react-router-dom";
-const APIURL = import.meta.env.VITE_APIURL
+// import useLoading from "./useLoading";
+// import { useMessage } from "../context/MessageContext/MessageContext";
+// import { redirect } from "react-router-dom";
+// const APIURL = import.meta.env.VITE_APIURL
 type  periodType = {
     startDate: string,
     endDate: string
 }
-export type previousPeriod = periodType[] | undefined | null
+export type previousPeriod = periodType[] 
 
 type datesType = {
     startDate?: Date;
@@ -19,12 +20,12 @@ type datesType = {
 
 const useUserInfo = ()=>{
     const dispatch = useAppDispatch();
-    const {loading} = useLoading();
+    // const {loading} = useLoading();
     // const test = useAppSelector((state) => state.user?.loginUser)
     // console.log(test)
     //any userinfo needed for the app
     const username:string|undefined = useAppSelector((state) => state.user?.loginUser?.username);
-    const _id:number|undefined = useAppSelector((state) => state.user?.loginUser?.id);
+    const _id:number|undefined|'localUser' = useAppSelector((state) => state.user?.loginUser?.id);
     const role:string|undefined = useAppSelector((state) => state.user?.loginUser?.role);
     const email:string|undefined = useAppSelector((state) => state.user?.loginUser?.email);
     const token:string|undefined = useAppSelector((state) => state.user?.loginUser?.token);
@@ -71,20 +72,19 @@ const useUserInfo = ()=>{
     }
 
     //sending periods from account setup to server
-    const sendUserPrevPeriods = async (previousPeriod:previodPeriodType) =>{
-        loading();
-        const data = {_id, role, previousPeriod}
-        const prevPeriodAPICall = await fetch(`${APIURL}/data/addNewPrevPeriods`,{
-            method: 'Post',
-            mode: "cors",
-            headers:{Authorization: `Bearer ${token}`,
-            "Content-Type": 'application/json'},
-            body: JSON.stringify(data)
-        })
-    }
+    // const sendUserPrevPeriods = async (previousPeriod:previodPeriodType) =>{
+    //     loading();
+    //     const data = {_id, role, previousPeriod}
+    //     const prevPeriodAPICall = await fetch(`${APIURL}/data/addNewPrevPeriods`,{
+    //         method: 'Post',
+    //         mode: "cors",
+    //         headers:{Authorization: `Bearer ${token}`,
+    //         "Content-Type": 'application/json'},
+    //         body: JSON.stringify(data)
+    //     })
+    // }
     
-    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates, sendUserPrevPeriods}
+    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates}
 }
-
 
 export default useUserInfo

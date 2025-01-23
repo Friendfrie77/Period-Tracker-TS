@@ -18,7 +18,6 @@ const renderTime = (dimension?:string|null , time?:number|null, message?:string)
             </div> 
         );
     }else if(message){
-        console.log('taaaest')
         return(
             <div className='countdown-wrapper'>
                 <div className='days-left'><span>{message}</span></div>
@@ -37,8 +36,6 @@ const Countdown: React.FC<CountdownProps> = ({startDate, endDate, color1, color2
         }
     }
     const {duration, remainingTime, half, quarter} = neededInfo();
-    console.log((getTime(duration-(duration - remainingTime))))
-    console.log(`#${color1}`, `#${color2}`, `#${color3}`)
     const timerProps: {
         isPlaying: boolean,
         size: number,
