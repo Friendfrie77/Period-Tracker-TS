@@ -10,7 +10,12 @@ export const useData = () =>{
     dayjs.extend(isBetween)
     const dispatch = useAppDispatch()
     // const {periodStartDate, periodEndDate} = useUserInfo();
-
+    type userDataReturn = {
+        periodStartDate?: string|Date|undefined,
+        periodEndDate?: string|Date|undefined, 
+        cycle: number,
+        avgLength: number
+    }
     const calcNumberPeriods = (data:perviousPeriodType):number =>{
         if(Array.isArray(data)){
             return data.length
@@ -30,8 +35,8 @@ export const useData = () =>{
                 const compareResult = startDateA - startDateB
                 a.startDate = dayjs(startDateA).format('YYYY/MM/DD');
                 b.startDate = dayjs(startDateB).format('YYYY/MM/DD');
-                a.endDate = dayjs(startDateA).format('YYYY/MM/DD');
-                b.endDate = dayjs(startDateB).format('YYYY/MM/DD');
+                a.endDate = dayjs(a.endDate).format('YYYY/MM/DD');
+                b.endDate = dayjs(b.endDate).format('YYYY/MM/DD');
                 return compareResult
             })
         }
@@ -71,40 +76,84 @@ export const useData = () =>{
         return 0
     }
 
-    const calcUserData = (data:perviousPeriodType):boolean =>{
-        if(data){
+    const calcUserData = (data:perviousPeriodType):userDataReturn|boolean =>{
+        if(data && (Array.isArray(data) ? data.length > 0 : data.startDate && data.endDate)){
             const sortedData = sortaArrayData(data)
             const cycle = calcCycle(sortedData);
             const avgLength = calcAvgLength(sortedData)
             dispatch(setPeriodCycleLength({cycle: cycle, avgLength: avgLength}))
-            console.log(estimatePeriodDates(sortedData, cycle, avgLength))
-            console.log(sortedData, cycle, avgLength)
+            // console.log(estimatePeriodDates(sortedData, cycle, avgLength))
+            const estimatedLastPeriod = estimatePeriodDates(sortedData, cycle, avgLength)
+            console.log(sortedData, cycle, avgLength, estimatedLastPeriod)
+            // const returnVal:userDataReturn = {...estimatedLastPeriod, cycle, avgLength}
             return true
+            // return returnVal
         }
         return false
     }
 
+    // const estimatePeriodDates = (data:perviousPeriodType, cycle:number, avgLength:number) =>{
+    //     if(Array.isArray(data)){
+    //         //for jest testing atm
+    //         const periodStartDate = null
+    //         const periodEndDate = null
+    //         if((!periodStartDate || !periodEndDate)){
+    //             const lastIndex = (calcNumberPeriods(data) - 1)
+    //             const currentDate = todaysDate();
+    //             const lastPeriodStartDate = dayjs(data[lastIndex].startDate)
+    //             const cyclePassed = Math.floor(currentDate.diff(lastPeriodStartDate, 'day') / cycle)
+    //             let estimatedLastPeriod = lastPeriodStartDate.add((cycle * cyclePassed), 'day')
+    //             console.log("Estimated Last Period: ", estimatedLastPeriod.format('YYYY-MM-DD'))
+    //             console.log("Last Period Start Date: ", lastPeriodStartDate.format('YYYY-MM-DD'))
+    //             console.log("Cycle Passed: ", cyclePassed)
+    //             console.log("Cycle: ", cycle)
+    //             console.log("Cycle Passed in days: ", cyclePassed * cycle)
+    //             console.log("Is Active: ", estimatedLastPeriod.isBetween(currentDate.subtract(avgLength, 'day') ,currentDate.add(avgLength, 'day')))
+    //             console.log("Cycle calc test: ", currentDate.diff(lastPeriodStartDate, 'day'))
+    //             console.log("Estimated Date test: ", lastPeriodStartDate.add(Math.floor(cyclePassed), 'month'))
+    //             if(estimatedLastPeriod.isBetween(currentDate.subtract(avgLength, 'day'), currentDate.add(avgLength, 'day'))){
+    //                 const periodDates =  {periodStartDate: estimatedLastPeriod.format('YYYY-MM-DD'), periodEndDate: estimatedLastPeriod.add(avgLength, 'day').format('YYYY-MM-DD')}
+    //                 return periodDates
+    //             }else{
+    //                 estimatedLastPeriod = lastPeriodStartDate.add(cycle * (cyclePassed + 1), 'day')
+    //                 const periodDates =  {periodStartDate: estimatedLastPeriod.format('YYYY-MM-DD'), periodEndDate: estimatedLastPeriod.add(avgLength, 'day').format('YYYY-MM-DD')}
+    //                 return periodDates
+    //             }
+    //             // const test = lastPeriodStartDate.add(cycle * (cyclePassed + 1), 'day')
+    //             // console.log(lastPeriodStartDate.add(cycle * (cyclePassed + 1), 'day').format('YYYY-MM-DD'))
+    //             // console.log(lastPeriodStartDate.add(cycle * (cyclePassed), 'day').format('YYYY-MM-DD'))
+    //             // console.log(estimatedLastPeriod.isBetween(currentDate.subtract(avgLength, 'day'), currentDate.add(avgLength, 'day')))
+    //             // console.log(test.isBetween(currentDate.subtract(avgLength, 'day'), currentDate.add(avgLength, 'day')))
+    //         }
+    //     }
+    // }
     const estimatePeriodDates = (data:perviousPeriodType, cycle:number, avgLength:number) =>{
         if(Array.isArray(data)){
             //for jest testing atm
             const periodStartDate = null
             const periodEndDate = null
-
             if((!periodStartDate || !periodEndDate)){
-                const lastIndex = (calcNumberPeriods(data) - 1)
+                const lastIndex = (calcNumberPeriods(data) - 1);
                 const currentDate = todaysDate();
-                const lastPeriodStartDate = dayjs(data[lastIndex].startDate)
-                const cyclePassed = currentDate.diff(lastPeriodStartDate, 'day') / cycle
-                const estimatedLastPeriod = lastPeriodStartDate.add(cycle * cyclePassed, 'day')
-                if(estimatedLastPeriod.isBetween(currentDate.subtract(avgLength, 'day'), currentDate.add(avgLength, 'day'))){
-                    const periodDates =  {periodStartDate: estimatedLastPeriod.format('YYYY-MM-DD'), periodEndDate: estimatedLastPeriod.add(avgLength, 'day').format('YYYY-MM-DD')}
-                    return periodDates
+                const lastPeriodEndDate = dayjs(data[lastIndex].endDate);
+                const cyclePassed = Math.floor(currentDate.diff(lastPeriodEndDate, 'day') / cycle);
+                let nextPeriodStartDate = lastPeriodEndDate.add((cycle * (cyclePassed + 1)), 'day')
+                //if nextperiodStartDate 
+                if(currentDate.isBetween(lastPeriodEndDate, nextPeriodStartDate, null, "[]")){
+                    //figure out where in the cycle the date is
+                    //from there figure out 1st day of bleeding and last day
+
+                    console.log('test')
                 }
-                const test = lastPeriodStartDate.add(cycle * (cyclePassed + 1), 'day')
-                console.log(lastPeriodStartDate.add(cycle * (cyclePassed + 1), 'day').format('YYYY-MM-DD'))
-                console.log(lastPeriodStartDate.add(cycle * (cyclePassed), 'day').format('YYYY-MM-DD'))
-                console.log(estimatedLastPeriod.isBetween(currentDate.subtract(avgLength, 'day'), currentDate.add(avgLength, 'day')))
-                console.log(test.isBetween(currentDate.subtract(avgLength, 'day'), currentDate.add(avgLength, 'day')))
+                console.log("Estimated Last Period: ", nextPeriodStartDate.format('YYYY-MM-DD'))
+                console.log("Last Period End Date: ", lastPeriodEndDate.format('YYYY-MM-DD'))
+                console.log("Cycle Passed: ", cyclePassed)
+                console.log("Cycle: ", cycle)
+                console.log("avg length: ", avgLength)
+                console.log("Cycle Passed in days: ", cyclePassed * cycle)
+                console.log("Is Active: ", currentDate.isBetween(lastPeriodEndDate, nextPeriodStartDate, null, "[]"))
+                // console.log("Cycle calc test: ", currentDate.diff(lastPeriodStartDate, 'day'))
+                // console.log("Estimated Date test: ", lastPeriodStartDate.add(Math.floor(cyclePassed), 'month'))
             }
         }
     }
