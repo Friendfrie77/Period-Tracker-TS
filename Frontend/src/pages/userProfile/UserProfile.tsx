@@ -5,13 +5,20 @@ import useUserInfo from "../../hooks/useUserInfo";
 import EventCal from "../../components/eventCal/EventCal";
 import PeriodStatsCard from "../../components/periodStatsCard/PeriodStatsCard";
 import SettingsModal from "../../components/modal/settingsModals/Settings";
+import LocalAccountSettings from "../../components/modal/settingsModals/LocalAccountSettings";
 import PageFade from "../../components/layout/PageFade";
+
 const UserProfile:React.FC = () =>{
     const [settingOpen, setSettingOpen] = useState(false);
+    const [localSettingsOpen, setLocalSettingsOpen] = useState(false);
     const openSetting = () =>{
         setSettingOpen(!settingOpen)
     }
-    const {periodStartDate, periodEndDate, previousPeriod} = useUserInfo();
+    const openLocalSettings = () =>{
+        setLocalSettingsOpen(!localSettingsOpen)
+    }
+    const {periodStartDate, periodEndDate, previousPeriod, _id} = useUserInfo();
+    console.log(_id)
     const checkUserInfo = () =>{
         const events = new Events();
         events.checkForEvents(previousPeriod, periodStartDate, periodEndDate)
@@ -30,10 +37,14 @@ const UserProfile:React.FC = () =>{
             <PeriodStatsCard />
             <div className="flex-center box-padding flex-row-gap-1rem">
                 <button className="button-large">Period Information</button>
+                {_id =='localUser' ? <button onClick={openLocalSettings} className='button-large'>Local Settings</button> : null}
                 <button onClick={openSetting} className="button-large">Account Settings</button>
             </div>
             {settingOpen &&
                 <PageFade> <SettingsModal setSettingOpen={openSetting}/> </PageFade>
+            }
+            {localSettingsOpen &&
+                <PageFade><LocalAccountSettings></LocalAccountSettings></PageFade>
             }
         </main>
     )

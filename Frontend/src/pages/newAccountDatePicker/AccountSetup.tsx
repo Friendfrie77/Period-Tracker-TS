@@ -8,6 +8,7 @@ import { DateRange } from 'react-date-range';
 import {Form} from 'react-final-form';
 import UserTextField from "../../components/userInputFields/UserTextField";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useOpenModals } from "../../hooks/useOpenModals";
 //test for local account saving
 const AccountSetup: React.FC = () =>{
     type datesType = {
@@ -20,10 +21,11 @@ const AccountSetup: React.FC = () =>{
     }
 
     const navigate = useNavigate();
-    const{previodPeriod, updateUserDates, sendUserPrevPeriods} = useUserInfo();
-    const {isAuth} = useAuth()
+    const{previousPeriod, updateUserDates, _id} = useUserInfo();
+    const {isAuth, updateUsersPeriods} = useAuth()
     const {setupDemoAccount} = useDemoAccount();
     const {isLoading} = useLoading();
+    const {toggleNavCall} = useOpenModals();
     const [date, setDate] = useState<datesType[]>([
         {
             startDate: new Date(),
@@ -32,10 +34,16 @@ const AccountSetup: React.FC = () =>{
         }
     ])
     const accountInfoButton = () =>{
-        sendUserPrevPeriods(previodPeriod)
+        updateUsersPeriods(previousPeriod)
+        // sendUserPrevPeriods(previodPeriod)
     }
     const demoAccountbutton = (val:valTypes) =>{
-        setupDemoAccount(val, previodPeriod)
+        setupDemoAccount(val, previousPeriod)
+    }
+
+    const localAccountButton = () =>{
+        toggleNavCall()
+        navigate('/')
     }
     useEffect(() =>{
         updateUserDates(date)
@@ -48,6 +56,7 @@ const AccountSetup: React.FC = () =>{
     })
     const {state} = useLocation();
     const userAuth = isAuth();
+    console.log(_id)
     const content = isLoading? <Spinner /> : (
         <main className="content-no-nav flex-center">
             <section className="flex-center account-setup-wrapper">
@@ -72,7 +81,7 @@ const AccountSetup: React.FC = () =>{
                     ranges={date}
                 />
                 {userAuth ?(
-                    <button type='submit' className="button reg-button" onClick={accountInfoButton}>Next</button>
+                    <button type='submit' className="button reg-button" onClick={_id == 'localUser' ? localAccountButton : accountInfoButton}>Next</button>
                 ): (
                     <Form 
                         onSubmit={demoAccountbutton}

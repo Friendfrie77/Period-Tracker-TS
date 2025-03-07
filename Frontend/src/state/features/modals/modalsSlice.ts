@@ -4,14 +4,16 @@ type modalStateType = {
     loginModal: boolean,
     registerModal: boolean,
     showNav: boolean,
-    localModal: boolean
+    localModal: boolean,
+    localModalSettings: boolean
 }
 
 const initialState: modalStateType = {
     loginModal: false,
     registerModal: false,
     showNav: true,
-    localModal: false
+    localModal: false,
+    localModalSettings: false
 }
 
 const modalSlice = createSlice({
@@ -29,9 +31,12 @@ const modalSlice = createSlice({
         },
         toggleLocal : (state) =>{
             state.localModal = !state.localModal
+        },
+        toggleLocalModalSettings : (state) =>{
+            state.localModalSettings = !state.localModalSettings
         }
     }
 })
 
-export const {toggleLogin, toggleRegister, toggleNav, toggleLocal} = modalSlice.actions;
+export const {toggleLogin, toggleRegister, toggleNav, toggleLocal, toggleLocalModalSettings} = modalSlice.actions;
 export default modalSlice.reducer;

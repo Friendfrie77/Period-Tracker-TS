@@ -1,9 +1,16 @@
 .info-card{
     max-width: 1440px;
-    margin: 0 auto;
+    margin: auto;
     padding: $box-padding;
     flex-grow: 1;
     width: 100%;
+    border-radius: $radius;
+    box-shadow: $drop-shadow-wrappers;
+}
+
+.feature-card{
+    background-color: $color5;
+    padding: 15px;
 }
 .card-heading{
     text-align: center;
@@ -21,6 +28,9 @@
         text-decoration: none;
         color: $textcolor;
     }
+}
+.no-img{
+    width: 100%;
 }
 .card-img-content{
     width: 50%;

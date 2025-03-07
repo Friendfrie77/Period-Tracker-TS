@@ -1,13 +1,14 @@
 //Hook to handle login/logout/reg
 import useLoading from "./useLoading";
 const APIURL = import.meta.env.VITE_APIURL
-import { useAppSelector, useAppDispatch} from "./useRedux"
+import {useAppDispatch} from "./useRedux"
 import { setLogin, setLogout, setToken} from "../state/features/users/userSlice";
 import type { user } from "../state/features/users/userSlice";
 import useUserInfo from "./useUserInfo";
 import { useMessage } from "../context/MessageContext/MessageContext";
 import { redirect } from "react-router-dom";
 import type { valuesTypes } from "../components/modal/modals.types";
+import { perviousPeriodType } from "./hooks.types";
 
 const useAuth =() =>{
     const dispatch = useAppDispatch()
@@ -67,62 +68,68 @@ const useAuth =() =>{
         }
     }
     
-    const localAccount = async (values:valuesTypes):Promise<string|boolean> =>{
+    const localAccount = async (values:valuesTypes) =>{
         loading()
-        const localAPICall = await fetch(`${APIURL}/local/localAccountSetup`, {
-            method: 'Post',
-            mode: "cors",
-        })
-        const res = await localAPICall.json()
-        if(localAPICall.ok){
-            if(message){
-                setMessageState(null, null)
-            }
-            // console.log(values.username)
+        if(values.username){
             const localUser:user = {
                 username: values.username,
-                token: res.token,
-                role: "local",
+                token: 'isLocalUser',
+                role: 'local',
                 email: 'localUser',
                 id: 'localUser'
             }
             dispatch(setLogin(localUser))
             loading()
-            return res
+            return localUser.token
         }else{
-            setMessageState(res.message, 'error')
-            loading()
-            return false 
+            setMessageState('An Error Has Occurred', 'error')
+            loading();
+            return false
         }
     }
+    const updateUsersPeriods = (previousPeriod:perviousPeriodType) =>{
+        console.log(previousPeriod)
+    }
+
     const logout = () =>{
-        dispatch(setLogout())
+        if(_id === 'localUser'){
+            /* set modal to warn user that data will be deleted.
+            
+            */
+            dispatch(setLogout())
+        }else{
+            dispatch(setLogout())
+        }
     }
     const userPhoneNotfication = async () =>{
         setMessageState('test', 'success');
     }
     const deleteAccount = async(role:string, email?:string) =>{
         loading();
-        const data={_id, role, email}
-        const deleteAccountAPICall = await fetch(`${APIURL}/auth/deleteAccount`,{
-            method: 'Post',
-            mode: 'cors',
-            headers:{Authorization: `Bearer ${token}`,
-            "Content-Type": 'application/json'},
-            body: JSON.stringify(data)
-        });
-        const res = await deleteAccountAPICall.json();
-        if(deleteAccountAPICall.ok){
-            setMessageState(res.message, 'success')
+        if(role == 'localAccount'){
             dispatch(setLogout())
-            redirect('/')
-            loading();
         }else{
-            setMessageState(res.message, 'error')
-            loading();
+            const data={_id, role, email}
+            const deleteAccountAPICall = await fetch(`${APIURL}/auth/deleteAccount`,{
+                method: 'Post',
+                mode: 'cors',
+                headers:{Authorization: `Bearer ${token}`,
+                "Content-Type": 'application/json'},
+                body: JSON.stringify(data)
+            });
+            const res = await deleteAccountAPICall.json();
+            if(deleteAccountAPICall.ok){
+                setMessageState(res.message, 'success')
+                dispatch(setLogout())
+                redirect('/')
+                loading();
+            }else{
+                setMessageState(res.message, 'error')
+                loading();
+            }
         }
     }
-    return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth}
+    return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth, updateUsersPeriods}
 }
 
 export default useAuth;

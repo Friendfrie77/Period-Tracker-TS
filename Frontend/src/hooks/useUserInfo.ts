@@ -46,6 +46,7 @@ const useUserInfo = ()=>{
     }
     const todaysDate:string = dayjs().format()
     // console.log(useAppSelector((state) => state.user?.loginUser))
+    
     //helper functions
     //checks if a period date is in the current list of logged periods
     const checkIfDateIsPresent = (loggedPeriods:previousPeriod, period:previousPeriod) => {

@@ -801,6 +801,7 @@ select:-webkit-autofill:focus {
 .hero {
   background-color: #8fddc3;
   height: 70%;
+  margin-bottom: 10px;
 }
 @media (max-width: 768px) {
   .hero {
@@ -877,6 +878,29 @@ select:-webkit-autofill:focus {
   margin-top: 5px;
 }
 
+.features-list {
+  color: #241e4e;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.features-list h1 {
+  font-size: var(--fs-subheader);
+}
+.features-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--fs-body);
+}
+
+.list-columns {
+  min-width: 50%;
+  display: grid;
+  text-align: center;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px 25px;
+}
 /*CSS for any animations on the site */
 .page-fade {
   background-color: rgba(0, 0, 0, 0.5);
@@ -934,10 +958,17 @@ select:-webkit-autofill:focus {
 /*end css for any ending animations */
 .info-card {
   max-width: 1440px;
-  margin: 0 auto;
+  margin: auto;
   padding: 1rem;
   flex-grow: 1;
   width: 100%;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+}
+
+.feature-card {
+  background-color: #8fddc3;
+  padding: 15px;
 }
 
 .card-heading {
@@ -960,6 +991,10 @@ select:-webkit-autofill:focus {
 .card-text-content a {
   text-decoration: none;
   color: #eae8ff;
+}
+
+.no-img {
+  width: 100%;
 }
 
 .card-img-content {

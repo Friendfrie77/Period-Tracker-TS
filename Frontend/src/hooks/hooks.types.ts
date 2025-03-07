@@ -25,4 +25,11 @@ interface periodUserDataReturnType{
     cycle: number,
     avgLength: number|undefined
 }
-export type {previodPeriodType, periodType, localUserFile, localAccountInputValues, perviousPeriodType, periodUserDataReturnType}
+
+interface isActiveReturn{
+    startDate: string, 
+    endDate: string,
+    canBleed: boolean,
+    isBleeding: boolean
+}
+export type {previodPeriodType, periodType, localUserFile, localAccountInputValues, perviousPeriodType, periodUserDataReturnType, isActiveReturn}

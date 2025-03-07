@@ -11,18 +11,18 @@ import useAuth from "../../hooks/useAuth";
 import { useMessage } from '../../context/MessageContext/MessageContext';
 import { useNavigate } from "react-router-dom";
 import type { valuesTypes } from './modals.types';
+
 //have user enter file
 //if user does not have a file move to calender
 
 const LocalModal : React.FC = () =>{
     const navigate = useNavigate();
     const {isLoading} = useLoading();
-    const {toggleLocalModal} = useOpenModals();
+    const {toggleLocalModal, toggleNavCall} = useOpenModals();
     const {message} = useMessage()
     const {calcUserData} = useData()
     const {createLocalAccount} = useLocalAccount();
     const {localAccount} = useAuth()
-
     const onSubmit = async (values:valuesTypes) => {
         const userInfo = await createLocalAccount(values)
         if(userInfo.isVaild){
@@ -31,8 +31,9 @@ const LocalModal : React.FC = () =>{
                 toggleLocalModal()
                 if(userInfo.hasData){
                     calcUserData(userInfo.data)
+                    navigate('/')
                 }else{
-                    //test if data is saved
+                    toggleNavCall()
                     navigate('/accountsetup', {state:{fromApp: true}}) 
                 }
             }

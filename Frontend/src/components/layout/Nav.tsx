@@ -57,14 +57,14 @@ const Nav: React.FC = () =>{
                             </>
                         ):(
                             <>
+                            <li className="nav-item">
+                                <button className='nav-button' onClick={toggleLocalModal}>Local Account</button>
+                            </li>
                             <li className='nav-item'>
                                 <button className='nav-button' onClick={toggleLoginCall}>Login</button>
                             </li>
                             <li className='nav-item'>
                                 <button className='nav-button' onClick={toggleRegisterCall}>Register</button>
-                            </li>
-                            <li className="nav-item">
-                                <button className='nav-button' onClick={toggleLocalModal}>Local Account</button>
                             </li>
                             </>
                         )}

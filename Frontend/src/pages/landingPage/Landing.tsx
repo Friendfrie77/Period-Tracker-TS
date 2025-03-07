@@ -52,9 +52,38 @@ const LandingPage: React.FC = () =>{
             </section>
             <section>
                 <IndexInfoCard 
-                    styles={{ backgroundColor: indexCardColors.color2, color: indexCardColors.textColor }}
+                    styles={{ backgroundColor: indexCardColors.color4, color: indexCardColors.textColor }}
                     contentTypeOne='img'
                     contentTypeTwo='txt'
+                    txtContentType='text'
+                    hasButton={true}
+                    buttonLink = {false}
+                    link = '/'
+                    buttonFunction={demoAccount}
+                    buttonTxt='Find out more'
+                    contentImg={Laptop}
+                    txtHeader="Privacy Focused"
+                    txtContent="Are you worried about your information being tracked? We have options to run the app without sending any data to a server or instructions on how to run everything locally. All your data never leaves your pc and can be cleared at the press of a button. " 
+                    imgAlt={""} 
+                    hasLink={false}
+                />
+                <section className = 'feature-card'>
+                    <div className = 'flex-row-to-col flex-center features-list'>
+                        <h1>Features</h1>
+                        <ul className="list-columns">
+                            <li>Privacy First</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>Docker compatable</li>
+                        </ul>
+                    </div>
+                </section>
+                <IndexInfoCard 
+                    styles={{ backgroundColor: indexCardColors.color2, color: indexCardColors.textColor }}
+                    contentTypeOne='txt'
+                    contentTypeTwo='img'
                     txtContentType='text'
                     hasButton={true}
                     buttonLink = {false}
@@ -70,17 +99,15 @@ const LandingPage: React.FC = () =>{
                 <IndexInfoCard 
                     styles={{ backgroundColor: indexCardColors.color2, color: indexCardColors.textColor }}
                     contentTypeOne='txt'
-                    contentTypeTwo='img'
+                    txtContentType='text'
                     hasButton={false}
+                    buttonLink = {false}
+                    link = 'https://github.com/Friendfrie77/Period-Tracker-TS'
+                    linkTxt='Github page'
+                    txtHeader="Simple to Set Up at Home"
+                    txtContent="We have made a simple-to-follow guide that will allow just about anyone to set up local at-home tracking quickly. This is great if you want the full features of the app but still care about your data privacy. You can find more at the GitHub link below." 
                     hasLink={true}
-                    linkTxt="Find out more"
-                    contentImg={Laptop}
-                    txtHeader="Privacy Focused "
-                    txtContent={""} 
-                    txtContentType={"text"} 
-                    imgAlt={""} 
-                    link={""}                
-                    />
+                />
             </section>
             {loginModalOpen &&
                 <PageFade>

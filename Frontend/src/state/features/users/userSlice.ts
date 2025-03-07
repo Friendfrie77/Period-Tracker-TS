@@ -1,4 +1,4 @@
-import {createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 type  periodType = {
@@ -75,11 +75,20 @@ const userSlice = createSlice({
                 state.loginUser.cycle = action.payload.cycle;
                 state.loginUser.avgLength = action.payload.avgLength;
             }
+        },
+        setCurrentPeriod: (state, action:PayloadAction<{startDate: string, endDate: string, canBleed: boolean, isBleeding: boolean}>) =>{
+            if(state.loginUser){
+                state.loginUser.periodStartDate = action.payload.startDate;
+                state.loginUser.periodEndDate = action.payload.endDate;
+                state.loginUser.canBleed = action.payload.canBleed;
+                state.loginUser.isBleeding = action.payload.isBleeding;
+
+            }
         }
     }
 })
 
-export const {setLogin, setLogout, setToken, setPrevPeriod, setPeriodCycleLength} = userSlice.actions;
+export const {setLogin, setLogout, setToken, setPrevPeriod, setPeriodCycleLength, setCurrentPeriod} = userSlice.actions;
 export default userSlice.reducer;
 export {testUser};
 export type{user}

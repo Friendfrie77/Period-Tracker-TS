@@ -4,15 +4,15 @@ import { NavLink } from "react-router-dom";
 type InfoCardProps ={
     styles: CSSProperties,
     contentTypeOne: string,
-    contentTypeTwo: string,
+    contentTypeTwo?: string,
     txtHeader: string,
     txtContentType: string,
     txtContent: string[] | string,
-    contentImg: string,
-    imgAlt: string,
+    contentImg?: string,
+    imgAlt?: string,
     hasButton: boolean,
     hasLink: boolean,
-    link: string,
+    link?: string,
     buttonTxt?: string,
     buttonLink?: boolean,
     buttonFunction?: () => void;
@@ -23,7 +23,7 @@ const IndexInfoCard: React.FC<InfoCardProps> =({styles, contentTypeOne, contentT
         <section className='info-card' style={styles}>
             <div className='card-content-wrapper flex-row-to-col'>
                 {contentTypeOne === 'txt' || contentTypeOne == 'text' ?(
-                    <div className='card-text-content'>
+                    <div className={`card-text-content ${contentTypeTwo == null ? "no-img" : null}`}>
                         <h1>{txtHeader}</h1>
                         {txtContentType ==='txt' || txtContentType === 'text'?(
                             <p>{txtContent}</p>
@@ -75,7 +75,7 @@ const IndexInfoCard: React.FC<InfoCardProps> =({styles, contentTypeOne, contentT
                                     ): <button className="card-cta-button" onClick = {buttonFunction}>{buttonTxt}</button>}
                                 </div>
                             ): hasLink ?(
-                                <NavLink className='card-cta-link' to={link}>{linkTxt} <span>&#8594;</span></NavLink>
+                                <NavLink className='card-cta-link' target="_blank" to={link}>{linkTxt} <span>&#8594;</span></NavLink>
                             ): null}
                         </div>
                     </div>
