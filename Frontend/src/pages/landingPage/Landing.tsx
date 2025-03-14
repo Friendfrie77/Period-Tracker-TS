@@ -8,7 +8,13 @@ import Phone from "../../assets/images/phone-test.png";
 import Laptop from '../../assets/images/laptop.jpg';
 import {useNavigate} from 'react-router-dom';
 import AlertMessage from "../../components/alertMessage/AlertMessage";
+import { xShiftFadeIn } from "../../components/layout/layoutAnimations/animations";
+import { useEffect } from "react";
+
 const LandingPage: React.FC = () =>{
+    useEffect(() =>{
+        xShiftFadeIn(".hero-wrapper")
+    })
     const navigate = useNavigate();
     const {loginModalOpen, registerModalOpen, localModalOpen, toggleLocalModal, toggleRegisterCall, toggleNavCall} = useOpenModals();
     const indexCardColors : {
@@ -29,6 +35,9 @@ const LandingPage: React.FC = () =>{
     const demoAccount = () =>{
         toggleNavCall();
         navigate('/accountsetup',{state: {fromApp: true}} )
+    }
+    const localAccountInfo = () =>{
+        console.log('test')
     }
     const content = (
         <main className="content">
@@ -59,11 +68,11 @@ const LandingPage: React.FC = () =>{
                     hasButton={true}
                     buttonLink = {false}
                     link = '/'
-                    buttonFunction={demoAccount}
+                    buttonFunction={localAccountInfo}
                     buttonTxt='Find out more'
                     contentImg={Laptop}
                     txtHeader="Privacy Focused"
-                    txtContent="Are you worried about your information being tracked? We have options to run the app without sending any data to a server or instructions on how to run everything locally. All your data never leaves your pc and can be cleared at the press of a button. " 
+                    txtContent="Are you worried about your data being sent to a server somewhere, sold, or even worse leaked online? We have options to store all your data locally in your internet browser's memory. With options to export the data if you are not happy or need to switch browsers. You can find out more below." 
                     imgAlt={""} 
                     hasLink={false}
                 />
@@ -92,7 +101,7 @@ const LandingPage: React.FC = () =>{
                     buttonTxt='Demo Now'
                     contentImg={Laptop}
                     txtHeader="Tracking Your Period: Made Easy"
-                    txtContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Magna fermentum iaculis eu non. Porttitor leo a diam sollicitudin tempor id eu nisl. Odio ut sem nulla pharetra diam sit amet. Commodo viverra maecenas accumsan lacus vel facilisis volutpat. In hac habitasse platea dictumst. Ut placerat orci nulla pellentesque dignissim enim sit. " 
+                    txtContent="Are you looking for a simple-to-use period app to help you keep track of your menstrual cycle that isn't going to sell your data or use it to try to sell you a product? Look no further! All you need to do is provide some of your past cycle information and we will do our best to estimate your next period. With options to send text alerts or email alerts for when your cycle is a few days away so you can be prepared." 
                     imgAlt={""} 
                     hasLink={false}
                 />
@@ -103,9 +112,9 @@ const LandingPage: React.FC = () =>{
                     hasButton={false}
                     buttonLink = {false}
                     link = 'https://github.com/Friendfrie77/Period-Tracker-TS'
-                    linkTxt='Github page'
+                    linkTxt='Find out more here'
                     txtHeader="Simple to Set Up at Home"
-                    txtContent="We have made a simple-to-follow guide that will allow just about anyone to set up local at-home tracking quickly. This is great if you want the full features of the app but still care about your data privacy. You can find more at the GitHub link below." 
+                    txtContent="Are you tech-savvy or just looking for a period app that you can self-host so you know where your data is going? We offer a full guide on how to set up the app using Docker. This allows you to have all the features of the full app while having the privacy and control of running it locally. You can find the guide below." 
                     hasLink={true}
                 />
             </section>

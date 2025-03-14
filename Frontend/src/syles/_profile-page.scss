@@ -1,6 +1,60 @@
+$navWidth: 170px;
+.test-div{
+    background-color: $login-input-background;
+    margin: 15px;
+    border-radius: $radius;
+    box-shadow: $drop-shadow-wrappers;
+}
+.open-symbol{
+    font-size: 50px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    transition: transform .2s ease-in;
+}
+.symbol-closed{
+    transform: rotate(0);
+}
+.symbol-open{
+    transform: rotate(90deg);
+}
+.closed-symbol{
+    font-size: 50px;
+    color: white;
+    transform: rotate(90deg);
+}
+.profile-nav{
+    background-color: $color4;
+    width: $navWidth;
+    height: 100%;
+    display: flex;
+    gap: 10px;
+    padding-top: 15px;
+    flex-direction: column;
+    // opacity: 0;
+    // transform:translateX(-50%);
+    transition: opacity .5s ease-in;
+    transition: transform .2s ease-in;
+}
+.profile-page-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    transition:  margin-left .2s ease-in-out;
+}
+.page-content-shift{
+    margin-left:$navWidth;
+}
+.profile-nav-is-open{
+    opacity: 1;
+    position: relative;
+    transform: translateX(0);
+}
 .calander{
-    max-height: 1000px;
+    max-height: 500px;
     min-height: 500px;
+    width: 100%;
     height: 100%;
     position: relative;
     padding: $box-padding;

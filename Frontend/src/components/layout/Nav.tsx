@@ -5,6 +5,8 @@ import { useOpenModals } from '../../hooks/useOpenModals';
 import useUserInfo from "../../hooks/useUserInfo";
 import useAuth from "../../hooks/useAuth";
 import { NavLink } from "react-router-dom";
+import { xShiftFadeIn } from "./layoutAnimations/animations";
+import { useEffect } from "react";
 //need to set up state for hooks
 const Nav: React.FC = () =>{
     const {toggleLoginCall, toggleRegisterCall, toggleLocalModal} = useOpenModals();
@@ -17,7 +19,9 @@ const Nav: React.FC = () =>{
     const guestLogoutButton = () =>{
         logout();
     }
-
+    useEffect(() =>{
+        xShiftFadeIn(".nav-container")
+    })
     const navBar = (
         <header>
             <nav className = 'nav'>

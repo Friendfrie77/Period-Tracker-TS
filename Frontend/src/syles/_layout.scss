@@ -29,10 +29,19 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 .content-no-nav{
     display: flex;
     flex-grow: 1;
+}
+.content-flex-row{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 .flex-row-to-col {
     display: flex;
@@ -46,7 +55,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+}
   .flex-row-gap-1rem{
     row-gap: 1rem;
   }
