@@ -1,4 +1,13 @@
 $navWidth: 170px;
+.profile-cards{
+    display: flex;
+    flex-direction: column;
+    border-radius: $radius;
+    background-color: $login-input-background;
+    margin: 15px;
+    box-shadow: $drop-shadow-wrappers;
+    width: auto;
+}
 .test-div{
     background-color: $login-input-background;
     margin: 15px;

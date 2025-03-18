@@ -1127,6 +1127,16 @@ select:-webkit-autofill:focus {
   color: #eae8ff;
 }
 
+.profile-cards {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: #4b203f;
+  margin: 15px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+  width: auto;
+}
+
 .test-div {
   background-color: #4b203f;
   margin: 15px;

@@ -3,6 +3,8 @@ import UserWelcomeBar from "../../components/userWelcomeBar/UserWelcomeBar";
 import {Events} from "../../classes/events";
 import useUserInfo from "../../hooks/useUserInfo";
 import AccountOverview from "./UserOverView";
+import AccountMangment from "./AccountMangment";
+import DataMangment from "./DataMangment";
 // import EventCal from "../../components/eventCal/EventCal";
 // import PeriodStatsCard from "../../components/periodStatsCard/PeriodStatsCard";
 // import SettingsModal from "../../components/modal/settingsModals/Settings";
@@ -45,8 +47,8 @@ const UserProfile:React.FC = () =>{
             <section className={`profile-page-content`}>
                 {/* <UserWelcomeBar showDateStrip={false} /> */}
                 {displaySection === "accountOverview" && <AccountOverview/>}
-                {displaySection === "accountMangment" && null}
-                {displaySection === "dataMangment" && null}
+                {displaySection === "accountMangment" && <AccountMangment/>}
+                {displaySection === "dataMangment" && <DataMangment/>}
             </section>
         </main>
     )

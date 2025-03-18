@@ -43,6 +43,8 @@
   max-width: 1400px;
   margin: 0 auto;
 }
+
+
 .flex-row-to-col {
     display: flex;
     flex-direction: row;
@@ -56,73 +58,73 @@
     justify-content: center;
     align-items: center;
 }
-  .flex-row-gap-1rem{
-    row-gap: 1rem;
-  }
-  .header-text{
-    color: $textcolor;
-    font-size: var(--fs-header);
-  }
-  .body-text{
-    color:$textcolor;
-    font-size: var(--fs-body);
-  }
-  .padding-bottom-1rem{
-    padding-bottom: 1rem;
-  }
-  .box-padding{
-    padding: $box-padding;
-  }
-  .subheader-text{
-    color: $textcolor;
-    font-size: var(--fs-subheader);
-  }
-  .right-align{
-    align-self: end;
-  }
-  .center-align{
-    align-self: center;
-  }
-  .display-none{
-    display: none !important;
-  }
+.flex-row-gap-1rem{
+  row-gap: 1rem;
+}
+.header-text{
+  color: $textcolor;
+  font-size: var(--fs-header);
+}
+.body-text{
+  color:$textcolor;
+  font-size: var(--fs-body);
+}
+.padding-bottom-1rem{
+  padding-bottom: 1rem;
+}
+.box-padding{
+  padding: $box-padding;
+}
+.subheader-text{
+  color: $textcolor;
+  font-size: var(--fs-subheader);
+}
+.right-align{
+  align-self: end;
+}
+.center-align{
+  align-self: center;
+}
+.display-none{
+  display: none !important;
+}
 /* CSS for Spinner animation */
 .loading{
-    background-image: url('../assets/images/loading-background.svg');
-    background-position: center;
-    opacity: 1;
-    background-repeat: no-repeat;
+  background-image: url('../assets/images/loading-background.svg');
+  background-position: center;
+  opacity: 1;
+  background-repeat: no-repeat;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .spinner{
-    width: 150px;
-    height: 150px;
-    border: 8px solid;
-    border-color: transparent;
-    border-radius: 50%;
-    animation: spin-anim 1.5s linear infinite;
+  width: 150px;
+  height: 150px;
+  border: 8px solid;
+  border-color: transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.5s linear infinite;
 }
 
 @keyframes spin-anim {
-    0% {
-        transform: rotate(0deg);
-    }
-    40% {
-        border-color: transparent #5CFFC9 transparent transparent;
-    }
+  0% {
+      transform: rotate(0deg);
+  }
+  40% {
+      border-color: transparent #5CFFC9 transparent transparent;
+  }
 
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+      transform: rotate(360deg);
+  }
 }
 /* End of CSS for Spinner animation */
 
