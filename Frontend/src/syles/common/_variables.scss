@@ -1,0 +1,32 @@
+$color1: #8fddc3;
+$color2: #241e4e;
+$color4: #5c0f47;
+$color5: #8fddc3;
+$color6: #5cffc9;
+$textcolor: #eae8ff;
+$button-color: #af4d98;
+$login-input-background: #4b203f;
+$backgroundgrad: linear-gradient($color2, #302867, #7b145f, $color4);
+$drop-shadow-wrappers: (rgba(0, 0, 0, 0.4) 0px 5px 10px);
+$radius: 5px;
+$box-padding: 1rem;
+$Copy-Font: "Varela_Round", Sans-Serif;
+$Header-Font: "Varela_Round", Sans-Serif;
+
+:root {
+    --fs-welcome: clamp(2.5rem, calc(6vw + 1rem), 4.5rem);
+    --fs-header: clamp(2rem, calc(5vw + 0.5rem), 4.5rem);
+    --fs-subheader: clamp(1.6rem, calc(4vw + 0.3rem), 3rem);
+    --fs-horizontal-cal: clamp(1rem, calc(3vw + 0.5rem), 3rem);
+    --fs-hero: clamp(1.5rem, calc(4vw + 0.5rem), 4.25rem);
+    --fs-hero-button: clamp(1.5rem, calc(4vw + 0.5rem), 2.5rem);
+    --fs-info-card: clamp(1.5rem, calc(2vw + 0.2rem), 2rem);
+    --fs-body: 1.5rem;
+    --fs-cal: 1.5rem;
+    --fs-signup: 1.15rem;
+    @include for-size(large-phone-only) {
+      --fs-cal: 0.9rem;
+      --fs-body: 1.2rem;
+      --fs-signup: 1rem;
+    }
+  }

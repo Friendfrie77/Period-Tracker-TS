@@ -2,7 +2,7 @@
 import useLoading from "./useLoading";
 const APIURL = import.meta.env.VITE_APIURL
 import {useAppDispatch} from "./useRedux"
-import { setLogin, setLogout, setToken} from "../state/features/users/userSlice";
+import { setEmailNotifications, setLogin, setLogout, setToken} from "../state/features/users/userSlice";
 import type { user } from "../state/features/users/userSlice";
 import useUserInfo from "./useUserInfo";
 import { useMessage } from "../context/MessageContext/MessageContext";
@@ -104,6 +104,11 @@ const useAuth =() =>{
     const userPhoneNotfication = async () =>{
         setMessageState('test', 'success');
     }
+
+    const userEmailNotfications = async (emailNotifications:boolean|undefined) =>{
+        console.log(emailNotifications)
+        dispatch(setEmailNotifications({emailNotifications: !emailNotifications}))
+    }
     const deleteAccount = async(role:string, email?:string) =>{
         loading();
         if(role == 'localAccount'){
@@ -129,7 +134,7 @@ const useAuth =() =>{
             }
         }
     }
-    return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth, updateUsersPeriods}
+    return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth, updateUsersPeriods, userEmailNotfications}
 }
 
 export default useAuth;

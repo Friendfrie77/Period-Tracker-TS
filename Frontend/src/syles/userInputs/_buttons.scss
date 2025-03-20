@@ -1,0 +1,22 @@
+.button {
+    margin-top: 16px;
+    width: 125px;
+    align-self: center;
+    box-shadow: $drop-shadow-wrappers;
+    height: 35px;
+    font-size: var(--fs-body);
+    @include button-mixin;
+  }
+  .button-large{
+    @include button-mixin;
+    font-size: var(--fs-body);
+    
+  }
+  .button-link{
+    background-color: transparent;
+    border: none;
+    color: $color6;
+    &:hover {
+      color: $textcolor;
+    }
+  }

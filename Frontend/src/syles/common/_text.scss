@@ -1,0 +1,33 @@
+p,
+span,
+button,
+a,
+label,
+select,
+ul,
+li,
+ol {
+  font-family: $Copy-Font;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $Header-Font;
+}
+
+.header-text{
+    color: $textcolor;
+    font-size: var(--fs-header);
+}
+
+.body-text{
+    color:$textcolor;
+    font-size: var(--fs-body);
+}
+
+.subheader-text{
+    color: $textcolor;
+    font-size: var(--fs-subheader);
+  }

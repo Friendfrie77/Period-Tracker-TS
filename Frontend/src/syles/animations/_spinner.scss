@@ -1,0 +1,37 @@
+.loading{
+    background-image: url('../../assets/images/loading-background.svg');
+    background-position: center;
+    opacity: 1;
+    background-repeat: no-repeat;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.spinner{
+    width: 150px;
+    height: 150px;
+    border: 8px solid;
+    border-color: transparent;
+    border-radius: 50%;
+    animation: spin-anim 1.5s linear infinite;
+}
+
+@keyframes spin-anim {
+    0% {
+        transform: rotate(0deg);
+    }
+    40% {
+        border-color: transparent #5CFFC9 transparent transparent;
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

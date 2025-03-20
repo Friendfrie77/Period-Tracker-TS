@@ -38,7 +38,8 @@ const useUserInfo = ()=>{
     const canBleed: boolean|undefined = useAppSelector((state) => state.user?.loginUser?.canBleed);
     const isBleeding : boolean|undefined = useAppSelector((state) => state.user?.loginUser?.isBleeding);
     const previousPeriod: previousPeriod|undefined|null = useAppSelector((state) => state.user?.loginUser?.previousPeriod)
-    const notifications: boolean|undefined = useAppSelector((state) => state.user?.loginUser?.notifications)
+    const notifications: boolean = useAppSelector((state) => state.user?.loginUser?.notifications ?? false)
+    const emailNotifications: boolean = useAppSelector((state) => state.user?.loginUser?.emailNotifications ?? false)
     const isAuth: boolean = !!token
     let cycleStartDate: string | null = null
     if(typeof cycle === 'number'){
@@ -85,7 +86,7 @@ const useUserInfo = ()=>{
     //     })
     // }
     
-    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, isAuth, cycleStartDate, todaysDate, updateUserDates}
+    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, emailNotifications, isAuth, cycleStartDate, todaysDate, updateUserDates}
 }
 
 export default useUserInfo

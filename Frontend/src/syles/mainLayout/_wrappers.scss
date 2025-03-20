@@ -1,0 +1,56 @@
+.wrapper{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    align-self: center;
+    grid-template-areas: 
+    "nav"
+    "content"
+    "footer";
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    flex-grow: 1;
+}
+
+.wrapper-no-nav{
+    display: flex;
+    flex-grow: 1;
+}
+
+#root{
+    display: flex;
+    flex-direction: column;
+    background: $backgroundgrad;
+    animation: gradient 25s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    flex-grow: 1;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.content-no-nav{
+    display: flex;
+    flex-grow: 1;
+}
+
+.account-setup-wrapper{
+    background-color: $color4;
+    max-width: 1400px;
+    padding: 40px;
+    box-shadow: $drop-shadow-wrappers;
+    border-radius: $radius;
+    h1{
+        padding: 10px;
+    }
+    p{
+        padding-bottom: 1rem;
+    }
+}

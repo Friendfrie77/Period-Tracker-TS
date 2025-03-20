@@ -1,7 +1,7 @@
 import useLoading from "./useLoading";
 import { previodPeriodType } from "./hooks.types";
 const APIURL = import.meta.env.VITE_APIURL
-import { setLogin, setToken } from "../state/features/users/userSlice";
+import { setEmailNotifications, setLogin, setToken } from "../state/features/users/userSlice";
 import { useAppDispatch} from "./useRedux"
 import { useNavigate } from "react-router-dom";
 import { useOpenModals } from "./useOpenModals";
@@ -32,6 +32,7 @@ const useDemoAccount = () =>{
             console.log(userData.userData)
             dispatch(setLogin(userData.userData))
             dispatch(setToken(userData.accessToken))
+            dispatch(setEmailNotifications({emailNotifications:false}))
             loading();
             toggleNavCall();
             navigate('/')

@@ -22,7 +22,8 @@ type user = {
     canBleed?: boolean | undefined;
     isBleeding?: boolean | undefined;
     previousPeriod?: previousPeriod| null | undefined;
-    notifications?: boolean | undefined;
+    notifications: boolean;
+    emailNotifications: boolean;
 }
 
 const testUser:user = {
@@ -40,7 +41,8 @@ const testUser:user = {
     canBleed: false,
     isBleeding: false,
     previousPeriod: null,
-    notifications: true
+    notifications: true,
+    emailNotifications: true
 };
 interface userState {
     loginUser : user | null;
@@ -84,11 +86,21 @@ const userSlice = createSlice({
                 state.loginUser.isBleeding = action.payload.isBleeding;
 
             }
+        },
+        setEmailNotifications: (state, action:PayloadAction<{emailNotifications: boolean}>) =>{
+            if(state.loginUser){
+                state.loginUser.emailNotifications = action.payload.emailNotifications
+            }
+        },
+        setPhoneNotifications: (state, action:PayloadAction<{notifications: boolean}>) =>{
+            if(state.loginUser){
+                state.loginUser.notifications = action.payload.notifications
+            }
         }
     }
 })
 
-export const {setLogin, setLogout, setToken, setPrevPeriod, setPeriodCycleLength, setCurrentPeriod} = userSlice.actions;
+export const {setLogin, setLogout, setToken, setPrevPeriod, setPeriodCycleLength, setCurrentPeriod, setEmailNotifications, setPhoneNotifications} = userSlice.actions;
 export default userSlice.reducer;
 export {testUser};
 export type{user}
