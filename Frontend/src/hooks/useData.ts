@@ -4,16 +4,19 @@ import useUserInfo from "./useUserInfo";
 import { useAppDispatch} from "./useRedux"
 import {setPeriodCycleLength, setCurrentPeriod} from "../state/features/users/userSlice";
 import type {perviousPeriodType, isActiveReturn} from "./hooks.types";
+import { useMessage } from "../context/MessageContext/MessageContext";
 import isBetween from 'dayjs/plugin/isBetween' 
+import * as XLSX from "@e965/xlsx";
 
 /* 
 Edge Cases:
 Active Period is passed in data set
 */
-export const useData = () =>{
+const useData = () =>{
+    const { setMessageState } = useMessage();
     dayjs.extend(isBetween)
     const dispatch = useAppDispatch()
-    const {periodStartDate, periodEndDate} = useUserInfo();
+    const {periodStartDate, periodEndDate, previousPeriod} = useUserInfo();
     type userDataReturn = {
         periodStartDate?: string|Date|undefined,
         periodEndDate?: string|Date|undefined, 
@@ -152,5 +155,19 @@ export const useData = () =>{
         }
         return false
     }
-    return {calcUserData}
+
+    const exportData = () =>{
+        if(previousPeriod){
+            const obs = XLSX.utils.json_to_sheet(previousPeriod)
+            const file = XLSX.utils.book_new()
+            XLSX.utils.book_append_sheet(file, obs, "UserDataExport")
+            XLSX.writeFile(file, "UserDataExport.ods")
+        }else{
+            setMessageState('No previous periods to export', 'error')
+            return false
+        }
+    }
+    return {calcUserData, exportData}
 }
+
+export default useData

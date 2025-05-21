@@ -10,7 +10,7 @@ type previousPeriod = periodType[]
 type user = {
     username: string | undefined;
     id: number | undefined | 'localUser';
-    role: 'user'| 'local'| 'demo' | undefined;
+    role: 'user'| 'local'| 'demo';
     email: string | undefined | 'localUser';
     token: string | undefined;
     cycle?: number | null | undefined;

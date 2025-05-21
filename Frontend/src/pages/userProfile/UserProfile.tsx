@@ -36,12 +36,13 @@ const UserProfile:React.FC = () =>{
     const content = (
         <main className="content-flex-row">
             <section className="profile-nav-container">
-                {/* <button className={` open-symbol ${!settingOpen ? "symbol-closed" : "symbol-open"}`} onClick={openSetting}>&rsaquo;</button> */}
-                <div className={` profile-nav ${settingOpen ? "profile-nav-is-open": null}`}>
-                    <button onClick={() => changeDisplayContent("accountOverview")}>Overview</button>
-                    <h1 className="center-align">Settings</h1>
-                    <button onClick={() => changeDisplayContent("accountMangment")}>Account Mangment</button>
-                    <button onClick={() => changeDisplayContent("dataMangment")}>Data Mangment</button>
+                <div className="profile-nav">
+                    <button className="button button-profile" onClick={() => changeDisplayContent("accountOverview")}> Account Overview</button>
+                    <div className="flex-center flex-row-gap-1rem">
+                        <h1 className="center-align">Settings</h1>
+                        <button className="button button-profile" onClick={() => changeDisplayContent("accountMangment")}>Account Mangment</button>
+                        <button className="button button-profile" onClick={() => changeDisplayContent("dataMangment")}>Data Mangment</button>
+                    </div>
                 </div>
             </section>
             <section className={`profile-page-content`}>

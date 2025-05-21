@@ -5,12 +5,13 @@ $navWidth: 170px;
     border-radius: $radius;
     background-color: $login-input-background;
     margin: 15px;
+    padding: 10px;
     box-shadow: $drop-shadow-wrappers;
     width: auto;
 }
 .test-div{
     background-color: $login-input-background;
-    margin: 15px;
+
     border-radius: $radius;
     box-shadow: $drop-shadow-wrappers;
 }
@@ -32,13 +33,16 @@ $navWidth: 170px;
     color: white;
     transform: rotate(90deg);
 }
+.profile-nav-container{ 
+    background-color: red;
+}
 .profile-nav{
     background-color: $color4;
     width: $navWidth;
     height: 100%;
     display: flex;
-    gap: 10px;
-    padding-top: 15px;
+    gap: 2.5rem;
+    padding-top: 25%;
     flex-direction: column;
     // opacity: 0;
     // transform:translateX(-50%);
@@ -50,6 +54,7 @@ $navWidth: 170px;
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
+    margin-left: 1rem;
     transition:  margin-left .2s ease-in-out;
 }
 .page-content-shift{

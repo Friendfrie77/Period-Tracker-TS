@@ -42,6 +42,7 @@
     border-radius: $radius;
     color: $textcolor;
     transition: all 0.2s ease-in;
+    font-family: $Header-Font;
     &:active {
       transform: translateY(2px);
     }

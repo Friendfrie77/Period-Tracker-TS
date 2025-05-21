@@ -109,7 +109,7 @@ select {
   --fs-cal: 1.5rem;
   --fs-signup: 1.15rem;
 }
-@media (max-width: 535px) {
+@media screen and (max-width: 535px) {
   :root {
     --fs-cal: 0.9rem;
     --fs-body: 1.2rem;
@@ -123,6 +123,11 @@ select {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-row-to-col {
@@ -146,9 +151,17 @@ select {
   row-gap: 1rem;
 }
 
+.flex-col-gap-1rem {
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+
+.flex-space-even {
+  justify-content: space-evenly;
+}
+
 p,
 span,
-button,
 a,
 label,
 select,
@@ -156,6 +169,7 @@ ul,
 li,
 ol {
   font-family: "Varela_Round", Sans-Serif;
+  line-height: 1.6;
 }
 
 h1,
@@ -194,6 +208,10 @@ h4 {
 
 .center-align {
   align-self: center;
+}
+
+.width-50 {
+  width: 50%;
 }
 
 .display-none {
@@ -1693,6 +1711,7 @@ button.rbc-input::-moz-focus-inner {
   border-radius: 5px;
   color: #eae8ff;
   transition: all 0.2s ease-in;
+  font-family: "Varela_Round", Sans-Serif;
   margin-top: 30px;
   padding: 10px 35px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
@@ -1906,6 +1925,7 @@ footer {
   position: relative;
   width: 100%;
   grid-area: "footer";
+  margin-top: 15px;
 }
 footer a {
   text-decoration: none;
@@ -1945,10 +1965,14 @@ footer a {
   border: none;
   background-color: transparent;
   text-align: center;
+  cursor: pointer;
 }
-.logout svg {
+.logout button svg {
   font-size: 2rem;
-  color: #eae8ff;
+}
+.logout button:hover svg {
+  fill: #241e4e;
+  stroke: #241e4e;
 }
 
 .logo img {
@@ -2093,6 +2117,7 @@ footer a {
   border-radius: 5px;
   color: #eae8ff;
   transition: all 0.2s ease-in;
+  font-family: "Varela_Round", Sans-Serif;
 }
 .nav-cta:active {
   transform: translateY(2px);
@@ -2127,7 +2152,7 @@ footer a {
 #root {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(#241e4e, #302867, #7b145f, #5c0f47);
+  background: linear-gradient(#241e4e, #302867, #7b145f);
   animation: gradient 25s ease infinite;
   background-size: 400% 400%;
   background-attachment: fixed;
@@ -2215,6 +2240,69 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.button {
+  margin-top: 16px;
+  width: 125px;
+  align-self: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+  height: 35px;
+  font-size: var(--fs-body);
+  background-color: #af4d98;
+  border: none;
+  border-radius: 5px;
+  color: #eae8ff;
+  transition: all 0.2s ease-in;
+  font-family: "Varela_Round", Sans-Serif;
+}
+.button:active {
+  transform: translateY(2px);
+}
+.button:hover {
+  background-color: #241e4e;
+  border-bottom: #5cffc9;
+}
+.button:disabled {
+  opacity: 50%;
+  pointer-events: none;
+}
+
+.button-large {
+  background-color: #af4d98;
+  border: none;
+  border-radius: 5px;
+  color: #eae8ff;
+  transition: all 0.2s ease-in;
+  font-family: "Varela_Round", Sans-Serif;
+  font-size: var(--fs-body);
+}
+.button-large:active {
+  transform: translateY(2px);
+}
+.button-large:hover {
+  background-color: #241e4e;
+  border-bottom: #5cffc9;
+}
+.button-large:disabled {
+  opacity: 50%;
+  pointer-events: none;
+}
+
+.button-link {
+  background-color: transparent;
+  border: none;
+  color: #5cffc9;
+}
+.button-link:hover {
+  color: #eae8ff;
+}
+
+.button-profile {
+  width: 90%;
+  height: auto;
+  min-height: 40px;
+  font-size: 1rem;
+}
+
 * {
   color: #eae8ff;
 }
@@ -2300,13 +2388,13 @@ input:checked + .slider:before {
   border-radius: 5px;
   background-color: #4b203f;
   margin: 15px;
+  padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
   width: auto;
 }
 
 .test-div {
   background-color: #4b203f;
-  margin: 15px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
 }
@@ -2333,13 +2421,17 @@ input:checked + .slider:before {
   transform: rotate(90deg);
 }
 
+.profile-nav-container {
+  background-color: red;
+}
+
 .profile-nav {
   background-color: #5c0f47;
   width: 170px;
   height: 100%;
   display: flex;
-  gap: 10px;
-  padding-top: 15px;
+  gap: 2.5rem;
+  padding-top: 25%;
   flex-direction: column;
   transition: opacity 0.5s ease-in;
   transition: transform 0.2s ease-in;
@@ -2350,6 +2442,7 @@ input:checked + .slider:before {
   flex-direction: column;
   width: 100%;
   margin-top: 10px;
+  margin-left: 1rem;
   transition: margin-left 0.2s ease-in-out;
 }
 
@@ -2533,6 +2626,7 @@ input:checked + .slider:before {
   border-radius: 5px;
   color: #eae8ff;
   transition: all 0.2s ease-in;
+  font-family: "Varela_Round", Sans-Serif;
   margin-top: 30px;
   padding: 10px 35px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
@@ -2916,6 +3010,11 @@ select:-webkit-autofill:focus {
   grid-area: 4/1/5/8;
 }
 
+.landing-page-conent-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .hero {
   background-color: #8fddc3;
   height: 70%;
@@ -2960,6 +3059,9 @@ select:-webkit-autofill:focus {
   .call-to-action {
     width: 100%;
   }
+}
+.call-to-action h1, .call-to-action h2, .call-to-action p {
+  text-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
 }
 
 .cta-new-account {

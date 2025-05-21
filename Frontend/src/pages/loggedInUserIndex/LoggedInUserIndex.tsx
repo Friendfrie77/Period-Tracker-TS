@@ -5,7 +5,7 @@ import Spinner from "../../components/layout/Spinner";
 import UserWelcomeBar from "../../components/userWelcomeBar/UserWelcomeBar";
 import NeedInfo from "./NeedInfo";
 import HasInfo from "./HasInfo";
-import {useData} from "../../hooks/useData";
+import useData from "../../hooks/useData";
 const LoggedInUserIndex:React.FC = () =>{
     const [needInfo, setInfo] = useState(true)
     const {isLoading} = useLoading();

@@ -15,6 +15,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
+  setupFilesAfterEnv:['<rootDir>/src/tests/setupTest.ts']
 };
 
 export default config;

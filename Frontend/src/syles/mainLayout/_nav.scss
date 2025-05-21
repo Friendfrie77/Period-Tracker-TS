@@ -28,10 +28,16 @@
         border: none;
         background-color: transparent;
         text-align: center;
-    }
-    svg{
-        font-size: 2rem;
-        color: $textcolor;
+        cursor: pointer;
+        svg{
+            font-size: 2rem;
+        }
+        &:hover{
+            svg{
+                fill: $color2;
+                stroke: $color2;
+            }
+        }
     }
 }
 

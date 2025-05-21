@@ -1,3 +1,8 @@
+.landing-page-conent-wrapper{
+    display: flex;
+    flex-direction: column;
+    
+}
 .hero{
     background-color: $color5;
     height: 70%;
@@ -33,6 +38,9 @@
     }
     @include for-size(tablet-only){
         width: 100%;
+    }
+    h1, h2, p{
+        text-shadow: $drop-shadow-wrappers;
     }
 }
 .cta-new-account{

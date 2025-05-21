@@ -2,7 +2,7 @@
 import useLoading from "./useLoading";
 const APIURL = import.meta.env.VITE_APIURL
 import {useAppDispatch} from "./useRedux"
-import { setEmailNotifications, setLogin, setLogout, setToken} from "../state/features/users/userSlice";
+import { setEmailNotifications, setPhoneNotifications, setLogin, setLogout, setToken} from "../state/features/users/userSlice";
 import type { user } from "../state/features/users/userSlice";
 import useUserInfo from "./useUserInfo";
 import { useMessage } from "../context/MessageContext/MessageContext";
@@ -101,8 +101,18 @@ const useAuth =() =>{
             dispatch(setLogout())
         }
     }
-    const userPhoneNotfication = async () =>{
-        setMessageState('test', 'success');
+    const userPhoneNotfication = async (notifications:boolean|undefined, phoneModel:boolean, openPhoneModel?:() => void, userNumber?:string) =>{
+        if(!notifications){
+            if(!phoneModel && openPhoneModel){
+                openPhoneModel()
+                return
+            }else if(userNumber){
+                console.log(userNumber)
+                //sent user number to server and validate it
+                
+            }
+        }
+        dispatch(setPhoneNotifications({notifications: !notifications}))
     }
 
     const userEmailNotfications = async (emailNotifications:boolean|undefined) =>{

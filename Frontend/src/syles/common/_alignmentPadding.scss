@@ -1,13 +1,17 @@
 .padding-bottom-1rem{
     padding-bottom: 1rem;
-  }
-  .box-padding{
-    padding: $box-padding;
-  }
-  
-  .right-align{
-    align-self: end;
-  }
-  .center-align{
-    align-self: center;
-  }
+}
+.box-padding{
+  padding: $box-padding;
+}
+
+.right-align{
+  align-self: end;
+}
+.center-align{
+  align-self: center;
+}
+
+.width-50{
+  width: 50%
+}

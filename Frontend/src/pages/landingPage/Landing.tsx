@@ -10,8 +10,10 @@ import {useNavigate} from 'react-router-dom';
 import AlertMessage from "../../components/alertMessage/AlertMessage";
 import { xShiftFadeIn } from "../../components/layout/layoutAnimations/animations";
 import { useEffect } from "react";
-
+import useUserInfo from "../../hooks/useUserInfo";
 const LandingPage: React.FC = () =>{
+    const {test} = useUserInfo();
+    console.log(test)
     useEffect(() =>{
         xShiftFadeIn(".hero-wrapper")
     })
@@ -40,7 +42,7 @@ const LandingPage: React.FC = () =>{
         console.log('test')
     }
     const content = (
-        <main className="content">
+        <main className="landing-page-conent-wrapper">
             <AlertMessage/>
             <section className="hero">
                 <div className="hero-wrapper">
@@ -105,6 +107,10 @@ const LandingPage: React.FC = () =>{
                     imgAlt={""} 
                     hasLink={false}
                 />
+                <section className = 'feature-card'>
+                    <div className = 'flex-row-to-col flex-center features-list'>
+                    </div>
+                </section>
                 <IndexInfoCard 
                     styles={{ backgroundColor: indexCardColors.color2, color: indexCardColors.textColor }}
                     contentTypeOne='txt'

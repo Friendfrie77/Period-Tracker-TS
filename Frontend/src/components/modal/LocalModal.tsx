@@ -3,7 +3,7 @@ import Spinner from "../layout/Spinner";
 import UserTextField from "../userInputFields/UserTextField";
 import UserFileField from '../userInputFields/UserFileField';
 import useLoading from "../../hooks/useLoading";
-import { useData } from "../../hooks/useData";
+import useData from "../../hooks/useData";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import { AiOutlineClose } from "react-icons/ai";
 import useLocalAccount from "../../hooks/useLocalAccount";
@@ -11,9 +11,6 @@ import useAuth from "../../hooks/useAuth";
 import { useMessage } from '../../context/MessageContext/MessageContext';
 import { useNavigate } from "react-router-dom";
 import type { valuesTypes } from './modals.types';
-
-//have user enter file
-//if user does not have a file move to calender
 
 const LocalModal : React.FC = () =>{
     const navigate = useNavigate();

@@ -43,7 +43,6 @@ const Notication:React.FC<functionType> =({modalFunction}) =>{
                     </div>
                 )
                 }
-                
             </div>
         </div>
     )

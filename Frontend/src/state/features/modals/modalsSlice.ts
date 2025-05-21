@@ -3,9 +3,11 @@ import {createSlice } from "@reduxjs/toolkit";
 type modalStateType = {
     loginModal: boolean,
     registerModal: boolean,
+    warningModal: boolean,
     showNav: boolean,
     localModal: boolean,
     localModalSettings: boolean
+
 }
 
 const initialState: modalStateType = {
@@ -13,7 +15,8 @@ const initialState: modalStateType = {
     registerModal: false,
     showNav: true,
     localModal: false,
-    localModalSettings: false
+    localModalSettings: false,
+    warningModal: false
 }
 
 const modalSlice = createSlice({
@@ -34,9 +37,12 @@ const modalSlice = createSlice({
         },
         toggleLocalModalSettings : (state) =>{
             state.localModalSettings = !state.localModalSettings
+        },
+        toggleWarning : (state) =>{
+            state.warningModal = !state.warningModal
         }
     }
 })
 
-export const {toggleLogin, toggleRegister, toggleNav, toggleLocal, toggleLocalModalSettings} = modalSlice.actions;
+export const {toggleLogin, toggleRegister, toggleNav, toggleLocal, toggleLocalModalSettings, toggleWarning} = modalSlice.actions;
 export default modalSlice.reducer;
