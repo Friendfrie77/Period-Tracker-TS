@@ -14,6 +14,7 @@ const config: Config.InitialOptions = {
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    // '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/src/test/fileMock.ts'
   },
   setupFilesAfterEnv:['<rootDir>/src/tests/setupTest.ts']
 };
