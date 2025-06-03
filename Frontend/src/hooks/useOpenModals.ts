@@ -10,15 +10,21 @@ const useOpenModals = (): {loginModalOpen:boolean, registerModalOpen: boolean, t
     const dispatch = useAppDispatch()
 
     const toggleLoginCall = () =>{
+        const navCheckBox = document.getElementById("mobile-nav-toggle") as HTMLInputElement;
+        navCheckBox.checked ? navCheckBox.checked = false : null
         dispatch(toggleLogin())
     }
     const toggleRegisterCall = () =>{
+        const navCheckBox = document.getElementById("mobile-nav-toggle") as HTMLInputElement;
+        navCheckBox.checked ? navCheckBox.checked = false : null
         dispatch(toggleRegister())
     }
     const toggleNavCall = () =>{
         dispatch(toggleNav())
     }
     const toggleLocalModal = () =>{
+        const navCheckBox = document.getElementById("mobile-nav-toggle") as HTMLInputElement;
+        navCheckBox.checked ? navCheckBox.checked = false : null
         dispatch(toggleLocal())
     }
     const toggleWarningCall = () =>{

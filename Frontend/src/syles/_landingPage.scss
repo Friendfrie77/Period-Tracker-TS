@@ -4,31 +4,29 @@
     
 }
 .hero{
-    background-color: $color5;
-    height: 70%;
-    @include for-size(tablet-only){
-        height: auto;
-    }
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    height: 60vh;
 }
 .hero-wrapper{
-    max-width: 1440px;
     display: flex;
     height: 100%;
-    flex-direction: row;
-    margin: 0 auto;
-    padding: $box-padding;
-    justify-content: center;
-    justify-self: center;
+    width: 100%;
+    justify-content: space-between;
     @include for-size(tablet-only){
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 }
 .call-to-action{
-    color: $color2;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    justify-content: center;
+    align-items: center;
+    background-color: $color5;
+    padding: $box-padding;
     h1{
         font-size: var(--fs-hero);
         text-align: center;
@@ -41,7 +39,11 @@
     }
     h1, h2, p{
         text-shadow: $drop-shadow-wrappers;
+        color: $color2;
     }
+}
+.cta-statement, .cta-new-account{
+    width: 75%;
 }
 .cta-new-account{
     text-align: center;
@@ -59,15 +61,25 @@
     }
 }
 .hero-img{
-    max-width: 50%;
-    max-height: 100%;
-    display: flex;
-    justify-content: center;
-    @include for-size(tablet-only){
-        margin: auto;
+    flex: 1;
+    background:
+        linear-gradient(to left, transparent 20%, $color5 80%),
+        url('../assets/images/hero-test.webp') no-repeat right center;
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    height: auto;
+    width: 100%;
+    @include for-size(small-desktop){
+    background:
+        linear-gradient(to left, transparent 40%, $color5 80%),
+        url('../assets/images/hero-test.webp') no-repeat right center;
+    background-size: cover;
     }
-    img{
-        margin-top: 5px;
+    @include for-size(tablet-only){
+        background: url('../assets/images/hero-test.webp') no-repeat right center;
+        background-size: cover;
+        height: 50%;
     }
 }
 
@@ -83,6 +95,9 @@
         padding: 0;
         margin: 0;
         font-size: var(--fs-body)
+    }
+    h1, li{
+        color: $color2;
     }
 }
 

@@ -1,11 +1,11 @@
 @import "./base/base";
 @import "./common/common";
-@import "./animations/animations";
+// @import "./animations/animations";
 @import "./vendors/vendors";
 @import "./components/components";
-
 @import "./mainLayout/mainLayout";
 @import "./userInputs/userInputs";
+@import "./animations/animations";
 *{
   color:$textcolor;
 }

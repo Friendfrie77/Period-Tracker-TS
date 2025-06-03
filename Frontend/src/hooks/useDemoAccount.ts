@@ -29,6 +29,7 @@ const useDemoAccount = () =>{
         });
         if(testAPICall.ok){
             const userData = await testAPICall.json()
+            console.log(userData.accessToken)
             console.log(userData.userData)
             dispatch(setLogin(userData.userData))
             dispatch(setToken(userData.accessToken))

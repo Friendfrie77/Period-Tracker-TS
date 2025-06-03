@@ -21,14 +21,12 @@ function App() {
             <Nav />
         ): null}
           <Routes>
-            <Route path = '/' element = {isAuth ?  <LoggedInUserIndex /> : <LandingPage />} />
+            <Route path = '/' element = {isAuth() ?  <LoggedInUserIndex /> : <LandingPage />} />
             <Route path ='/accountsetup' element = {isNewAccount ? <AccountSetup /> : <Navigate to='/' />} />
-            <Route path='/profile' element = {isAuth ? <UserProfile /> : <Navigate to='/' />} />
+            <Route path='/profile' element = {isAuth() ? <UserProfile /> : <Navigate to='/' />} />
           </Routes>
+          {toggleNav?(<Footer />): null}
         </BrowserRouter>
-        {toggleNav?(
-          <Footer />
-        ): null}
       </div>
     </MessageProvider>
   )

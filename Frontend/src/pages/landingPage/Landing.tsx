@@ -5,12 +5,14 @@ import LocalModal from "../../components/modal/LocalModal";
 import IndexInfoCard from "../../components/indexPageCard/InfoCard";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import Phone from "../../assets/images/phone-test.png";
+import Hero from "../../assets/images/hero-test.webp"
 import Laptop from '../../assets/images/laptop.jpg';
 import {useNavigate} from 'react-router-dom';
 import AlertMessage from "../../components/alertMessage/AlertMessage";
 import { xShiftFadeIn } from "../../components/layout/layoutAnimations/animations";
 import { useEffect } from "react";
 import useUserInfo from "../../hooks/useUserInfo";
+import PrivacyPage from "../additionalInfoPages/Privacy";
 const LandingPage: React.FC = () =>{
     const {test} = useUserInfo();
     console.log(test)
@@ -57,7 +59,6 @@ const LandingPage: React.FC = () =>{
                         </div>
                     </div>
                     <div className="hero-img">
-                        <img src={Phone} width = 'auto' height = '90%' />
                     </div>
                 </div>
             </section>
@@ -67,8 +68,9 @@ const LandingPage: React.FC = () =>{
                     contentTypeOne='img'
                     contentTypeTwo='txt'
                     txtContentType='text'
-                    hasButton={true}
+                    hasButton={false}
                     buttonLink = {false}
+                    linkTxt="test"
                     link = '/'
                     buttonFunction={localAccountInfo}
                     buttonTxt='Find out more'
@@ -76,7 +78,8 @@ const LandingPage: React.FC = () =>{
                     txtHeader="Privacy Focused"
                     txtContent="Are you worried about your data being sent to a server somewhere, sold, or even worse leaked online? We have options to store all your data locally in your internet browser's memory. With options to export the data if you are not happy or need to switch browsers. You can find out more below." 
                     imgAlt={""} 
-                    hasLink={false}
+                    hasLink={true}
+                    linkTarget="_self"
                 />
                 <section className = 'feature-card'>
                     <div className = 'flex-row-to-col flex-center features-list'>
@@ -122,6 +125,7 @@ const LandingPage: React.FC = () =>{
                     txtHeader="Simple to Set Up at Home"
                     txtContent="Are you tech-savvy or just looking for a period app that you can self-host so you know where your data is going? We offer a full guide on how to set up the app using Docker. This allows you to have all the features of the full app while having the privacy and control of running it locally. You can find the guide below." 
                     hasLink={true}
+                    linkTarget="_blank"
                 />
             </section>
             {loginModalOpen &&

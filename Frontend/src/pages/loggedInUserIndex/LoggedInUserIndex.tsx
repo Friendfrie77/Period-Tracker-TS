@@ -12,7 +12,7 @@ const LoggedInUserIndex:React.FC = () =>{
     const {periodStartDate, periodEndDate, cycle, avgLength, previousPeriod} = useUserInfo()
     const {calcUserData} = useData();
     const checkInfo = () =>{
-        console.log(cycle, avgLength,previousPeriod, periodStartDate, periodEndDate)
+        // console.log(cycle, avgLength,previousPeriod, periodStartDate, periodEndDate)
         if(previousPeriod){
             calcUserData(previousPeriod)
         }

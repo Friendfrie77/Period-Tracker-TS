@@ -40,7 +40,7 @@ const useUserInfo = ()=>{
     const previousPeriod: previousPeriod|undefined|null = useAppSelector((state) => state.user?.loginUser?.previousPeriod)
     const notifications: boolean = useAppSelector((state) => state.user?.loginUser?.notifications ?? false)
     const emailNotifications: boolean = useAppSelector((state) => state.user?.loginUser?.emailNotifications ?? false)
-    const isAuth: boolean = !!token
+    // const isAuth: boolean = !!token
     let cycleStartDate: string | null = null
     if(typeof cycle === 'number'){
         cycleStartDate = dayjs(periodStartDate).subtract(cycle, 'days').format()
@@ -72,6 +72,8 @@ const useUserInfo = ()=>{
             }
         }
     }
+    //checks is user is authed
+    const isAuth = ():boolean => !!token
 
     //sending periods from account setup to server
     // const sendUserPrevPeriods = async (previousPeriod:previodPeriodType) =>{

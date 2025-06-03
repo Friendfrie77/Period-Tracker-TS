@@ -20,6 +20,22 @@ const Nav: React.FC = () =>{
         logout();
     }
     useEffect(() =>{
+        const checkbox = document.getElementById("mobile-nav-toggle") as HTMLInputElement
+        const checkboxChanges = () =>{
+            if(checkbox.checked){
+                document.body.style.overflow = "hidden"
+            }else{
+                document.body.style.overflow = ""
+            }
+        }
+        checkbox.addEventListener("change", checkboxChanges);
+        return () => {
+            checkbox.removeEventListener("change", checkboxChanges);
+            document.body.style.overflow = "";
+        };
+    })
+    //animations
+    useEffect(() =>{
         xShiftFadeIn(".nav-container")
     })
     const navBar = (
@@ -34,7 +50,7 @@ const Nav: React.FC = () =>{
                         <div className='mobile-nav' id = 'mobile-nav'></div>
                     </label>
                     <ul className='nav-links' id='nav-links'>
-                        {isAuth ? (
+                        {isAuth() ? (
                             <>
                             <li className='nav-item'>
                                 <NavLink to='/'>Home</NavLink>
