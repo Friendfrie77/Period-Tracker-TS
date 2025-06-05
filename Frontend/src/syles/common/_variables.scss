@@ -3,7 +3,8 @@ $color1: #FFFFF0;
 $color2: #241e4e;
 $color4: #5c0f47;
 // $color5: #8fddc3;
-$color5: #EAE8FF;
+// $color5: #EAE8FF;
+$color5: #FDEEF4;
 $color6: #5cffc9;
 $textcolor: #eae8ff;
 $button-color: #af4d98;
@@ -20,7 +21,7 @@ $Header-Font: "Varela_Round", Sans-Serif;
 :root {
     --fs-welcome: clamp(2.5rem, calc(6vw + 1rem), 4.5rem);
     --fs-header: clamp(2rem, calc(5vw + 0.5rem), 4.5rem);
-    --fs-subheader: clamp(1.6rem, calc(4vw + 0.3rem), 3rem);
+    --fs-subheader: clamp(1.6rem, calc(3vw + 0.2rem), 2rem);
     --fs-horizontal-cal: clamp(1rem, calc(3vw + 0.5rem), 3rem);
     --fs-hero: clamp(2rem, calc(3vw + 0.2rem), 3.25rem);
     --fs-hero-button: clamp(1rem, calc(3vw + 0.5rem), 2.5rem);

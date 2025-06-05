@@ -5,6 +5,7 @@
 @import "./components/components";
 @import "./mainLayout/mainLayout";
 @import "./userInputs/userInputs";
+@import "./pages/pages";
 @import "./animations/animations";
 *{
   color:$textcolor;
@@ -86,8 +87,8 @@
 
 @import "./components/components";
 
-@import './userAccount';
-@import './landingPage';
+// @import './userAccount';
+// @import './landingPage';
 
 
 // @import "./reactTelephoneInput";

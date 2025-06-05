@@ -5,7 +5,9 @@
     max-width: 1400px;
     margin: 0 auto;
 }
-
+.flex-row{
+    display: flex;
+}
 .flex-col{
     display: flex;
     flex-direction: column;

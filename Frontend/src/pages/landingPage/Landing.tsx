@@ -5,14 +5,14 @@ import LocalModal from "../../components/modal/LocalModal";
 import IndexInfoCard from "../../components/indexPageCard/InfoCard";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import Phone from "../../assets/images/phone-test.png";
-import Hero from "../../assets/images/hero-test.webp"
+// import Hero from "../../assets/images/hero-test.webp"
 import Laptop from '../../assets/images/laptop.jpg';
 import {useNavigate} from 'react-router-dom';
 import AlertMessage from "../../components/alertMessage/AlertMessage";
 import { xShiftFadeIn } from "../../components/layout/layoutAnimations/animations";
 import { useEffect } from "react";
 import useUserInfo from "../../hooks/useUserInfo";
-import PrivacyPage from "../additionalInfoPages/Privacy";
+
 const LandingPage: React.FC = () =>{
     const {test} = useUserInfo();
     console.log(test)
@@ -70,10 +70,9 @@ const LandingPage: React.FC = () =>{
                     txtContentType='text'
                     hasButton={false}
                     buttonLink = {false}
-                    linkTxt="test"
-                    link = '/'
+                    linkTxt="Find out more"
+                    link = '/privacy'
                     buttonFunction={localAccountInfo}
-                    buttonTxt='Find out more'
                     contentImg={Laptop}
                     txtHeader="Privacy Focused"
                     txtContent="Are you worried about your data being sent to a server somewhere, sold, or even worse leaked online? We have options to store all your data locally in your internet browser's memory. With options to export the data if you are not happy or need to switch browsers. You can find out more below." 
@@ -81,18 +80,27 @@ const LandingPage: React.FC = () =>{
                     hasLink={true}
                     linkTarget="_self"
                 />
-                <section className = 'feature-card'>
-                    <div className = 'flex-row-to-col flex-center features-list'>
-                        <h1>Features</h1>
-                        <ul className="list-columns">
-                            <li>Privacy First</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>Docker compatable</li>
-                        </ul>
-                    </div>
+                <section className = 'feature-section'>
+                    <h1>What can Red Moon Diary do for you?</h1>
+                    <div className = 'content-flex-row'>
+                        <div className="img-carouel-wrapper flex-center">
+                            <img src={Phone} width='50%' height='auto'/>
+                        </div>
+                        <div className="features-wrapper flex-col flex-col-gap-1rem">
+                            <div className="feature">
+                                <h1>Easily import and export your information</h1>
+                                <p>With the Red Moon Diary, you can easily import and export your dates for your period. We support all forms of spreadsheets. Imports and exports are as simple as one click.</p>
+                            </div>
+                            <div className="feature">
+                                <h1>Easily import and export your information</h1>
+                                <p></p>
+                            </div>
+                            <div className="feature">
+                                <h1>Easily import and export your information</h1>
+                                <p></p>
+                            </div>
+                        </div>
+                        </div>
                 </section>
                 <IndexInfoCard 
                     styles={{ backgroundColor: indexCardColors.color2, color: indexCardColors.textColor }}
