@@ -4,7 +4,7 @@ import RegisterModal from "../../components/modal/RegisterModal";
 import LocalModal from "../../components/modal/LocalModal";
 import IndexInfoCard from "../../components/indexPageCard/InfoCard";
 import { useOpenModals } from "../../hooks/useOpenModals";
-import Phone from "../../assets/images/phone-test.png";
+import Phone from "../../assets/images/phone-test.webp";
 // import Hero from "../../assets/images/hero-test.webp"
 import Laptop from '../../assets/images/laptop.jpg';
 import {useNavigate} from 'react-router-dom';
@@ -88,19 +88,31 @@ const LandingPage: React.FC = () =>{
                         </div>
                         <div className="features-wrapper flex-col flex-col-gap-1rem">
                             <div className="feature">
-                                <h1>Easily import and export your information</h1>
-                                <p>With the Red Moon Diary, you can easily import and export your dates for your period. We support all forms of spreadsheets. Imports and exports are as simple as one click.</p>
+                                <div className="feature-img">
+                                    <img src={Phone} width='100%' height='auto'/>
+                                </div>
+                                <div className="feature-text">
+                                    <h1>Easily import and export your information</h1>
+                                    <p>With the Red Moon Diary, you can easily import and export your dates for your period. We support all forms of spreadsheets. Imports and exports are as simple as one click.</p>
+                                </div>
                             </div>
                             <div className="feature">
-                                <h1>Easily import and export your information</h1>
-                                <p></p>
+                                <div className="feature-img">
+                                    <img src={Phone} width='100%' height='auto'/>
+                                </div>
+                                <div className="feature-text">
+                                    <h1>Easily see when your period is near</h1>
+                                    <p>With our simple UI, you can see at a glance how many days are left until your next period or when your period is ending.</p>
+                                </div>
                             </div>
                             <div className="feature">
-                                <h1>Easily import and export your information</h1>
-                                <p></p>
+                                <div className="feature-text">
+                                    <h1>Easily import and export your information</h1>
+                                    <p></p>
+                                </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
                 </section>
                 <IndexInfoCard 
                     styles={{ backgroundColor: indexCardColors.color2, color: indexCardColors.textColor }}

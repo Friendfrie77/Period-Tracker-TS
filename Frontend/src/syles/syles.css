@@ -1,4 +1,24 @@
 @charset "UTF-8";
+:root {
+  --fs-welcome: clamp(2.5rem, calc(6vw + 1rem), 4.5rem);
+  --fs-header: clamp(2rem, calc(5vw + 0.5rem), 4.5rem);
+  --fs-subheader: clamp(1.6rem, calc(3vw + 0.2rem), 2rem);
+  --fs-horizontal-cal: clamp(1rem, calc(3vw + 0.5rem), 3rem);
+  --fs-hero: clamp(2rem, calc(3vw + 0.2rem), 3.25rem);
+  --fs-hero-button: clamp(1rem, calc(3vw + 0.5rem), 2.5rem);
+  --fs-info-card: clamp(1.5rem, calc(2vw + 0.2rem), 2rem);
+  --fs-body: 1.5rem;
+  --fs-cal: 1.5rem;
+  --fs-signup: 1.15rem;
+}
+@media screen and (max-width: 535px) {
+  :root {
+    --fs-cal: 0.9rem;
+    --fs-body: 1.2rem;
+    --fs-signup: 1rem;
+  }
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -34,17 +54,21 @@ html:focus-within {
 
 /* Set core body defaults */
 html {
-  height: 100%;
+  min-height: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 body {
-  min-height: 100%;
   min-width: 100%;
+  min-height: 100%;
+  height: 100%;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
 /* A elements that don't have a class get default styles */
@@ -82,6 +106,7 @@ select {
     scroll-behavior: auto !important;
   }
 }
+/* Start of font-faces */
 @font-face {
   font-family: "Bebas Neue";
   src: url("../assets/fonts/bebas-neue-v9-latin/bebas-neue-v9-latin-regular.eot");
@@ -97,26 +122,7 @@ select {
   src: url("../assets/fonts/Varela_Round/VarelaRound-Regular.ttf");
   src: local("Varela_Round"), url("../assets/fonts/Varela_Round/VarelaRound-Regular.ttf") format("truetype");
 }
-:root {
-  --fs-welcome: clamp(2.5rem, calc(6vw + 1rem), 4.5rem);
-  --fs-header: clamp(2rem, calc(5vw + 0.5rem), 4.5rem);
-  --fs-subheader: clamp(1.6rem, calc(3vw + 0.2rem), 2rem);
-  --fs-horizontal-cal: clamp(1rem, calc(3vw + 0.5rem), 3rem);
-  --fs-hero: clamp(2rem, calc(3vw + 0.2rem), 3.25rem);
-  --fs-hero-button: clamp(1rem, calc(3vw + 0.5rem), 2.5rem);
-  --fs-info-card: clamp(1.5rem, calc(2vw + 0.2rem), 2rem);
-  --fs-body: 1.5rem;
-  --fs-cal: 1.5rem;
-  --fs-signup: 1.15rem;
-}
-@media screen and (max-width: 535px) {
-  :root {
-    --fs-cal: 0.9rem;
-    --fs-body: 1.2rem;
-    --fs-signup: 1rem;
-  }
-}
-
+/* end of font-faces */
 .content-flex-row {
   display: flex;
   flex-direction: row;
@@ -173,7 +179,7 @@ ul,
 li,
 ol {
   font-family: "Varela_Round", Sans-Serif;
-  line-height: 1.6;
+  line-height: 24px;
 }
 
 h1,
@@ -220,6 +226,10 @@ h4 {
 
 .display-none {
   display: none !important;
+}
+
+.position-rel {
+  position: relative;
 }
 
 .rdrCalendarWrapper {
@@ -1831,6 +1841,59 @@ button.rbc-input::-moz-focus-inner {
   color: #eae8ff;
 }
 
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-self: center;
+  grid-template-areas: "nav" "content" "footer";
+  max-width: 100%;
+  width: 100%;
+  position: relative;
+  flex-grow: 1;
+  height: 100%;
+  min-height: 100dvh;
+}
+
+.wrapper-no-nav {
+  display: flex;
+  flex-grow: 1;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(#241E4E, #4D1E4E);
+  flex-grow: 1;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.content-no-nav {
+  display: flex;
+  flex-grow: 1;
+}
+
+.account-setup-wrapper {
+  background-color: #5c0f47;
+  max-width: 1400px;
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+  border-radius: 5px;
+}
+.account-setup-wrapper h1 {
+  padding: 10px;
+}
+.account-setup-wrapper p {
+  padding-bottom: 1rem;
+}
+
 /* Start of CSS for nav */
 .nav {
   background-color: #4b203f;
@@ -1945,7 +2008,7 @@ button.rbc-input::-moz-focus-inner {
 /* end of mobile nav open box */
 .nav-links {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 15px;
   grid-auto-flow: column;
   list-style-type: none;
@@ -1959,12 +2022,12 @@ button.rbc-input::-moz-focus-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center space-evenly;
+    justify-content: space-evenly;
     position: absolute;
     transform: translateX(calc(-100% - 1rem));
     top: 59px;
     width: calc(100% + 2rem);
-    height: 100dvh;
+    height: calc(100dvh - 75px);
     background-color: #5c0f47;
     opacity: 1;
     transition: cubic-bezier(0.23, 1, 0.32, 1) 0.35s;
@@ -2040,57 +2103,6 @@ footer a {
 
 .footer-info {
   background-color: #FDEEF4;
-}
-
-.wrapper {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  position: relative;
-  align-self: center;
-  grid-template-areas: "nav" "content" "footer";
-  max-width: 100%;
-  width: 100%;
-  position: relative;
-  flex-grow: 1;
-}
-
-.wrapper-no-nav {
-  display: flex;
-  flex-grow: 1;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(#241E4E, #4D1E4E);
-  flex-grow: 1;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.content-no-nav {
-  display: flex;
-  flex-grow: 1;
-}
-
-.account-setup-wrapper {
-  background-color: #5c0f47;
-  max-width: 1400px;
-  padding: 40px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
-  border-radius: 5px;
-}
-.account-setup-wrapper h1 {
-  padding: 10px;
-}
-.account-setup-wrapper p {
-  padding-bottom: 1rem;
 }
 
 .checkbox-container {
@@ -2329,11 +2341,42 @@ input:checked + .slider:before {
 
 .features-wrapper {
   align-items: flex-start;
-  background-color: blue;
 }
 
-.feature h1 {
-  color: red;
+.feature {
+  display: flex;
+  margin-bottom: 15px;
+}
+@media (max-width: 768px) {
+  .feature {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .feature-text {
+    width: 70%;
+    text-align: center;
+  }
+}
+
+.feature-img {
+  display: none;
+}
+@media (max-width: 768px) {
+  .feature-img {
+    display: block;
+    width: 40%;
+  }
+}
+.feature-img img {
+  filter: drop-shadow(rgba(0, 0, 0, 0.4) 0px 5px 10px);
+}
+
+.feature h1, .feature p {
+  color: black;
 }
 
 .features-list {
@@ -2538,6 +2581,183 @@ select:-webkit-autofill:focus {
   grid-area: 4/1/5/8;
 }
 
+.profile-page-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10px;
+  transition: margin-left 0.2s ease-in-out;
+}
+@media (max-width: 768px) {
+  .profile-page-content {
+    margin: 15px;
+  }
+}
+
+.profile-cards {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: #4b203f;
+  margin: 15px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+  width: auto;
+}
+
+.test-div {
+  background-color: #4b203f;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+}
+
+.open-symbol {
+  font-size: 50px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  transition: transform 0.2s ease-in;
+}
+
+.symbol-closed {
+  transform: rotate(0);
+}
+
+.symbol-open {
+  transform: rotate(90deg);
+}
+
+.closed-symbol {
+  font-size: 50px;
+  color: white;
+  transform: rotate(90deg);
+}
+
+.profile-nav-is-open {
+  opacity: 1;
+  position: relative;
+  transform: translateX(0);
+}
+
+.calander {
+  max-height: 500px;
+  min-height: 500px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 1rem;
+  max-width: 1400px;
+}
+
+.profile-cal {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+}
+
+.stat-card {
+  color: #eae8ff;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  align-self: center;
+  margin: 20px 0px;
+  background-color: #241e4e;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
+}
+.stat-card span {
+  font-size: var(--fs-body);
+}
+
+.setting-option {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.setting-option button {
+  width: 50%;
+}
+@media (max-width: 1300px) {
+  .setting-option button {
+    width: 100%;
+  }
+}
+
+.password-change-form {
+  padding: 15px;
+}
+.password-change-form .text-field {
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.profile-nav-container {
+  margin-right: 15px;
+}
+@media (max-width: 768px) {
+  .profile-nav-container {
+    position: absolute;
+    height: 100%;
+    z-index: 10;
+  }
+}
+
+.profile-checkbox-lable svg {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.profile-nav-container-active {
+  background-color: #5c0f47;
+}
+
+#profile-mobile-checkbox:checked ~ .profile-checkbox-lable svg {
+  transform: rotate(180deg);
+}
+
+.profile-nav {
+  background-color: #5c0f47;
+  width: 170px;
+  height: 100%;
+  display: flex;
+  gap: 2.5rem;
+  padding-top: 25%;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .profile-nav {
+    display: none;
+  }
+}
+
+.profile-mobile-check:has(#profile-mobile-checkbox:checked) + .profile-nav {
+  display: flex;
+}
+
+.page-content-shift {
+  margin-left: 170px;
+}
+
+.profile-mobile-check {
+  display: none;
+}
+@media (max-width: 768px) {
+  .profile-mobile-check {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+/* code for mobile nav checkbox */
+#profile-mobile-checkbox {
+  display: none;
+}
+
 /*CSS for any animations on the site */
 .page-fade {
   background-color: rgba(0, 0, 0, 0.5);
@@ -2705,137 +2925,6 @@ select:-webkit-autofill:focus {
   border: none;
   box-shadow: none;
   color: #FDEEF4;
-}
-
-.profile-cards {
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  background-color: #4b203f;
-  margin: 15px;
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
-  width: auto;
-}
-
-.test-div {
-  background-color: #4b203f;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
-}
-
-.open-symbol {
-  font-size: 50px;
-  color: white;
-  background-color: transparent;
-  border: none;
-  transition: transform 0.2s ease-in;
-}
-
-.symbol-closed {
-  transform: rotate(0);
-}
-
-.symbol-open {
-  transform: rotate(90deg);
-}
-
-.closed-symbol {
-  font-size: 50px;
-  color: white;
-  transform: rotate(90deg);
-}
-
-.profile-nav-container {
-  background-color: red;
-}
-
-.profile-nav {
-  background-color: #5c0f47;
-  width: 170px;
-  height: 100%;
-  display: flex;
-  gap: 2.5rem;
-  padding-top: 25%;
-  flex-direction: column;
-  transition: opacity 0.5s ease-in;
-  transition: transform 0.2s ease-in;
-}
-
-.profile-page-content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 10px;
-  margin-left: 1rem;
-  transition: margin-left 0.2s ease-in-out;
-}
-
-.page-content-shift {
-  margin-left: 170px;
-}
-
-.profile-nav-is-open {
-  opacity: 1;
-  position: relative;
-  transform: translateX(0);
-}
-
-.calander {
-  max-height: 500px;
-  min-height: 500px;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  padding: 1rem;
-  max-width: 1400px;
-}
-
-.profile-cal {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  max-width: 1400px;
-  width: 100%;
-  height: 100%;
-}
-
-.stat-card {
-  color: #eae8ff;
-  text-align: center;
-  max-width: 600px;
-  width: 100%;
-  align-self: center;
-  margin: 20px 0px;
-  background-color: #241e4e;
-  padding: 1rem;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
-}
-.stat-card span {
-  font-size: var(--fs-body);
-}
-
-.setting-option {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.setting-option button {
-  width: 50%;
-}
-@media (max-width: 1300px) {
-  .setting-option button {
-    width: 100%;
-  }
-}
-
-.password-change-form {
-  padding: 15px;
-}
-.password-change-form .text-field {
-  width: 50%;
-  margin-bottom: 20px;
 }
 
 .countdown-timer {

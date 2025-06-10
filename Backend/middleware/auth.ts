@@ -5,7 +5,6 @@ dotenv.config();
 const veriftyToken = async (req, res, next) =>{
     try{
         let token:string = req.header('Authorization');
-        console.log(token)
         if(!token){
             return res.status(403).json({message:'Access Denied'});
         }

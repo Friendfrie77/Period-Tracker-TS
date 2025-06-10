@@ -15,14 +15,12 @@ const UserNotifications :React.FC<userNotificationsTypes> = ({notificationType})
         setPhoneModel(!phoneModel)
     }
     const emailCheckChange = (emailNotifications:boolean) =>{
-        console.log("test")
         userEmailNotfications(emailNotifications)
     }
     const phoneChange = (notifications:boolean, phoneModel:boolean, openPhoneModel:() => void) =>{
         userPhoneNotfication(notifications, phoneModel, openPhoneModel)
     }
-    // const emailNotifications = true
-    console.log(emailNotifications)
+
     const content = (
         <div className="box-padding flex-col flex-row-gap-1rem">
             {notificationType === "email" ?(

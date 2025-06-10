@@ -133,13 +133,6 @@ const useData = () =>{
                 const currentDate = todaysDate();
                 const lastPeriodStartDate = dayjs(data[lastIndex].startDate);
                 const cyclePassed = Math.floor(currentDate.diff(lastPeriodStartDate, 'day') / cycle);
-                // console.log("Last Period Start Date: ", lastPeriodStartDate.format('YYYY-MM-DD'))
-                // console.log("Last Period End Date: ", lastPeriodStartDate.format('YYYY-MM-DD'))
-                console.log("Cycle Passed: ", cyclePassed)
-                // console.log("Cycle Passed in days: ", cyclePassed * cycle)
-                // console.log("Cycle: ", cycle)
-                // console.log("avg length: ", avgLength)
-                // console.log("Is Active: ", nextPeriodStartDate.isBetween(lastPeriodEndDate, currentDate, null, "[]"))
                 if(cyclePassed === 0){
                     nextPeriodStartDate = lastPeriodStartDate.add((cycle * (cyclePassed + 1)), 'day')
                     if(nextPeriodStartDate.diff(currentDate, 'day') <= 2){

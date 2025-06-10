@@ -1,4 +1,16 @@
 $navWidth: 170px;
+.profile-page-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    // margin-left: 1rem;
+    transition:  margin-left .2s ease-in-out;
+    @include for-size(tablet-only){
+        margin: 15px;
+    }
+}
+
 .profile-cards{
     display: flex;
     flex-direction: column;
@@ -33,33 +45,7 @@ $navWidth: 170px;
     color: white;
     transform: rotate(90deg);
 }
-.profile-nav-container{ 
-    background-color: red;
-}
-.profile-nav{
-    background-color: $color4;
-    width: $navWidth;
-    height: 100%;
-    display: flex;
-    gap: 2.5rem;
-    padding-top: 25%;
-    flex-direction: column;
-    // opacity: 0;
-    // transform:translateX(-50%);
-    transition: opacity .5s ease-in;
-    transition: transform .2s ease-in;
-}
-.profile-page-content{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-top: 10px;
-    margin-left: 1rem;
-    transition:  margin-left .2s ease-in-out;
-}
-.page-content-shift{
-    margin-left:$navWidth;
-}
+
 .profile-nav-is-open{
     opacity: 1;
     position: relative;

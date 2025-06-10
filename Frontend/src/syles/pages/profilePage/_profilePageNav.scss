@@ -1,0 +1,54 @@
+.profile-nav-container{ 
+    margin-right: 15px;
+    @include for-size(tablet-only){
+        position: absolute;
+        height: 100%;
+        z-index: 10;
+    }
+}
+
+.profile-checkbox-lable svg{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.profile-nav-container-active{
+    background-color: $color4;
+}
+
+#profile-mobile-checkbox:checked ~ .profile-checkbox-lable svg{
+    transform: rotate(180deg);
+}
+
+.profile-nav{
+    background-color: $color4;
+    width: $navWidth;
+    height: 100%;
+    display: flex;
+    gap: 2.5rem;
+    padding-top: 25%;
+    flex-direction: column;
+    @include for-size(tablet-only){
+        display: none;
+    }
+}
+
+.profile-mobile-check:has(#profile-mobile-checkbox:checked) + .profile-nav{
+    display: flex;
+}
+.page-content-shift{
+    margin-left:$navWidth;
+}
+
+.profile-mobile-check{
+    display: none;
+    @include for-size(tablet-only){
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+/* code for mobile nav checkbox */
+#profile-mobile-checkbox{
+    display: none;
+}

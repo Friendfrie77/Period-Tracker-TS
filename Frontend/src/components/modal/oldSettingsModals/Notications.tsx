@@ -17,7 +17,6 @@ const Notication:React.FC<functionType> =({modalFunction}) =>{
     }
     const onSubmit = () =>{
         userPhoneNotfication()
-        console.log(phoneNumber)
     }
     const content = message ? <AlertMessage /> : (
         <div className="modal-box">

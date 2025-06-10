@@ -18,10 +18,37 @@
 
 .features-wrapper{
     align-items: flex-start;
-    background-color: blue;
 }
-.feature h1{
-    color: red;
+
+.feature{
+    display: flex;
+    @include for-size(tablet-only){
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    margin-bottom: 15px;
+}
+
+.feature-text{
+    @include for-size(tablet-only){
+        width: 70%;
+        text-align: center;
+    }
+
+}
+.feature-img{
+    display: none;
+    @include for-size(tablet-only){
+        display: block;
+        width: 40%;
+    }
+    img{
+        filter: drop-shadow($drop-shadow-wrappers);
+    }
+}
+.feature h1, .feature p{
+    color: black;
 }
 .features-list{
     color: $color2;

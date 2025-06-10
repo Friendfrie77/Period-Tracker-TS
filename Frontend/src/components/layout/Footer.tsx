@@ -4,7 +4,6 @@ import useUserInfo from "../../hooks/useUserInfo";
 const Footer: React.FC = () =>{
     const {isAuth} = useUserInfo()
     const location = useLocation()
-    console.log(isAuth)
     const year: number = new Date().getFullYear();
     const footer = (
         <footer aria-label="Main Footer">

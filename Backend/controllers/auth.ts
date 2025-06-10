@@ -33,7 +33,6 @@ const register = async (req, res) =>{
             });
             const userID = {id: newUser._id};
             const accessToken:string = jwt.sign(userID, process.env.ACCESS_TOKEN_SECRET)
-            console.log(accessToken)
             newUser.save();
             res.status(201).json({newUser, accessToken, isNewUser})
         }

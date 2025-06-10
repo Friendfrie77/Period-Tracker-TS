@@ -23,7 +23,7 @@ const DataMangment:React.FC = () =>{
                     <p>Would you like to import more data, or export your periods?</p>
                 </div>
                 <hr/>
-                <div className="flex-row flex-row-gap-1rem">
+                <div className="flex-row-to-col flex-row-gap-1rem">
                     <div className="flex-col">
                             <h1>Import Data</h1>
                             <p>Please upload a spreadsheet of the data you would like to upload. The file format needs to be .xlsx, .ods, or .xls.</p>
