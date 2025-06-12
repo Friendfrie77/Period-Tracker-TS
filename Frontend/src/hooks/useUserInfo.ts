@@ -20,13 +20,10 @@ type datesType = {
 
 const useUserInfo = ()=>{
     const dispatch = useAppDispatch();
-    // const {loading} = useLoading();
-    const test = useAppSelector((state) => state.user?.loginUser)
-    // console.log(test)
     //any userinfo needed for the app
     const username:string|undefined = useAppSelector((state) => state.user?.loginUser?.username);
     const _id:number|undefined|'localUser' = useAppSelector((state) => state.user?.loginUser?.id);
-    const role:string = useAppSelector((state) => state.user?.loginUser?.role || '');
+    const role:"user"|"demo"|"local"|undefined = useAppSelector((state) => state.user?.loginUser?.role);
     const email:string|undefined = useAppSelector((state) => state.user?.loginUser?.email);
     const token:string|undefined = useAppSelector((state) => state.user?.loginUser?.token);
     const cycle: number|undefined|null = useAppSelector((state) => state.user?.loginUser?.cycle);
@@ -40,14 +37,12 @@ const useUserInfo = ()=>{
     const previousPeriod: previousPeriod|undefined|null = useAppSelector((state) => state.user?.loginUser?.previousPeriod)
     const notifications: boolean = useAppSelector((state) => state.user?.loginUser?.notifications ?? false)
     const emailNotifications: boolean = useAppSelector((state) => state.user?.loginUser?.emailNotifications ?? false)
-    // const isAuth: boolean = !!token
     let cycleStartDate: string | null = null
     if(typeof cycle === 'number'){
         cycleStartDate = dayjs(periodStartDate).subtract(cycle, 'days').format()
     }
     const todaysDate:string = dayjs().format()
 
-    
     //helper functions
     //checks if a period date is in the current list of logged periods
     const checkIfDateIsPresent = (loggedPeriods:previousPeriod, period:previousPeriod) => {
@@ -88,7 +83,7 @@ const useUserInfo = ()=>{
     //     })
     // }
     
-    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, emailNotifications, isAuth, cycleStartDate, todaysDate, updateUserDates, test}
+    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, emailNotifications, isAuth, cycleStartDate, todaysDate, updateUserDates}
 }
 
 export default useUserInfo

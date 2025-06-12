@@ -3,7 +3,7 @@ $navWidth: 170px;
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 10px;
+    margin: $margin-content $margin-content 0px;
     // margin-left: 1rem;
     transition:  margin-left .2s ease-in-out;
     @include for-size(tablet-only){

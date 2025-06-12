@@ -36,10 +36,16 @@ const localUserSlice = createSlice({
             if(state.localUser){
                 state.localUser.token = action.payload
             }
+        },
+        setLocalPrevPeriod: (state, action:PayloadAction<previousPeriod>) =>{
+            if(state.localUser){
+                state.localUser.previousPeriod = action.payload
+
+            }
         }
     }
 })
 
-export const {setLocalLogin, setLocalToken} = localUserSlice.actions;
+export const {setLocalLogin, setLocalToken, setLocalPrevPeriod} = localUserSlice.actions;
 export default localUserSlice.reducer;
 export type{localUser}

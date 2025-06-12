@@ -1,8 +1,12 @@
-import { Dayjs } from "dayjs"
+// import { Dayjs } from "dayjs"
 
+// type  periodType = {
+//     startDate: string|Date|Dayjs,
+//     endDate: string|Date|Dayjs
+// }
 type  periodType = {
-    startDate: string|Date|Dayjs,
-    endDate: string|Date|Dayjs
+    startDate: string|Date,
+    endDate: string|Date
 }
 type perviousPeriodType = periodType | periodType[] | null | undefined
 

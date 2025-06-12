@@ -157,6 +157,10 @@ select {
   align-items: center;
 }
 
+.flex-end {
+  justify-content: flex-end;
+}
+
 .flex-row-gap-1rem {
   row-gap: 1rem;
 }
@@ -204,6 +208,10 @@ h4 {
   font-size: var(--fs-subheader);
 }
 
+.text-align-center {
+  text-align: center;
+}
+
 .padding-bottom-1rem {
   padding-bottom: 1rem;
 }
@@ -230,6 +238,18 @@ h4 {
 
 .position-rel {
   position: relative;
+}
+
+.background-color-red {
+  background-color: red;
+}
+
+.div-border-right {
+  border-right: solid white 1px;
+}
+
+.hr-full-width {
+  width: 100%;
 }
 
 .rdrCalendarWrapper {
@@ -2585,7 +2605,7 @@ select:-webkit-autofill:focus {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 10px;
+  margin: 10px 10px 0px;
   transition: margin-left 0.2s ease-in-out;
 }
 @media (max-width: 768px) {
@@ -2756,6 +2776,10 @@ select:-webkit-autofill:focus {
 /* code for mobile nav checkbox */
 #profile-mobile-checkbox {
   display: none;
+}
+
+.data-page-ul {
+  list-style-type: none;
 }
 
 /*CSS for any animations on the site */

@@ -3,7 +3,6 @@ import dayjs from "dayjs";
 
 const PeriodStatsCard:React.FC = () =>{
     const {previousPeriod, cycle, avgLength, periodStartDate} = useUserInfo();
-    console.log(periodStartDate)
     const content = (
         <>
         {previousPeriod && cycle && avgLength ?(
