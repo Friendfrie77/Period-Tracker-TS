@@ -107,7 +107,7 @@
 /* end of mobile nav open box */
 .nav-links{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
     gap: 15px;
     grid-auto-flow: column;
     list-style-type: none;

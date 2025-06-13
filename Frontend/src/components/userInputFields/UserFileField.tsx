@@ -7,14 +7,16 @@ const UserFileField = ({name, ...props}: Props) =>{
     const userField = (
         <Field name = {name}>
             {({input: {onChange}}) => (
-                <div>
-                    <input 
-                        type = 'file' 
+                <div className='flex-center'>
+                    <input
+                        id='file-upload'
+                        type = 'file'
                         onChange = {({target}) =>{
                             onChange(target.files)
                         }}
                         {...props}
                     />
+                    <label htmlFor="file-upload" className='file-upload-button button'>Select File</label>
                 </div>
             )}
         </Field>

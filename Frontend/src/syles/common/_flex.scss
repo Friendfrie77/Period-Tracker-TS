@@ -27,8 +27,11 @@
     justify-content: center;
     align-items: center;
 }
-.flex-end{
+.justify-end{
     justify-content: flex-end;
+}
+.flex-algin-end{
+    align-items: end;
 }
 .flex-row-gap-1rem{
     row-gap: 1rem;
@@ -38,4 +41,10 @@
 }
 .flex-space-even{
     justify-content: space-evenly;
+}
+.flex-child-row-to-col{
+  width: 50%;
+  @include for-size(tablet-only){
+    width: 100%;
+  }
 }

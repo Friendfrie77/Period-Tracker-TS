@@ -1,3 +1,18 @@
 .data-page-ul{
     list-style-type: none;
 }
+.period-date-item{
+    display: grid;
+    grid-template-columns: max-content max-content max-content max-content auto;
+    align-items: center;
+    gap: 0.5rem
+}
+
+.span-close{
+    display: inline-flex;
+    align-items: center;
+}
+
+.date-divs{
+    width: 50%;
+}

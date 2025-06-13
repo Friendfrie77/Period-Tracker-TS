@@ -5,6 +5,7 @@
     box-shadow: $drop-shadow-wrappers;
     height: 35px;
     font-size: var(--fs-body);
+    cursor: pointer;
     @include button-mixin;
   }
   .button-large{
@@ -26,4 +27,14 @@
     height: auto;
     min-height: 40px;
     font-size: 1rem;
+  }
+
+  input[type="file"]{
+    display: none;
+  }
+
+  .file-upload-button{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }

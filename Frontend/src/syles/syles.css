@@ -157,8 +157,12 @@ select {
   align-items: center;
 }
 
-.flex-end {
+.justify-end {
   justify-content: flex-end;
+}
+
+.flex-algin-end {
+  align-items: end;
 }
 
 .flex-row-gap-1rem {
@@ -172,6 +176,15 @@ select {
 
 .flex-space-even {
   justify-content: space-evenly;
+}
+
+.flex-child-row-to-col {
+  width: 50%;
+}
+@media (max-width: 768px) {
+  .flex-child-row-to-col {
+    width: 100%;
+  }
 }
 
 p,
@@ -246,6 +259,12 @@ h4 {
 
 .div-border-right {
   border-right: solid white 1px;
+  margin-right: 10px;
+}
+@media (max-width: 768px) {
+  .div-border-right {
+    border-right: none;
+  }
 }
 
 .hr-full-width {
@@ -2028,7 +2047,7 @@ button.rbc-input::-moz-focus-inner {
 /* end of mobile nav open box */
 .nav-links {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
   gap: 15px;
   grid-auto-flow: column;
   list-style-type: none;
@@ -2186,6 +2205,7 @@ input:checked + .slider:before {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 5px 10px;
   height: 35px;
   font-size: var(--fs-body);
+  cursor: pointer;
   background-color: #af4d98;
   border: none;
   border-radius: 5px;
@@ -2240,6 +2260,16 @@ input:checked + .slider:before {
   height: auto;
   min-height: 40px;
   font-size: 1rem;
+}
+
+input[type=file] {
+  display: none;
+}
+
+.file-upload-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .landing-page-conent-wrapper {
@@ -2780,6 +2810,22 @@ select:-webkit-autofill:focus {
 
 .data-page-ul {
   list-style-type: none;
+}
+
+.period-date-item {
+  display: grid;
+  grid-template-columns: max-content max-content max-content max-content auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.span-close {
+  display: inline-flex;
+  align-items: center;
+}
+
+.date-divs {
+  width: 50%;
 }
 
 /*CSS for any animations on the site */

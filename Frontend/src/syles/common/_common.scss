@@ -14,6 +14,10 @@
 }
 .div-border-right{
   border-right: solid white 1px;
+  margin-right: 10px;
+  @include for-size(tablet-only){
+    border-right: none;
+  }
 }
 .hr-full-width{
   width: 100%;

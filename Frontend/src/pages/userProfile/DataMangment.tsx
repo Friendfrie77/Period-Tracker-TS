@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import useUserInfo from "../../hooks/useUserInfo";
 import { DateRange} from 'react-date-range';
 import { AiOutlineClose } from "react-icons/ai";
-import { format } from "date-fns";
+import dayjs from "dayjs";
 import type {previousPeriod} from "../../state/state.types";
 const DataMangment:React.FC = () =>{
     type datesType = {
@@ -53,7 +53,7 @@ const DataMangment:React.FC = () =>{
         //need to make sure that the same date isnt entered two times. use messege to tell user if it is?
         if ((!date.startDate || !date.endDate)) return;
         if(date.startDate === date.endDate) return;
-        const newDates = {startDate: format(date.startDate, 'yyyy-MM-dd'), endDate: format(date.endDate, 'yyyy-MM-dd')}
+        const newDates = {startDate: dayjs(date.startDate).format('YYYY-MM-DD'), endDate: dayjs(date.endDate).format('YYYY-MM-DD')}
         if(newPeriod.length === 0){
             setNewPeriod([newDates])
         }else(
@@ -61,12 +61,9 @@ const DataMangment:React.FC = () =>{
         )
     }
     console.log(removedPeriods.length)
-    // const exportData = () =>{
-
-    // }
-    //Function to add
+    //Function to aDD
     //function to remove
-    //state to keep track of add/remove
+    //state to keep track of aDD/remove
     // console.log(newPeriod)
     //check if date is the same day on 1st load
     const content = (
@@ -77,7 +74,7 @@ const DataMangment:React.FC = () =>{
                     <h1>Period Mangment</h1>
                 </div>
                 <div>
-                    <h1>Add</h1>
+                    <h1>ADD</h1>
                     <div>
                         <DateRange
                             showMonthAndYearPickers={false}
@@ -97,7 +94,7 @@ const DataMangment:React.FC = () =>{
                         <ul>
                             {newPeriod.map((e, i) =>(
                                 <li key={i}>
-                                    <span>Start Date: {format( new Date(e.startDate), 'MMMM dd yyyy')} - End Date: {format(new Date(e.endDate), 'MMMM dd yyyy')}</span><span className="span-close"><AiOutlineClose onClick={() => removeNewDate(i)} /></span>
+                                    <span>Start Date: {dayjs(e.startDate).format('MM  YYYY')} - End Date: {dayjs(e.endDate).format('MMMM DD YYYY')}</span><span className="span-close"><AiOutlineClose onClick={() => removeNewDate(i)} /></span>
                                 </li>
                             ))}
                         </ul>
@@ -112,17 +109,21 @@ const DataMangment:React.FC = () =>{
                 <div className="flex-col">
                     <h1 className="text-align-center">Remove a Period</h1>
                     <div className="flex-row-to-col">
-                        <div className="div-border-right">
+                        <div className="div-border-right flex-child-row-to-col">
                             <h1 className="text-align-center">Current Periods:</h1>
                             <ul className="data-page-ul">
                                 {prevPeriodPlaceholder?.map((e, i) =>(
-                                    <li key={i}>
-                                        <span>Start Date: {format( new Date(e.startDate), 'MMMM dd yyyy')} - End Date: {format(new Date(e.endDate), 'MMMM dd yyyy')}</span><span className="span-close"><AiOutlineClose onClick={() => removePrevPeriodDate(i)} /></span>
+                                    <li className="period-date-item" key={i}>
+                                        <span>Start Date:</span>
+                                        <span>{dayjs(e.startDate).format('MMM DD YYYY')}</span>
+                                        <span>- End Date:</span>
+                                        <span>{dayjs(e.endDate).format('MMM DD YYYY')}</span>
+                                        <span className="span-close"><AiOutlineClose onClick={() => removePrevPeriodDate(i)} /></span>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <div>
+                        <div className="flex-child-row-to-col">
                             <h1 className="text-align-center">Periods to be Removed:</h1>
                             {!removedPeriods.length ? (
                                 <span>No Periods Set to be Removed</span>
@@ -131,7 +132,7 @@ const DataMangment:React.FC = () =>{
                                 <ul>
                                     {removedPeriods?.map((e, i) =>(
                                         <li key={i}>
-                                            <span>Start Date: {format( new Date(e.startDate), 'MMMM dd yyyy')} - End Date: {format(new Date(e.endDate), 'MMMM dd yyyy')}</span><span className="span-close"><AiOutlineClose onClick={() => cancelRemovedPeriod(i)} /></span>
+                                            <span>Start Date: {dayjs(e.startDate).format('MMMM DD YYYY')} - End Date: {dayjs(e.endDate).format('MMMM DD YYYY')}</span><span className="span-close"><AiOutlineClose onClick={() => cancelRemovedPeriod(i)} /></span>
                                         </li>
                                     ))
                                     }
@@ -148,9 +149,9 @@ const DataMangment:React.FC = () =>{
                     <h1>Data Handling</h1>
                     <p>Would you like to import more data, or export your periods?</p>
                 </div>
-                <hr/>
+                <hr className="hr-full-width"/>
                 <div className="flex-row-to-col flex-row-gap-1rem">
-                    <div className="flex-col">
+                    <div className="flex-col flex-child-row-to-col div-border-right">
                             <h1>Import Data</h1>
                             <p>Please upload a spreadsheet of the data you would like to upload. The file format needs to be .xlsx, .ods, or .xls.</p>
                             <Form
@@ -162,8 +163,7 @@ const DataMangment:React.FC = () =>{
                                 )}
                             />
                     </div>
-                    <hr />
-                    <div className="flex-col">
+                    <div className="flex-col flex-child-row-to-col">
                         <h1>Export Data</h1>
                         <p>Click the button below to export your data. The data will export in a .ods file.</p>
                         <button className="button" onClick= {exportData}>Export</button>
