@@ -15,22 +15,22 @@ function App() {
   const {isAuth} =useUserInfo()
   const isNewAccount = true
   return (
-    <MessageProvider>
-      <div className={`${toggleNav? 'wrapper' : 'wrapper-no-nav'}`}>
-        <BrowserRouter>
-        {toggleNav? (
-            <Nav />
-        ): null}
-          <Routes>
-            <Route path = '/' element = {isAuth() ?  <LoggedInUserIndex /> : <LandingPage />} />
-            <Route path ='/accountsetup' element = {isNewAccount ? <AccountSetup /> : <Navigate to='/' />} />
-            <Route path='/profile' element = {isAuth() ? <UserProfile /> : <Navigate to='/' />} />
-            <Route path='/privacy ' element = {<PrivacyPage />} />
-          </Routes>
-          {toggleNav?(<Footer />): null}
-        </BrowserRouter>
-      </div>
-    </MessageProvider>
+    <BrowserRouter>
+      <MessageProvider>
+        <div className={`${toggleNav? 'wrapper' : 'wrapper-no-nav'}`}>
+          {toggleNav? (
+              <Nav />
+          ): null}
+            <Routes>
+              <Route path = '/' element = {isAuth() ?  <LoggedInUserIndex /> : <LandingPage />} />
+              <Route path ='/accountsetup' element = {isNewAccount ? <AccountSetup /> : <Navigate to='/' />} />
+              <Route path='/profile' element = {isAuth() ? <UserProfile /> : <Navigate to='/' />} />
+              {/* <Route path='/privacy ' element = {<PrivacyPage />} /> */}
+            </Routes>
+            {toggleNav?(<Footer />): null}
+        </div>
+      </MessageProvider>
+    </BrowserRouter>
   )
 }
 

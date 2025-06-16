@@ -157,6 +157,11 @@ select {
   align-items: center;
 }
 
+.flex-row-center {
+  justify-content: center;
+  align-items: center;
+}
+
 .justify-end {
   justify-content: flex-end;
 }
@@ -2924,7 +2929,6 @@ select:-webkit-autofill:focus {
 
 .message {
   text-align: center;
-  color: #eae8ff;
   font-size: var(--fs-subheader);
 }
 

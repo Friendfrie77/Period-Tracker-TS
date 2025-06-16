@@ -83,7 +83,7 @@ const useUserInfo = ()=>{
     //     })
     // }
     
-    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, emailNotifications, isAuth, cycleStartDate, todaysDate, updateUserDates}
+    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, emailNotifications, isAuth, cycleStartDate, todaysDate, updateUserDates, checkIfDateIsPresent}
 }
 
 export default useUserInfo

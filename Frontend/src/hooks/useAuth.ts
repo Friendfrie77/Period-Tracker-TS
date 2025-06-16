@@ -3,19 +3,17 @@ import useLoading from "./useLoading";
 const APIURL = import.meta.env.VITE_APIURL
 import {useAppDispatch} from "./useRedux"
 import { setEmailNotifications, setPhoneNotifications, setLogin, setLogout, setToken} from "../state/features/users/userSlice";
-import {setLocalPrevPeriod} from "../state/features/users/localUserSlice";
 import type { user } from "../state/features/users/userSlice";
 import useUserInfo from "./useUserInfo";
 import { useMessage } from "../context/MessageContext/MessageContext";
 import { redirect } from "react-router-dom";
 import type { valuesTypes } from "../components/modal/modals.types";
-import type { previousPeriod } from "../state/state.types";
-// import { perviousPeriodType } from "./hooks.types";
+
 
 const useAuth =() =>{
     const dispatch = useAppDispatch()
     const {loading} = useLoading();
-    const {token, _id, previousPeriod, role} = useUserInfo();
+    const {token, _id, } = useUserInfo();
     const {setMessageState, message} = useMessage();
     interface loginValuesTypes{
         email?: string, 
@@ -93,18 +91,6 @@ const useAuth =() =>{
             return false
         }
     }
-    const updateUsersPeriods = (newPeriod:previousPeriod) =>{
-        const newPeriodArray = [...(previousPeriod ?? []), ...newPeriod]
-        console.log(newPeriodArray)
-        if(role === 'local' || role === 'demo'){
-            dispatch(setLocalPrevPeriod(newPeriodArray))
-        }else{
-            //set for dp send
-            
-        }
-        setMessageState('Periods saved!', 'success' )
-    }
-
     const logout = () =>{
         if(_id === 'localUser'){
             /* set modal to warn user that data will be deleted.
@@ -158,7 +144,7 @@ const useAuth =() =>{
             }
         }
     }
-    return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth, updateUsersPeriods, userEmailNotfications}
+    return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth, userEmailNotfications}
 }
 
 export default useAuth;

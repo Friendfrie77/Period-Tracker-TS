@@ -2,8 +2,10 @@ import dayjs from "dayjs";
 import type {Dayjs} from 'dayjs';
 import useUserInfo from "./useUserInfo";
 import { useAppDispatch} from "./useRedux"
+import {setLocalPrevPeriod} from "../state/features/users/localUserSlice";
 import {setPeriodCycleLength, setCurrentPeriod} from "../state/features/users/userSlice";
 import type {perviousPeriodType, isActiveReturn} from "./hooks.types";
+import type { previousPeriod } from "../state/state.types";
 import { useMessage } from "../context/MessageContext/MessageContext";
 import isBetween from 'dayjs/plugin/isBetween' 
 import * as XLSX from "@e965/xlsx";
@@ -16,7 +18,7 @@ const useData = () =>{
     const { setMessageState } = useMessage();
     dayjs.extend(isBetween)
     const dispatch = useAppDispatch()
-    const {periodStartDate, periodEndDate, previousPeriod} = useUserInfo();
+    const {periodStartDate, periodEndDate, previousPeriod, role, _id} = useUserInfo();
     type userDataReturn = {
         periodStartDate?: string|Date|undefined,
         periodEndDate?: string|Date|undefined, 
@@ -160,7 +162,21 @@ const useData = () =>{
             return false
         }
     }
-    return {calcUserData, exportData}
+
+    const updateUsersPeriods = (newPeriod:previousPeriod) =>{
+        const newPeriodArray = [...(previousPeriod ?? []), ...newPeriod]
+        console.log(newPeriodArray)
+        if(role === 'local' || role === 'demo'){
+            dispatch(setLocalPrevPeriod(newPeriodArray))
+        }else{
+            //pull user id 
+            //set for dp send
+            //have error message saved 
+            
+        }
+        setMessageState('Periods saved!', 'success' )
+    }
+    return {calcUserData, exportData, updateUsersPeriods}
 }
 
 export default useData
