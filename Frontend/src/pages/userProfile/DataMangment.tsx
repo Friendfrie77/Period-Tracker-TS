@@ -15,10 +15,13 @@ const DataMangment:React.FC = () =>{
         endDate?: Date;
         key?: string;
     }
+    type FormValues = {
+        file?: File;
+    }
     const { setMessageState, message, messageType} = useMessage();
     const {previousPeriod, checkIfDateIsPresent} = useUserInfo();
-    const {parseUserFile} = useLocalAccount();
-    const {exportData, updateUsersPeriods} = useData();
+    const {parseUserFile, validateFile} = useLocalAccount();
+    const {exportData, updateUsersPeriods, checkForDuplicates} = useData();
     const [newPeriod, setNewPeriod] = useState<previousPeriod>([]);
     const [removedPeriods, setRemovedPeriods] = useState<previousPeriod>([]);
     const [prevPeriodPlaceholder, setPrevPeriodPlaceholder] = useState<previousPeriod>(previousPeriod ?? []);
@@ -41,10 +44,18 @@ const DataMangment:React.FC = () =>{
         setPrevPeriodPlaceholder(prev => [...prev, removedPeriods[index]])
         setRemovedPeriods(prev => prev.filter((_,i) => i !== index))
     }
-    const onDataSubmit = () =>{
-        
-        //call hook to load and parse file
-        //need to check if any data is re
+    const onDataSubmit = async (val:FormValues) =>{
+        if(validateFile(val.file!)){
+            const userInfo = await parseUserFile(val.file!)
+            console.log(userInfo)
+            if(userInfo){
+                console.log(userInfo)
+                checkForDuplicates(userInfo!)
+            }
+        }else{
+            setMessageState('Invaild File Format', 'error')
+            return
+        }
     }
 
     const updateNewPeriod = (date:datesType) =>{
@@ -163,12 +174,19 @@ const DataMangment:React.FC = () =>{
                     <div className="flex-col flex-child-row-to-col div-border-right">
                             <h1>Import Data</h1>
                             <p>Please upload a spreadsheet of the data you would like to upload. The file format needs to be .xlsx, .ods, or .xls.</p>
-                            <Form
+                            <Form<FormValues>
                                 onSubmit={onDataSubmit}
-                                render={({handleSubmit}) =>(
-                                    <form onSubmit={handleSubmit} className="flex-row flex-row-center flex-space-even">
-                                        <UserFileField name="file" accept ='.xlsx, .ods, .xls'/>
-                                        <button type='submit' className="button">Submit</button>
+                                render={({handleSubmit, values}) =>(
+                                    <form onSubmit={handleSubmit} className="flex-col flex-row-gap-1rem">
+                                        <div className="flex-row flex-space-even">
+                                            <UserFileField name="file" accept ='.xlsx, .ods, .xls'/>
+                                            <button type='submit' className="button">Submit</button>
+                                        </div>
+                                        {values && values.file ?(
+                                            <>
+                                            <span className="text-align-center">Selected File: {values.file.name}</span>
+                                            </>
+                                        ): null}
                                     </form>
                                 )}
                             />

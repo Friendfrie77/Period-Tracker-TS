@@ -1,9 +1,5 @@
 // const APIURL = import.meta.env.VITE_APIURL
-import useLoading from "./useLoading";
-// import { useAppSelector, useAppDispatch} from "./useRedux"
-// import useUserInfo from "./useUserInfo";
-// import { useMessage } from "../context/MessageContext/MessageContext";
-// import { redirect } from "react-router-dom";
+// import useLoading from "./useLoading";
 import * as XLSX from "@e965/xlsx";
 import { localUserFile } from "./hooks.types";
 import { useMessage } from "../context/MessageContext/MessageContext";
@@ -13,7 +9,7 @@ import type { valuesTypes } from "../components/modal/modals.types";
 
 
 const useLocalAccount = () =>{
-    const {loading} = useLoading();
+    // const {loading} = useLoading();
     type returnType = {
         isVaild: boolean|undefined,
         hasData: boolean|null|undefined,
@@ -28,8 +24,7 @@ const useLocalAccount = () =>{
             userFile = userFile[0] 
             const isVaild = validateFile(userFile)
             if(isVaild){
-                const userInfo = await parseUserFile(userFile)
-                const isVaildFormat = validateUserInfo(userInfo)
+                const isVaildFormat = await parseUserFile(userFile)
                 if(!isVaildFormat){
                     setMessageState('Invaild File Format', 'error')
                     return {isVaild: false, hasData: null, data: null}
@@ -51,7 +46,8 @@ const useLocalAccount = () =>{
         let userInfo = XLSX.read(userBuffer)
         userInfo = userInfo.Sheets[userInfo.SheetNames[0]]
         userInfo = XLSX.utils.sheet_to_json(userInfo)
-        return userInfo
+        const vaildatedUserInfo = validateUserInfo(userInfo)
+        return vaildatedUserInfo
     }
 
     const validateFile = (userFile:File) =>{
@@ -70,8 +66,10 @@ const useLocalAccount = () =>{
     const validateUserInfo = (userInfo) =>{
         const validatedUserInfo:localUserFile = []; 
         userInfo.forEach((data) =>{
-            if(data["Start Date"] && data["End Date"]){
-                validatedUserInfo.push({startDate: data["Start Date"], endDate: data["End Date"]})
+            const start = data["Start Date"] || data['startDate']
+            const end = data["End Date"] || data['endDate']
+            if(start && end){
+                validatedUserInfo.push({startDate: start, endDate: end})
             } 
         })
         if(validatedUserInfo.length === 0){
@@ -81,7 +79,7 @@ const useLocalAccount = () =>{
     }
 
     
-    return {createLocalAccount}
+    return {createLocalAccount, parseUserFile, validateFile}
 }
 
 export default useLocalAccount

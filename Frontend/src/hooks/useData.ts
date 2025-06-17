@@ -176,7 +176,14 @@ const useData = () =>{
         }
         setMessageState('Periods saved!', 'success' )
     }
-    return {calcUserData, exportData, updateUsersPeriods}
+
+    const checkForDuplicates = (data:previousPeriod):previousPeriod =>{
+        data.forEach((e) =>{
+            console.log(e)
+        })
+        return data
+    }
+    return {calcUserData, exportData, updateUsersPeriods, checkForDuplicates}
 }
 
 export default useData

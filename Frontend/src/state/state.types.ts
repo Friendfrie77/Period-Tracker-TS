@@ -1,6 +1,6 @@
 type  periodType = {
-    startDate: string,
-    endDate: string
+    startDate: string | Date,
+    endDate: string | Date
 }
 type previousPeriod = periodType[]
 

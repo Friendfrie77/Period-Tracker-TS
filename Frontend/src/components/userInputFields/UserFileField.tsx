@@ -12,12 +12,11 @@ const UserFileField = ({name, ...props}: Props) =>{
                         id='file-upload'
                         type = 'file'
                         onChange = {({target}) =>{
-                            onChange(target.files)
+                            onChange(target.files?.[0] || null)
                         }}
                         {...props}
                     />
                     <label htmlFor="file-upload" className='file-upload-button button'>Select File</label>
-                    
                 </div>
             )}
         </Field>
