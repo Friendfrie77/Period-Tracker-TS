@@ -7,7 +7,7 @@ import useLocalAccount from "../../hooks/useLocalAccount";
 import { DateRange} from 'react-date-range';
 import { AiOutlineClose } from "react-icons/ai";
 import dayjs from "dayjs";
-import type {previousPeriod} from "../../state/state.types";
+import type {previousPeriod} from "../../types/types";
 import { useMessage } from "../../context/MessageContext/MessageContext";
 const DataMangment:React.FC = () =>{
     type datesType = {
@@ -19,9 +19,9 @@ const DataMangment:React.FC = () =>{
         file?: File;
     }
     const { setMessageState, message, messageType} = useMessage();
-    const {previousPeriod, checkIfDateIsPresent} = useUserInfo();
+    const {previousPeriod, checkIfDateIsPresent,id} = useUserInfo();
     const {parseUserFile, validateFile} = useLocalAccount();
-    const {exportData, updateUsersPeriods, checkForDuplicates} = useData();
+    const {exportData, updateUsersPeriods, checkForDuplicates, sortaArrayData} = useData();
     const [newPeriod, setNewPeriod] = useState<previousPeriod>([]);
     const [removedPeriods, setRemovedPeriods] = useState<previousPeriod>([]);
     const [prevPeriodPlaceholder, setPrevPeriodPlaceholder] = useState<previousPeriod>(previousPeriod ?? []);
@@ -32,7 +32,7 @@ const DataMangment:React.FC = () =>{
         key: 'selection'
     }
     ])
-
+ 
     const removeNewDate = (index:number) =>{
         setNewPeriod(prev => prev.filter((_, i) => i !== index))
     }
@@ -47,21 +47,24 @@ const DataMangment:React.FC = () =>{
     const onDataSubmit = async (val:FormValues) =>{
         if(validateFile(val.file!)){
             const userInfo = await parseUserFile(val.file!)
-            console.log(userInfo)
             if(userInfo){
-                console.log(userInfo)
-                checkForDuplicates(userInfo!)
+                let uniqueDates = checkForDuplicates(userInfo!)
+                uniqueDates = sortaArrayData(uniqueDates)
+                updateUsersPeriods(uniqueDates)
             }
         }else{
             setMessageState('Invaild File Format', 'error')
             return
         }
     }
+    // const onRemoveSubmit = () =>{
 
+    // }
     const updateNewPeriod = (date:datesType) =>{
         if ((!date.startDate || !date.endDate)) return;
         if(date.startDate === date.endDate) return;
-        const newDates = {startDate: dayjs(date.startDate).format('YYYY-MM-DD'), endDate: dayjs(date.endDate).format('YYYY-MM-DD')}
+
+        const newDates = {startDate: dayjs(date.startDate).format('YYYY-MM-DD').toString(), endDate: dayjs(date.endDate).format('YYYY-MM-DD').toString()}
         if(checkIfDateIsPresent(previousPeriod!, [newDates]) || checkIfDateIsPresent(newPeriod, [newDates])){
             setMessageState('Date is already present!', 'error')
             return
@@ -161,7 +164,7 @@ const DataMangment:React.FC = () =>{
                             )}
                         </div>
                     </div>
-                    <button type='submit' className="button" disabled={removedPeriods.length === 0}>Submit</button>
+                    <button type='submit' className="button" disabled={removedPeriods.length === 0} onClick = {() => updateUsersPeriods(prevPeriodPlaceholder)}>Submit</button>
                 </div>
             </div>
             <div className="profile-cards">

@@ -10,7 +10,7 @@ type previousPeriod = periodType[]
 type user = {
     username: string | undefined;
     id: number | undefined | 'localUser';
-    role: 'user'| 'local'| 'demo';
+    role: 'User'| 'Local'| 'Demo';
     email: string | undefined | 'localUser';
     token: string | undefined;
     cycle?: number | null | undefined;
@@ -29,7 +29,7 @@ type user = {
 const testUser:user = {
     username: 'John Doe',
     id: 123,
-    role: 'user',
+    role: 'User',
     email: 'john@example.com',
     token: 'some-token',
     cycle: null,

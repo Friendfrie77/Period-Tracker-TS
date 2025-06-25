@@ -1,38 +1,21 @@
 import user from "../mongoose-schmea/User.js";
 import demoSchema from "../mongoose-schmea/Demo.js";
 import dayjs from "dayjs";
-import findUser from "../utils/checkUserRole.js"
+import checkUserRole from "../utils/checkUserRole.js";
+import type {previousPeriod} from "../types/types.js";
 
-// type User = typeof user;
-// type demo = typeof demoSchema
-type  periodType = {
-    startDate: string,
-    endDate: string
-}
-type previodPeriodType = periodType[]
-
-//adds new periods to the list of users previous periods.
-const addNewPrevPeriods = async(req, res) =>{
-    //fetch user using user id
-    //check if user has prev logs, if they do spread if not set prev period to be pre logs
-    //return with message
-    type reqBodyType = {_id:string, role:string, periodData: previodPeriodType};
-    const {_id, role, periodData} = req.body;
-    const user = await findUser(_id, role)
-    // type reqBodyType = {_id:string, role:string, previousPeriods: previodPeriodType}
-    // const {_id, role, previousPeriods}:reqBodyType = req.body;
-    // const user = await findUser(role, _id)
-    // try{
-    //     if(user){
-    //         if(user.previousPeriod.length === 0){
-    //             user.previousPeriod = previousPeriods
-    //         }
-    //     }else{
-    //         res.status(500).json({error: 'Internal error please try again'})
-    //     }
-    // }catch(err){
-    //     res.status(500).json({error: 'Internal error please try again'})
-    // }
+const updatePeriod = async(req, res) =>{
+    const {id, periodArray} = req.body;
+    console.log(id, periodArray)
+    const user = await checkUserRole.findUser('User', id)
+    if(!user){
+        res.status(500).json({message:"Server has encountered an error"})
+    }else{
+        user.previousPeriod = [prev =>[...prev, ...periodArray]]
+        await user.save()
+        const userSavedPeriods = user.previousPeriod
+        return res.status(201).json({message:"Periods saved!", periods: userSavedPeriods })
+    }
 }
 
-export default {addNewPrevPeriods}
+export default {updatePeriod}

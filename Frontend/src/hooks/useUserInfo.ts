@@ -2,15 +2,11 @@
 import { useAppSelector, useAppDispatch } from "./useRedux";
 import { setPrevPeriod} from "../state/features/users/userSlice";
 import dayjs from "dayjs";
-// import useLoading from "./useLoading";
+import type {previousPeriod} from '../types/types'
 // import { useMessage } from "../context/MessageContext/MessageContext";
 // import { redirect } from "react-router-dom";
 // const APIURL = import.meta.env.VITE_APIURL
-type  periodType = {
-    startDate: string,
-    endDate: string
-}
-export type previousPeriod = periodType[] 
+
 
 type datesType = {
     startDate?: Date;
@@ -22,8 +18,8 @@ const useUserInfo = ()=>{
     const dispatch = useAppDispatch();
     //any userinfo needed for the app
     const username:string|undefined = useAppSelector((state) => state.user?.loginUser?.username);
-    const _id:number|undefined|'localUser' = useAppSelector((state) => state.user?.loginUser?.id);
-    const role:"user"|"demo"|"local"|undefined = useAppSelector((state) => state.user?.loginUser?.role);
+    const id:number|string|undefined|'localUser' = useAppSelector((state) => state.user?.loginUser?.id);
+    const role:"User"|"Demo"|"Local"|undefined = useAppSelector((state) => state.user?.loginUser?.role);
     const email:string|undefined = useAppSelector((state) => state.user?.loginUser?.email);
     const token:string|undefined = useAppSelector((state) => state.user?.loginUser?.token);
     const cycle: number|undefined|null = useAppSelector((state) => state.user?.loginUser?.cycle);
@@ -69,21 +65,8 @@ const useUserInfo = ()=>{
     }
     //checks is user is authed
     const isAuth = ():boolean => !!token
-
-    //sending periods from account setup to server
-    // const sendUserPrevPeriods = async (previousPeriod:previodPeriodType) =>{
-    //     loading();
-    //     const data = {_id, role, previousPeriod}
-    //     const prevPeriodAPICall = await fetch(`${APIURL}/data/addNewPrevPeriods`,{
-    //         method: 'Post',
-    //         mode: "cors",
-    //         headers:{Authorization: `Bearer ${token}`,
-    //         "Content-Type": 'application/json'},
-    //         body: JSON.stringify(data)
-    //     })
-    // }
     
-    return{username, _id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, emailNotifications, isAuth, cycleStartDate, todaysDate, updateUserDates, checkIfDateIsPresent}
+    return{username, id, role, email, token, cycle, avgLength, periodStartDate, periodEndDate, daysTillPeriod, daysLeftPeriod, canBleed, isBleeding, previousPeriod, notifications, emailNotifications, isAuth, cycleStartDate, todaysDate, updateUserDates, checkIfDateIsPresent}
 }
 
 export default useUserInfo

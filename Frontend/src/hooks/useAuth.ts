@@ -8,6 +8,7 @@ import useUserInfo from "./useUserInfo";
 import { useMessage } from "../context/MessageContext/MessageContext";
 import { redirect } from "react-router-dom";
 import type { valuesTypes } from "../components/modal/modals.types";
+import { RiContactsBookLine } from "react-icons/ri";
 
 
 const useAuth =() =>{
@@ -39,7 +40,7 @@ const useAuth =() =>{
         loading()
         const {email, password} = values;
         const data = {email, password}
-        const test = await fetch('http://localhost:8080/auth/login',{
+        const test = await fetch(`${APIURL}/auth/login`,{
             method: 'POST',
             mode: "cors",
             headers:{
@@ -49,6 +50,9 @@ const useAuth =() =>{
         });
         const res = await test;
         if(res.status == 201){
+            const userInfo =  await res.json()
+            dispatch(setLogin(userInfo.user))
+            dispatch(setToken(userInfo.accessToken))
             loading();
         }
     }

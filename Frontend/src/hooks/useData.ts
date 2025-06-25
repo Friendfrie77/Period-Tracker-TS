@@ -2,10 +2,9 @@ import dayjs from "dayjs";
 import type {Dayjs} from 'dayjs';
 import useUserInfo from "./useUserInfo";
 import { useAppDispatch} from "./useRedux"
-import {setLocalPrevPeriod} from "../state/features/users/localUserSlice";
-import {setPeriodCycleLength, setCurrentPeriod} from "../state/features/users/userSlice";
-import type {perviousPeriodType, isActiveReturn} from "./hooks.types";
-import type { previousPeriod } from "../state/state.types";
+import {setPeriodCycleLength, setCurrentPeriod, setPrevPeriod} from "../state/features/users/userSlice";
+import type {previousPeriod, periodType} from "../types/types";
+import type {isActiveReturn} from "./hooks.types";
 import { useMessage } from "../context/MessageContext/MessageContext";
 import isBetween from 'dayjs/plugin/isBetween' 
 import * as XLSX from "@e965/xlsx";
@@ -15,17 +14,18 @@ Edge Cases:
 Active Period is passed in data set
 */
 const useData = () =>{
+    const APIURL = import.meta.env.VITE_APIURL
     const { setMessageState } = useMessage();
     dayjs.extend(isBetween)
     const dispatch = useAppDispatch()
-    const {periodStartDate, periodEndDate, previousPeriod, role, _id} = useUserInfo();
+    const {periodStartDate, periodEndDate, previousPeriod, role, id, token} = useUserInfo();
     type userDataReturn = {
         periodStartDate?: string|Date|undefined,
         periodEndDate?: string|Date|undefined, 
         cycle: number,
         avgLength: number
     }
-    const calcNumberPeriods = (data:perviousPeriodType):number =>{
+    const calcNumberPeriods = (data:previousPeriod):number =>{
         if(Array.isArray(data)){
             return data.length
         }
@@ -36,24 +36,22 @@ const useData = () =>{
         return dayjs()
     }
 
-    const sortaArrayData = (data:perviousPeriodType):perviousPeriodType =>{
-        if(data){
-            return !Array.isArray(data) ? data : data.map(e =>({
-                ...e, startDate: dayjs(e.startDate).format('YYYY/MM/DD'),endDate: dayjs(e.endDate).format('YYYY/MM/DD')
-            })).sort((a,b)=>{
-                const startDateA = dayjs(a.startDate).isValid() ? dayjs(a.startDate).toDate().getTime() : new Date(a.startDate as string ).getTime()
-                const startDateB = dayjs(b.startDate).isValid() ? dayjs(b.startDate).toDate().getTime() : new Date(b.startDate as string).getTime()
-                const compareResult = startDateA - startDateB
-                a.startDate = dayjs(startDateA).format('YYYY/MM/DD');
-                b.startDate = dayjs(startDateB).format('YYYY/MM/DD');
-                a.endDate = dayjs(a.endDate).format('YYYY/MM/DD');
-                b.endDate = dayjs(b.endDate).format('YYYY/MM/DD');
-                return compareResult
-            })
-        }
+    const sortaArrayData = (data:previousPeriod):previousPeriod =>{
+        return !Array.isArray(data) ? data : data.map((e:periodType) =>({
+            ...e, startDate: dayjs(e.startDate).format('YYYY-MM-DD').toString() ,endDate: dayjs(e.endDate).format('YYYY-MM-DD').toString()
+        })).sort((a,b)=>{
+            const startDateA = dayjs(a.startDate).isValid() ? dayjs(a.startDate).toDate().getTime() : new Date(a.startDate as string ).getTime()
+            const startDateB = dayjs(b.startDate).isValid() ? dayjs(b.startDate).toDate().getTime() : new Date(b.startDate as string).getTime()
+            const compareResult = startDateA - startDateB
+            a.startDate = dayjs(startDateA).format('YYYY-MM-DD').toString();
+            b.startDate = dayjs(startDateB).format('YYYY-MM-DD').toString();
+            a.endDate = dayjs(a.endDate).format('YYYY-MM-DD').toString();
+            b.endDate = dayjs(b.endDate).format('YYYY-MM-DD').toString();
+            return compareResult
+        })
     }
 
-    const calcCycle = (data:perviousPeriodType) =>{
+    const calcCycle = (data:previousPeriod) =>{
         let cycleCount:number = 0;
         let totalCycle:number = 0;
         let oldStartDate:null|Dayjs = null; 
@@ -71,7 +69,7 @@ const useData = () =>{
         return (Math.round(totalCycle/cycleCount))
     }
 
-    const calcAvgLength = (data:perviousPeriodType):number =>{
+    const calcAvgLength = (data:previousPeriod):number =>{
         const count = calcNumberPeriods(data)
         if(data){
             if(count !== 1 && Array.isArray(data) ){
@@ -80,15 +78,13 @@ const useData = () =>{
                     numDays += (dayjs(e.endDate).diff(dayjs(e.startDate), 'day') + 1)
                 });
                 return numDays/count
-            }else if(!Array.isArray(data)){
-                return dayjs(data.endDate).diff(dayjs(data.startDate), 'day') + 1
             }
         }
         return 0
     }
 
-    const calcUserData = (data:perviousPeriodType):userDataReturn|boolean =>{
-        if(data && (Array.isArray(data) ? data.length > 0 : data.startDate && data.endDate)){
+    const calcUserData = (data:previousPeriod):userDataReturn|boolean =>{
+        if(data.length){
             const sortedData = sortaArrayData(data)
             const cycle = calcCycle(sortedData);
             const avgLength = calcAvgLength(sortedData)
@@ -105,12 +101,12 @@ const useData = () =>{
                 console.log(estimatedLastPeriod)
             }
             return true
+        }else{
+            return false
         }
-        //if statement if if not array
-        return false
     }
 
-    const isPeriodActive = (data:perviousPeriodType):isActiveReturn|boolean =>{
+    const isPeriodActive = (data:previousPeriod):isActiveReturn|boolean =>{
         if(data){
             const currentDate = todaysDate()
             if(Array.isArray(data)){
@@ -119,15 +115,13 @@ const useData = () =>{
                     return {startDate: data[lastIndex].startDate.toString(), endDate: data[lastIndex].endDate.toString(), canBleed: true, isBleeding: false}
                 }
                 return false
-            }else if(currentDate.isBetween(data.startDate, data.endDate, null, "[]")){
-                return{startDate: data.startDate.toString(), endDate: data.endDate.toString(), canBleed: true, isBleeding: false}
             }
             return false
         }
         return false
     }
 
-    const estimatePeriodDates = (data:perviousPeriodType, cycle:number, avgLength:number):isActiveReturn|boolean =>{
+    const estimatePeriodDates = (data:previousPeriod, cycle:number, avgLength:number):isActiveReturn|boolean =>{
         if(Array.isArray(data)){
            let nextPeriodStartDate:Dayjs;
            if((!periodStartDate || !periodEndDate)){
@@ -163,27 +157,46 @@ const useData = () =>{
         }
     }
 
-    const updateUsersPeriods = (newPeriod:previousPeriod) =>{
-        const newPeriodArray = [...(previousPeriod ?? []), ...newPeriod]
-        console.log(newPeriodArray)
-        if(role === 'local' || role === 'demo'){
-            dispatch(setLocalPrevPeriod(newPeriodArray))
+    const updateUsersPeriods = async (newPeriod:previousPeriod) =>{
+        let newPeriodArray;
+        if(previousPeriod){
+            newPeriodArray = checkForDuplicates(newPeriod)
         }else{
-            //pull user id 
-            //set for dp send
-            //have error message saved 
-            
+            newPeriodArray = [...(previousPeriod ?? []), ...newPeriod]
         }
-        setMessageState('Periods saved!', 'success' )
+        if(role != 'User'){
+            dispatch(setPrevPeriod(newPeriodArray))
+            setMessageState('Periods saved!', 'success' )
+        }else{
+            const body = {id: id, periodArray: newPeriodArray}
+            const res = await fetch(`${APIURL}/data/updatePeriod`,{
+                method:'POST',
+                mode: 'cors',
+                headers:{
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+            if(res.status === 201){
+                const resData = await res.json()
+                console.log(resData)
+                dispatch(setPrevPeriod(resData.periods))
+                setMessageState(`${resData.message}`, 'success')
+            }
+        }
+        console.log(newPeriodArray)
     }
 
     const checkForDuplicates = (data:previousPeriod):previousPeriod =>{
-        data.forEach((e) =>{
-            console.log(e)
-        })
+        if(previousPeriod){
+            const previousPeriodSet = new Set(previousPeriod.map(e => JSON.stringify(e)))
+            const filteredUserData = data.filter(dates => !previousPeriodSet.has(JSON.stringify(dates)))
+            return filteredUserData
+        }
         return data
     }
-    return {calcUserData, exportData, updateUsersPeriods, checkForDuplicates}
+    return {calcUserData, exportData, updateUsersPeriods, checkForDuplicates, sortaArrayData}
 }
 
 export default useData

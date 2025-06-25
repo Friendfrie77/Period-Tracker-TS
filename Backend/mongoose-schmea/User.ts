@@ -1,10 +1,11 @@
 import {Document, Schema, model} from "mongoose";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
+import {userInterface} from "../types/userSchmea.types.js";
 dotenv.config();
 const salt = bcrypt.genSaltSync(parseInt(process.env.BCRPTY_SALT));
 
-const userSchema = new Schema({
+const userSchema = new Schema<userInterface>({
     email: {
         type: String,
         unique: true,
@@ -95,12 +96,15 @@ userSchema.methods.hashNewPass = function(password:string){
   return newPassword;
 }
 
-// userSchema.methods.sortPrevPeriod = function(user){
-//   let sorted = true;
-//   for(let i = 0; i < user.previodPeriod.length - 1; i++){
-//     if(user.previodPeriod[i][0] > user.previodPeriod)
-//   }
-// }
+userSchema.set('toJSON', {
+  transform: function(doc, ret) {
+    delete ret.password;
+    ret.id = ret._id.toString();
+    delete ret._id;              
+    delete ret.__v;        
+    return ret;
+  }
+});
 
-const user = model("user", userSchema)
+const user = model<userInterface>("user", userSchema)
 export default user;

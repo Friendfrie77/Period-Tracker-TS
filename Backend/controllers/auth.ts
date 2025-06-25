@@ -3,7 +3,7 @@ import demoSchema from "../mongoose-schmea/Demo.js";
 import jwt from 'jsonwebtoken';
 import checkUserRole from '../utils/checkUserRole.js';
 import type {reqBodyType} from "./controllers.type.js";
-import demo from "../mongoose-schmea/Demo.js";
+// import demo from "../mongoose-schmea/Demo.js";
 //types for mongoose 
 type User = typeof user;
 type demo = typeof demoSchema
@@ -12,8 +12,22 @@ type demo = typeof demoSchema
 
 const login = async (req, res) =>{
     // type reqBodyType = {email: string, password: string}
-    const {email, password}: reqBodyType = req.body
-    res.status(201).json({message: 'test'})
+    const {email, password}: reqBodyType = req.body;
+    const loginUser = await user.findOne({email: email})
+    if(!loginUser){
+        //send error
+    }else{
+        loginUser.authPassword(password, (err, same) =>{
+            if (err){
+                return res.status(500).json({error: "Authentication error"});
+            }if (same){
+                 const accessToken:string = jwt.sign({ id: loginUser._id}, process.env.ACCESS_TOKEN_SECRET)
+                 return res.status(201).json({accessToken, user: loginUser})
+            }
+        })
+        
+    }
+    // return res.status(201).json({message: 'test'})
 }
 
 const register = async (req, res) =>{
@@ -49,5 +63,6 @@ const deleteAccount = async(req, res) =>{
     // userRole.deleteOne({_id: _id}).exec();
     res.status(200).json({message: "User Deleted"})
 }
+
 
 export default {login, register, deleteAccount}

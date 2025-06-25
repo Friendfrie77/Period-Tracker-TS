@@ -21,7 +21,7 @@ const AccountSetup: React.FC = () =>{
     }
 
     const navigate = useNavigate();
-    const{previousPeriod, updateUserDates, _id} = useUserInfo();
+    const{previousPeriod, updateUserDates, id} = useUserInfo();
     const {isAuth, updateUsersPeriods} = useAuth()
     const {setupDemoAccount} = useDemoAccount();
     const {isLoading} = useLoading();

@@ -1,5 +1,5 @@
 import useLoading from "./useLoading";
-import { previodPeriodType } from "./hooks.types";
+import type {previousPeriod} from "../types/types"
 const APIURL = import.meta.env.VITE_APIURL
 import { setEmailNotifications, setLogin, setToken } from "../state/features/users/userSlice";
 import { useAppDispatch} from "./useRedux"
@@ -15,7 +15,7 @@ const useDemoAccount = () =>{
     const {loading} = useLoading();
     const dispatch = useAppDispatch()
     const {toggleNavCall} = useOpenModals();
-    const setupDemoAccount = async(val:setupDemoAccountValTypes, previodPeriod?:previodPeriodType) =>{
+    const setupDemoAccount = async(val:setupDemoAccountValTypes, previodPeriod?:previousPeriod) =>{
         loading();
         const username = val.username
         const data = {username, previodPeriod}

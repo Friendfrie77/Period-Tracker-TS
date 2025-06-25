@@ -6,6 +6,7 @@ import AccountOverview from "./UserOverView";
 import AccountMangment from "./AccountMangment";
 import DataMangment from "./DataMangment";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
+// import useAuth from "../../hooks/useAuth";
 // import EventCal from "../../components/eventCal/EventCal";
 // import PeriodStatsCard from "../../components/periodStatsCard/PeriodStatsCard";
 // import SettingsModal from "../../components/modal/settingsModals/Settings";
@@ -17,6 +18,8 @@ const UserProfile:React.FC = () =>{
     const [mobileChecked, setMobileChecked] = useState(false)
     const [displaySection, setDisplaySection] = useState("accountOverview")
     const [localSettingsOpen, setLocalSettingsOpen] = useState(false);
+    // const {logout} = useAuth()
+    // logout()
     const openSetting = () =>{
         setSettingOpen(!settingOpen)
     }
@@ -26,8 +29,7 @@ const UserProfile:React.FC = () =>{
     const changeDisplayContent = (section:string) =>{
         setDisplaySection(section)
     }
-    const {periodStartDate, periodEndDate, previousPeriod, _id} = useUserInfo();
-    console.log(_id)
+    const {periodStartDate, periodEndDate, previousPeriod, id} = useUserInfo();
     const checkUserInfo = () =>{
         const events = new Events();
         events.checkForEvents(previousPeriod, periodStartDate, periodEndDate)

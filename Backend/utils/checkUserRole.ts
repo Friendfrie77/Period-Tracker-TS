@@ -16,11 +16,10 @@ const findUser = async (role: string, id:string) =>{
 const setRole = (role: string) =>{
     let roleIs;
     if(role === "User"){
-        roleIs = user;
+        return roleIs = user;
     }else{
-        roleIs = demoSchema
+        return roleIs = demoSchema
     }
-    return roleIs
 }
 
 export default {findUser, setRole}

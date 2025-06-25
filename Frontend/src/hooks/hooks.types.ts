@@ -1,23 +1,3 @@
-// import { Dayjs } from "dayjs"
-
-// type  periodType = {
-//     startDate: string|Date|Dayjs,
-//     endDate: string|Date|Dayjs
-// }
-type  periodType = {
-    startDate: string|Date,
-    endDate: string|Date
-}
-type perviousPeriodType = periodType | periodType[] | null | undefined
-
-type previodPeriodType = periodType[] | undefined | null
-
-
-
-// type localUserFile = {
-//     startDate: Date,
-//     endDate: Date  
-// }[];
 type localUserFile = periodType | periodType[] | null | undefined
 
 type localAccountInputValues = {
@@ -36,4 +16,4 @@ interface isActiveReturn{
     canBleed: boolean,
     isBleeding: boolean
 }
-export type {previodPeriodType, periodType, localUserFile, localAccountInputValues, perviousPeriodType, periodUserDataReturnType, isActiveReturn}
+export type {localUserFile, localAccountInputValues, periodUserDataReturnType, isActiveReturn}
