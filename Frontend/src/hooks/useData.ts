@@ -4,7 +4,7 @@ import useUserInfo from "./useUserInfo";
 import { useAppDispatch} from "./useRedux"
 import {setPeriodCycleLength, setCurrentPeriod, setPrevPeriod} from "../state/features/users/userSlice";
 import type {previousPeriod, periodType} from "../types/types";
-import type {isActiveReturn} from "./hooks.types";
+import type {updateAction, isActiveReturn} from "../types/hooks.types"
 import { useMessage } from "../context/MessageContext/MessageContext";
 import isBetween from 'dayjs/plugin/isBetween' 
 import * as XLSX from "@e965/xlsx";
@@ -157,18 +157,20 @@ const useData = () =>{
         }
     }
 
-    const updateUsersPeriods = async (newPeriod:previousPeriod) =>{
-        let newPeriodArray;
-        if(previousPeriod){
-            newPeriodArray = checkForDuplicates(newPeriod)
-        }else{
-            newPeriodArray = [...(previousPeriod ?? []), ...newPeriod]
+    const updateUsersPeriods = async (newPeriod:previousPeriod, action:updateAction) =>{
+        console.log(newPeriod)
+        console.log(newPeriod.length)
+        if(newPeriod.length === 0 && action == 'update'){
+            setMessageState('No new periods to save', 'error')
+            return
         }
         if(role != 'User'){
-            dispatch(setPrevPeriod(newPeriodArray))
+            dispatch(setPrevPeriod(newPeriod))
             setMessageState('Periods saved!', 'success' )
+            calcUserData(newPeriod)
+            return
         }else{
-            const body = {id: id, periodArray: newPeriodArray}
+            const body = {id: id, periodArray: newPeriod}
             const res = await fetch(`${APIURL}/data/updatePeriod`,{
                 method:'POST',
                 mode: 'cors',
@@ -180,12 +182,12 @@ const useData = () =>{
             })
             if(res.status === 201){
                 const resData = await res.json()
-                console.log(resData)
                 dispatch(setPrevPeriod(resData.periods))
                 setMessageState(`${resData.message}`, 'success')
+                calcUserData(resData.periods)
+                return
             }
         }
-        console.log(newPeriodArray)
     }
 
     const checkForDuplicates = (data:previousPeriod):previousPeriod =>{

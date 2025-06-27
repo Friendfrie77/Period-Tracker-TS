@@ -2,9 +2,10 @@ import {Form} from 'react-final-form';
 import {passwordRegex, passwordRegexResults} from '../../utils/passwordRegex';
 import { valuesTypes } from '../modal/modals.types';
 import UserTextField from '../userInputFields/UserTextField';
-const ChangePassword: React.FC = () =>{
+import type { userInfoProps } from '../../types/types';
+const ChangePassword: React.FC<userInfoProps> = ({id}) =>{
     const passwordChange = async () =>{
-
+        
     }
     const content = (
         <div>

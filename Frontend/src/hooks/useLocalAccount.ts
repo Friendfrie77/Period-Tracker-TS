@@ -1,8 +1,9 @@
 // const APIURL = import.meta.env.VITE_APIURL
 // import useLoading from "./useLoading";
 import * as XLSX from "@e965/xlsx";
-import { localUserFile } from "./hooks.types";
+import { localUserFile, returnType} from "../types/hooks.types";
 import { useMessage } from "../context/MessageContext/MessageContext";
+import dayjs from "dayjs";
 import type { valuesTypes } from "../components/modal/modals.types";
 //https://www.npmjs.com/package/@e965/xlsx
 //https://docs.sheetjs.com/docs/api/
@@ -10,14 +11,7 @@ import type { valuesTypes } from "../components/modal/modals.types";
 
 const useLocalAccount = () =>{
     // const {loading} = useLoading();
-    type returnType = {
-        isVaild: boolean|undefined,
-        hasData: boolean|null|undefined,
-        data: localUserFile|null|undefined
-    }
-
     const {setMessageState} = useMessage()
-
     const createLocalAccount = async (values:valuesTypes):Promise<returnType> =>{
         let userFile = values.file as FileList|File|null
         if(userFile instanceof FileList){
@@ -69,7 +63,7 @@ const useLocalAccount = () =>{
             const start = data["Start Date"] || data['startDate']
             const end = data["End Date"] || data['endDate']
             if(start && end){
-                validatedUserInfo.push({startDate: start, endDate: end})
+                validatedUserInfo.push({startDate: dayjs(start).format('YYYY-MM-DD').toString(), endDate: dayjs(end).format('YYYY-MM-DD').toString()})
             } 
         })
         if(validatedUserInfo.length === 0){

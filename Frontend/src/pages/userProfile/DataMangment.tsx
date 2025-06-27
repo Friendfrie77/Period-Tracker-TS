@@ -19,7 +19,7 @@ const DataMangment:React.FC = () =>{
         file?: File;
     }
     const { setMessageState, message, messageType} = useMessage();
-    const {previousPeriod, checkIfDateIsPresent,id} = useUserInfo();
+    const {previousPeriod, checkIfDateIsPresent} = useUserInfo();
     const {parseUserFile, validateFile} = useLocalAccount();
     const {exportData, updateUsersPeriods, checkForDuplicates, sortaArrayData} = useData();
     const [newPeriod, setNewPeriod] = useState<previousPeriod>([]);
@@ -50,16 +50,13 @@ const DataMangment:React.FC = () =>{
             if(userInfo){
                 let uniqueDates = checkForDuplicates(userInfo!)
                 uniqueDates = sortaArrayData(uniqueDates)
-                updateUsersPeriods(uniqueDates)
+                updateUsersPeriods(uniqueDates, 'file')
             }
         }else{
             setMessageState('Invaild File Format', 'error')
             return
         }
     }
-    // const onRemoveSubmit = () =>{
-
-    // }
     const updateNewPeriod = (date:datesType) =>{
         if ((!date.startDate || !date.endDate)) return;
         if(date.startDate === date.endDate) return;
@@ -117,7 +114,7 @@ const DataMangment:React.FC = () =>{
                                 </li>
                             ))}
                         </ul>
-                        <button type='submit' className="button" onClick={()=>updateUsersPeriods(newPeriod)}>Submit</button>
+                        <button type='submit' className="button" onClick={()=>updateUsersPeriods(newPeriod, 'update')}>Submit</button>
                         </>
                         ):
                         <h1 className="text-align-center">No New Periods to Add</h1>
@@ -164,7 +161,7 @@ const DataMangment:React.FC = () =>{
                             )}
                         </div>
                     </div>
-                    <button type='submit' className="button" disabled={removedPeriods.length === 0} onClick = {() => updateUsersPeriods(prevPeriodPlaceholder)}>Submit</button>
+                    <button type='submit' className="button" disabled={removedPeriods.length === 0} onClick = {() => updateUsersPeriods(prevPeriodPlaceholder, 'delete')}>Submit</button>
                 </div>
             </div>
             <div className="profile-cards">

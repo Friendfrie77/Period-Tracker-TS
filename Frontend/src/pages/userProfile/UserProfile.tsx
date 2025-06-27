@@ -6,7 +6,7 @@ import AccountOverview from "./UserOverView";
 import AccountMangment from "./AccountMangment";
 import DataMangment from "./DataMangment";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
-// import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 // import EventCal from "../../components/eventCal/EventCal";
 // import PeriodStatsCard from "../../components/periodStatsCard/PeriodStatsCard";
 // import SettingsModal from "../../components/modal/settingsModals/Settings";

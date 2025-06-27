@@ -1,6 +1,6 @@
 import {createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type {previousPeriod} from "../../state.types";
+import type {previousPeriod} from "../../../types/types";
 
 type localUser = {
     username: string | undefined;

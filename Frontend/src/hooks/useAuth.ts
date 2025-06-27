@@ -8,7 +8,6 @@ import useUserInfo from "./useUserInfo";
 import { useMessage } from "../context/MessageContext/MessageContext";
 import { redirect } from "react-router-dom";
 import type { valuesTypes } from "../components/modal/modals.types";
-import { RiContactsBookLine } from "react-icons/ri";
 
 
 const useAuth =() =>{
@@ -30,6 +29,7 @@ const useAuth =() =>{
         startDate: string|Date,
         endDate: string|Date
     }
+
     const isAuth = () =>{
         if(token){
             return true
@@ -123,6 +123,7 @@ const useAuth =() =>{
         console.log(emailNotifications)
         dispatch(setEmailNotifications({emailNotifications: !emailNotifications}))
     }
+
     const deleteAccount = async(role:string, email?:string) =>{
         loading();
         if(role == 'localAccount'){
@@ -147,6 +148,10 @@ const useAuth =() =>{
                 loading();
             }
         }
+    }
+
+    const changePassword = async(id:string) =>{
+        
     }
     return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth, userEmailNotfications}
 }
