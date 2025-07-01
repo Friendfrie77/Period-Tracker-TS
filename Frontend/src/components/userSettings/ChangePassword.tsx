@@ -2,10 +2,11 @@ import {Form} from 'react-final-form';
 import {passwordRegex, passwordRegexResults} from '../../utils/passwordRegex';
 import { valuesTypes } from '../modal/modals.types';
 import UserTextField from '../userInputFields/UserTextField';
-import type { userInfoProps } from '../../types/types';
-const ChangePassword: React.FC<userInfoProps> = ({id}) =>{
-    const passwordChange = async () =>{
-        
+import useAuth from '../../hooks/useAuth';
+const ChangePassword: React.FC = () =>{
+    const {changePassword} = useAuth()
+    const passwordChange = async (val) =>{
+        changePassword(val.password, val.oldPassword)
     }
     const content = (
         <div>

@@ -3,6 +3,7 @@ import demoSchema from "../mongoose-schmea/Demo.js";
 import jwt from 'jsonwebtoken';
 import checkUserRole from '../utils/checkUserRole.js';
 import type {reqBodyType} from "./controllers.type.js";
+import type {changePasswordReq} from "../types/auth.types.js";
 // import demo from "../mongoose-schmea/Demo.js";
 //types for mongoose 
 type User = typeof user;
@@ -54,6 +55,7 @@ const register = async (req, res) =>{
         console.log(err)
     }
 }
+
 const deleteAccount = async(req, res) =>{
     const {_id, email, role} : reqBodyType = req.body;
     const userRole = checkUserRole.setRole(role)
@@ -64,5 +66,25 @@ const deleteAccount = async(req, res) =>{
     res.status(200).json({message: "User Deleted"})
 }
 
+const changePassword = async(req, res) =>{
+    const {id, oldPassword, newPassword} : changePasswordReq = req.body;
+    const selectedUser = await user.findById(id)
+    if(!selectedUser){
+        res.status(500)
+    }else{
+        selectedUser.authPassword(oldPassword, (err,same)=>{
+            if(err){
+                res.status(500)
+            }else if(same){
+                const newHash = selectedUser.hashNewPass(newPassword)
+                newHash.then((val) =>{
+                    selectedUser.password = val
+                    selectedUser.save()
+                    return res.status(201).json({message: 'Password Changed!'})
+                })
+            }
+        })
+    }
 
-export default {login, register, deleteAccount}
+}
+export default {login, register, deleteAccount, changePassword}

@@ -23,9 +23,13 @@ const userSchema = new Schema<userInterface>({
         type: String,
         required: true
     },
-    notification:{
+    textNotification:{
         type: Boolean,
         default: false
+    },
+    emailNotification:{
+      type: Boolean,
+      default: false
     },
     number: {
       type: String,

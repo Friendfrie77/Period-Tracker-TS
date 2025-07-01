@@ -1,11 +1,13 @@
 import { Document } from "mongoose";
 import {previousPeriod} from "./types.js"
+
 export interface userInterface extends Document {
     email: string;
     username: string;
     password: string;
     role: string;
-    notification: boolean;
+    textNotification: boolean;
+    emailNotification: boolean; 
     number: string | null;
     cycle: number | null;
     avgLength: number | null;

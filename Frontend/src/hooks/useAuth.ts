@@ -13,7 +13,7 @@ import type { valuesTypes } from "../components/modal/modals.types";
 const useAuth =() =>{
     const dispatch = useAppDispatch()
     const {loading} = useLoading();
-    const {token, _id, } = useUserInfo();
+    const {token, id, } = useUserInfo();
     const {setMessageState, message} = useMessage();
     interface loginValuesTypes{
         email?: string, 
@@ -120,8 +120,21 @@ const useAuth =() =>{
     }
 
     const userEmailNotfications = async (emailNotifications:boolean|undefined) =>{
-        console.log(emailNotifications)
-        dispatch(setEmailNotifications({emailNotifications: !emailNotifications}))
+        const body = {id, emailNotifications}
+        const userEmailNotficationsApiCall = await fetch(`${APIURL}/data/emailNotification`, {
+            method: 'Post',
+            mode: 'cors',
+            headers:{Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json'},
+            body: JSON.stringify(body)
+        })
+        const res = await userEmailNotficationsApiCall.json()
+        if(userEmailNotficationsApiCall.ok){
+            setMessageState(res.message, 'success')
+            dispatch(setEmailNotifications({emailNotifications: !res.emailNotifications}))
+        }else{
+            setMessageState(res.error, 'error')
+        }
     }
 
     const deleteAccount = async(role:string, email?:string) =>{
@@ -129,7 +142,7 @@ const useAuth =() =>{
         if(role == 'localAccount'){
             dispatch(setLogout())
         }else{
-            const data={_id, role, email}
+            const data={id, role, email}
             const deleteAccountAPICall = await fetch(`${APIURL}/auth/deleteAccount`,{
                 method: 'Post',
                 mode: 'cors',
@@ -150,10 +163,20 @@ const useAuth =() =>{
         }
     }
 
-    const changePassword = async(id:string) =>{
-        
+    const changePassword = async(newPassword:string, oldPassword:string) =>{
+        const post = {id, oldPassword, newPassword}
+        const passwordChangeAPICall = await fetch(`${APIURL}/auth/changePassword`, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json'},
+            body: JSON.stringify(post)
+        })
+        const res = await passwordChangeAPICall
+        console.log(res)
+    
     }
-    return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth, userEmailNotfications}
+    return {login, register, logout, deleteAccount, userPhoneNotfication, localAccount, isAuth, userEmailNotfications, changePassword}
 }
 
 export default useAuth;

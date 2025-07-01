@@ -15,6 +15,7 @@ const UserNotifications :React.FC<userNotificationsTypes> = ({notificationType})
         setPhoneModel(!phoneModel)
     }
     const emailCheckChange = (emailNotifications:boolean) =>{
+        console.log(emailNotifications)
         userEmailNotfications(emailNotifications)
     }
     const phoneChange = (notifications:boolean, phoneModel:boolean, openPhoneModel:() => void) =>{
