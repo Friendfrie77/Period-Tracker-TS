@@ -30,5 +30,22 @@ const emailNotification = async(req, res) =>{
     }
 }
 
+const textNotification = async(req, res) =>{
+    const {id, userNumber, notifications} = req.body;
+    const selectedUser = await user.findById(id);
+    if(!selectedUser){
+        res.status(500).json({error: 'Server has encountered an error'})
+    }else{
+        selectedUser.textNotification = !notifications
+        if(notifications){
+            selectedUser.number = userNumber
+        }else{
+            selectedUser.number = null;
+        }
+        await selectedUser.save();
+        const message = notifications ? 'You will now get text notifications when your period is near.' : 'You are no longer getting text notifications when your period is near.'
+        res.status(201).json({message: message, notifications})
+    }
+}
 
-export default {updatePeriod, emailNotification}
+export default {updatePeriod, emailNotification, textNotification}

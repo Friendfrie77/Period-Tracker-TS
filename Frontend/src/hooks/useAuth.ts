@@ -14,7 +14,7 @@ const useAuth =() =>{
     const dispatch = useAppDispatch()
     const {loading} = useLoading();
     const {token, id, } = useUserInfo();
-    const {setMessageState, message} = useMessage();
+    const {setMessageState} = useMessage();
     interface loginValuesTypes{
         email?: string, 
         password?: string
@@ -23,11 +23,6 @@ const useAuth =() =>{
         email?: string,
         username?: string,
         password?: string
-    }
-
-    type datesType = {
-        startDate: string|Date,
-        endDate: string|Date
     }
 
     const isAuth = () =>{
@@ -82,9 +77,11 @@ const useAuth =() =>{
             const localUser:user = {
                 username: values.username,
                 token: 'isLocalUser',
-                role: 'local',
+                role: 'Local',
                 email: 'localUser',
-                id: 'localUser'
+                id: 'localUser',
+                notifications: false,
+                emailNotifications: false
             }
             dispatch(setLogin(localUser))
             loading()
@@ -96,7 +93,7 @@ const useAuth =() =>{
         }
     }
     const logout = () =>{
-        if(_id === 'localUser'){
+        if(id === 'localUser'){
             /* set modal to warn user that data will be deleted.
             
             */
@@ -111,12 +108,23 @@ const useAuth =() =>{
                 openPhoneModel()
                 return
             }else if(userNumber){
-                console.log(userNumber)
-                //sent user number to server and validate it
-                
+                const body = {id, userNumber, notifications}
+                const userPhoneNotficationAPICall = await fetch(`${APIURL}/data/textNotification`, {
+                    method: 'Post',
+                    mode: 'cors',
+                    headers: {Authorization: `Bearer ${token}`,
+                    "Content-Type": 'application/json'},
+                    body: JSON.stringify(body)
+                })
+                const res = await userPhoneNotficationAPICall.json();
+                if(userPhoneNotficationAPICall.ok){
+                    setMessageState(res.message, 'success');
+                    dispatch(setPhoneNotifications({notifications: !notifications}))
+                }else{
+                    setMessageState(res.error, 'error')
+                }
             }
         }
-        dispatch(setPhoneNotifications({notifications: !notifications}))
     }
 
     const userEmailNotfications = async (emailNotifications:boolean|undefined) =>{
