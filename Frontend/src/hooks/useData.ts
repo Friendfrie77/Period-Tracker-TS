@@ -88,17 +88,19 @@ const useData = () =>{
             const sortedData = sortaArrayData(data)
             const cycle = calcCycle(sortedData);
             const avgLength = calcAvgLength(sortedData)
+            console.log(`cycle: ${cycle}, avgLength: ${avgLength}`)
             dispatch(setPeriodCycleLength({cycle: cycle, avgLength: avgLength}))
             const isActive = isPeriodActive(data);
             if(isActive && (typeof isActive !== 'boolean')){
+                console.log('is in active')
                 dispatch(setCurrentPeriod(isActive))
                 return true
             }else{
-                const estimatedLastPeriod = estimatePeriodDates(sortedData, cycle, avgLength)
-                if(typeof estimatedLastPeriod !== 'boolean'){
-                    dispatch(setCurrentPeriod(estimatedLastPeriod))
+                const estimatedPeriodDates = estimatePeriodDates(sortedData, cycle, avgLength)
+                console.log(estimatedPeriodDates)
+                if(typeof estimatedPeriodDates !== 'boolean'){
+                    dispatch(setCurrentPeriod(estimatedPeriodDates))
                 }
-                console.log(estimatedLastPeriod)
             }
             return true
         }else{
@@ -112,6 +114,7 @@ const useData = () =>{
             if(Array.isArray(data)){
                 const lastIndex = calcNumberPeriods(data) - 1
                 if(currentDate.isBetween(data[lastIndex].startDate, data[lastIndex].endDate, null, "[]")){
+                    console.log('is here')
                     return {startDate: data[lastIndex].startDate.toString(), endDate: data[lastIndex].endDate.toString(), canBleed: true, isBleeding: false}
                 }
                 return false

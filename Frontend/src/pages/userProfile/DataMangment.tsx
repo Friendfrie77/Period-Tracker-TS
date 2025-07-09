@@ -8,6 +8,7 @@ import { DateRange} from 'react-date-range';
 import { AiOutlineClose } from "react-icons/ai";
 import dayjs from "dayjs";
 import type {previousPeriod} from "../../types/types";
+import type { dateKey } from "../../types/components.types";
 import { useMessage } from "../../context/MessageContext/MessageContext";
 const DataMangment:React.FC = () =>{
     type datesType = {
@@ -32,7 +33,30 @@ const DataMangment:React.FC = () =>{
         key: 'selection'
     }
     ])
- 
+    const [dateInputDates, setInputVal] = useState(
+        {
+            startDate: undefined as Date | undefined,
+            endDate: undefined as Date | undefined
+        }
+    )
+    const datePickerChangeHandle = (key:dateKey ,dateChange:string) =>{
+        const inputDates = dateInputDates;
+        const newDate = new Date(dateChange);
+        if(key === 'startDate'){
+            inputDates.startDate = newDate;
+        }else{
+            inputDates.endDate = newDate;
+        }
+
+        if(inputDates.startDate && inputDates.endDate){
+            updateNewPeriod(inputDates);
+            setInputVal({startDate:undefined, endDate: undefined})
+            setDate([{startDate: new Date(),endDate: new Date()}])
+        }else{
+            setInputVal({...dateInputDates, [key]: dateChange});
+            setDate([{...date[0], [key]: newDate}]);
+        }
+    }
     const removeNewDate = (index:number) =>{
         setNewPeriod(prev => prev.filter((_, i) => i !== index))
     }
@@ -77,13 +101,14 @@ const DataMangment:React.FC = () =>{
     }
     const content = (
         <>
+            <title>Data Mangment</title>
             <h1 className='subheader-text'>Data Mangment</h1>
             <div className="profile-cards">
                 <div className="flex-center">
                     <h1>Period Mangment</h1>
                 </div>
                 <div>
-                    <h1>Select Dates to Add</h1>
+                    <h1>Select Dates to Add:</h1>
                     <div>
                         <DateRange
                             showMonthAndYearPickers={false}
@@ -95,6 +120,24 @@ const DataMangment:React.FC = () =>{
                                 updateNewPeriod(ranges.selection)
                             }}
                         />
+                        <div className="flex-row flex-row-center flex-row-gap-1rem">
+                            <div className="flex-center">
+                                <label htmlFor='startDate'>Start Date</label>
+                                <input 
+                                    id='startDate' 
+                                    type="date"
+                                    onChange={(e) =>datePickerChangeHandle('startDate',e.target.value)}
+                                />
+                            </div>
+                            <div className="flex-center">
+                                <label htmlFor='endDate'>End Date:</label>
+                                <input 
+                                    id='endDate' 
+                                    type="date" 
+                                    onChange={(e) =>datePickerChangeHandle('endDate', e.target.value)}
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div className="flex-center">
                         {message ? (

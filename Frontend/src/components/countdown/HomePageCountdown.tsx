@@ -9,7 +9,7 @@ type HomePageCountdownProps = {
 }
 const HomePageCountdown: React.FC<HomePageCountdownProps> = ({startDate, endDate, headerMessage, buttonLable, buttonFunction, countdownMessage}) =>{
     const content = (
-        <div className="flex-center">
+        <div className="flex-center flex-row-gap-1rem">
             <h2 className="header-text">{headerMessage}</h2>
             <Countdown startDate={startDate} endDate={endDate} message={countdownMessage} color1="40bf32" color2="e0e20c" color3="FA2C00"/>
             <div className="flex-center padding-bottom-1rem">

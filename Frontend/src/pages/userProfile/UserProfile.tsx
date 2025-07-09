@@ -42,8 +42,11 @@ const UserProfile:React.FC = () =>{
         }
         checkbox.addEventListener("change", test)
     })
+    console.log(periodStartDate)
     const events = checkUserInfo();
     const content = (
+        <>
+        <title>Account Overview</title>
         <main className="content-flex-row position-rel">
             <section className={`profile-nav-container ${mobileChecked ? `profile-nav-container-active` : ''}`}>
                 <div className="profile-mobile-check">
@@ -68,6 +71,7 @@ const UserProfile:React.FC = () =>{
                 {displaySection === "dataMangment" && <DataMangment/>}
             </section>
         </main>
+        </>
     )
     return content
 }

@@ -1,3 +1,1 @@
-// export type passwordChangeProps = {
-
-// }
+export type dateKey = 'startDate'|'endDate'

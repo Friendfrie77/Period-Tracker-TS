@@ -17,6 +17,7 @@ type datesType = {
 const useUserInfo = ()=>{
     const dispatch = useAppDispatch();
     //any userinfo needed for the app
+    // console.log(useAppSelector((state) => state.user?.loginUser))
     const username:string|undefined = useAppSelector((state) => state.user?.loginUser?.username);
     const id:number|string|undefined|'localUser' = useAppSelector((state) => state.user?.loginUser?.id);
     const role:"User"|"Demo"|"Local"|undefined = useAppSelector((state) => state.user?.loginUser?.role);

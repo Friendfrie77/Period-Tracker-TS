@@ -24,12 +24,15 @@ const LoggedInUserIndex:React.FC = () =>{
         checkInfo()
     })
     const content = isLoading ? <Spinner /> : (
+        <>
+        <title>Home</title>
         <main className="content">
                 <UserWelcomeBar showDateStrip ={true} />
             {needInfo ? (
                 <NeedInfo />
             ): (<HasInfo />)}
         </main>
+        </>
     )
     return content
 }

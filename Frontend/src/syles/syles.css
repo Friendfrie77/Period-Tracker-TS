@@ -2277,6 +2277,13 @@ input[type=file] {
   align-items: center;
 }
 
+input[type=date] {
+  border: none;
+  color: #eae8ff;
+  font-family: "Varela_Round", Sans-Serif;
+  background-color: transparent;
+}
+
 .landing-page-conent-wrapper {
   display: flex;
   flex-direction: column;

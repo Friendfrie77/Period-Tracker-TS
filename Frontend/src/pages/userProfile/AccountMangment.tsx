@@ -9,6 +9,7 @@ const AccountMangment:React.FC = () =>{
     //password, email not, text not, delete account, change password
     const content = (
         <>
+        <title>Account Mangment</title>
         <h1 className="subheader-text">Account Mangment</h1>
         <div className="profile-cards">
             <h1 className="center-align subheader-text">Change Password</h1>
