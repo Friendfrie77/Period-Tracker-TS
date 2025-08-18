@@ -11,8 +11,8 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
-    "checkUpdates" : "ncu",
-    "upgradeDeps" : "ncu -u && npm install"
+    "checkUpdates": "ncu",
+    "upgradeDeps": "ncu -u && npm install"
   },
   "dependencies": {
     "@e965/xlsx": "^0.20.3",

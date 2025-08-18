@@ -26,6 +26,7 @@ const renderTime = (dimension?:string|null , time?:number|null, message?:string)
     }
 }
 const Countdown: React.FC<CountdownProps> = ({startDate, endDate, color1, color2, color3, message}) =>{
+    console.log(message)
     const {calcNeededInfo, timerKey, setTimerKey, getTime} = useTimerData();
     const neededInfo = () =>{
         if(startDate && endDate){
@@ -62,7 +63,7 @@ const Countdown: React.FC<CountdownProps> = ({startDate, endDate, color1, color2
                 {({color}) =>(
                     <span style={{color}}>
                         {duration ? (
-                            renderTime('days', getTime(duration-(duration - remainingTime)))
+                            renderTime((getTime(duration-(duration - remainingTime))  <= 1 ? 'day':'days'), getTime(duration-(duration - remainingTime)))
                         ):(
                             renderTime(null, null, message)
                         )}

@@ -8,10 +8,11 @@ import useUserInfo from "./useUserInfo";
 import { useMessage } from "../context/MessageContext/MessageContext";
 import { redirect } from "react-router-dom";
 import type { valuesTypes } from "../components/modal/modals.types";
-
+import { useOpenModals } from './useOpenModals';
 
 const useAuth =() =>{
     const dispatch = useAppDispatch()
+    const {toggleLoginCall, toggleRegisterCall} = useOpenModals();
     const {loading} = useLoading();
     const {token, id, } = useUserInfo();
     const {setMessageState} = useMessage();
@@ -48,7 +49,9 @@ const useAuth =() =>{
             const userInfo =  await res.json()
             dispatch(setLogin(userInfo.user))
             dispatch(setToken(userInfo.accessToken))
+            toggleLoginCall()
             loading();
+
         }
     }
     //need to handle if not ok
@@ -68,6 +71,7 @@ const useAuth =() =>{
             const newUser = await regAPICall.json();
             dispatch(setLogin(newUser.newUser))
             dispatch(setToken(newUser.accessToken))
+            toggleRegisterCall()
         }
     }
     

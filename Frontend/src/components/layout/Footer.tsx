@@ -20,7 +20,7 @@ const Footer: React.FC = () =>{
                     </div>
                 </div>
             )}
-            <span>&copy; {year} <a href='albertfriend.dev' target='_blank' rel = 'noopener noreferrer'>Albert Friend</a></span>
+            <span>&copy; {year} <a href='albertfriend.dev' target='_blank' rel = 'noopener noreferrer'>Red Moon Diary</a></span>
         </footer>
     )
     return footer;

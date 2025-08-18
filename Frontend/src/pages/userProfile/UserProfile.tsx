@@ -27,6 +27,9 @@ const UserProfile:React.FC = () =>{
         setLocalSettingsOpen(!localSettingsOpen)
     }
     const changeDisplayContent = (section:string) =>{
+        if(mobileChecked){
+            setMobileChecked(false)
+        }
         setDisplaySection(section)
     }
     const {periodStartDate, periodEndDate, previousPeriod, id} = useUserInfo();

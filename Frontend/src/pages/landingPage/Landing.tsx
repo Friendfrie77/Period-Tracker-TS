@@ -4,23 +4,28 @@ import RegisterModal from "../../components/modal/RegisterModal";
 import LocalModal from "../../components/modal/LocalModal";
 import IndexInfoCard from "../../components/indexPageCard/InfoCard";
 import { useOpenModals } from "../../hooks/useOpenModals";
+import CarouselWrapper from "../../components/carousel/Carousel";
 import Phone from "../../assets/images/phone-test.webp";
-// import Hero from "../../assets/images/hero-test.webp"
+import Phone2 from "../../assets/images/phone-test2.webp";
+import Phone3 from "../../assets/images/phone-test3.webp"
 import Laptop from '../../assets/images/laptop.jpg';
 import {useNavigate} from 'react-router-dom';
 import AlertMessage from "../../components/alertMessage/AlertMessage";
 import { xShiftFadeIn } from "../../components/layout/layoutAnimations/animations";
 import { useEffect } from "react";
-import useUserInfo from "../../hooks/useUserInfo";
+import type { CarouselWrapperImg } from "../../types/components.types";
 
 const LandingPage: React.FC = () =>{
-    const {test} = useUserInfo();
-    console.log(test)
     useEffect(() =>{
         xShiftFadeIn(".hero-wrapper")
     })
     const navigate = useNavigate();
     const {loginModalOpen, registerModalOpen, localModalOpen, toggleLocalModal, toggleRegisterCall, toggleNavCall} = useOpenModals();
+    const carouselImgs:CarouselWrapperImg = [
+        {url: Phone},
+        {url: Phone2},
+        {url: Phone3}
+    ]
     const indexCardColors : {
         color1: string,
         color2: string,
@@ -44,6 +49,8 @@ const LandingPage: React.FC = () =>{
         console.log('test')
     }
     const content = (
+        <>
+        <title>Red Mood Diary</title>
         <main className="landing-page-conent-wrapper">
             <AlertMessage/>
             <section className="hero">
@@ -83,13 +90,11 @@ const LandingPage: React.FC = () =>{
                 <section className = 'feature-section'>
                     <h1>What can Red Moon Diary do for you?</h1>
                     <div className = 'content-flex-row'>
-                        <div className="img-carouel-wrapper flex-center">
-                            <img src={Phone} width='50%' height='auto'/>
-                        </div>
-                        <div className="features-wrapper flex-col flex-col-gap-1rem">
+                        <CarouselWrapper imgs={carouselImgs}/>
+                        <div className="features-wrapper flex-col flex-col-gap-1rem flex-space-even feature-col-full">
                             <div className="feature">
                                 <div className="feature-img">
-                                    <img src={Phone} width='100%' height='auto'/>
+                                    <img src={Phone2} width='100%' height='auto'/>
                                 </div>
                                 <div className="feature-text">
                                     <h1>Easily import and export your information</h1>
@@ -106,9 +111,12 @@ const LandingPage: React.FC = () =>{
                                 </div>
                             </div>
                             <div className="feature">
+                                <div className="feature-img">
+                                    <img src={Phone3} width='100%' height='auto'/>
+                                </div>
                                 <div className="feature-text">
-                                    <h1>Easily import and export your information</h1>
-                                    <p></p>
+                                    <h1>Alerts when your period is near</h1>
+                                    <p>Choose from text or email alerts when your period is a few days away so you can be ready. You control how many days out you get the alerts. </p>
                                 </div>
                             </div>
                         </div>
@@ -164,6 +172,7 @@ const LandingPage: React.FC = () =>{
                 </PageFade>
             }
         </main>
+        </>
     );
     return content;
 }
