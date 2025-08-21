@@ -4,8 +4,11 @@ import type { CarouselWrapperImg } from "../../types/components.types";
 
 type CarouselWrapperProps ={
     imgs: CarouselWrapperImg
+    text?: string
+    onSlideChange?: (index: number) => void;
 }
-const CarouselWrapper: React.FC<CarouselWrapperProps> = ({imgs}) => {
+
+const CarouselWrapper: React.FC<CarouselWrapperProps> = ({imgs, onSlideChange}) => {
     const responsiveList: ResponsiveType  = {
         desktop: {
             breakpoint: { max: Number.MAX_VALUE, min: 1024 },
@@ -20,9 +23,6 @@ const CarouselWrapper: React.FC<CarouselWrapperProps> = ({imgs}) => {
             items: 1
         }
     };
-    imgs.forEach(e =>{
-        console.log(e.url)
-    })
     const content = (
         <Carousel
             responsive={responsiveList}
@@ -32,12 +32,21 @@ const CarouselWrapper: React.FC<CarouselWrapperProps> = ({imgs}) => {
             infinite={true}
             arrows={true}
             centerMode={false}
+            {...(onSlideChange && {beforeChange: (currentSlide) => {
+                const imgWrapper = document.querySelector(`[data-index='${currentSlide}']`)?.querySelector('img')
+                const index = imgWrapper?.getAttribute('data-index')
+                if(!index){
+                    onSlideChange(0)
+                }else{
+                    onSlideChange(Number(index))
+                }
+            }})}
             containerClass="img-carousel-wrapper"
         >
             {imgs.map((e,i) => {
                 return(
                     <div className="carousel-slide" key={i}>
-                        <img src={e.url} alt='test'/>
+                        <img data-index={i} src={e.url} alt={e.alt}/>
                     </div>
                 )
             })}

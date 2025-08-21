@@ -1,2 +1,2 @@
 export type dateKey = 'startDate'|'endDate';
-export type CarouselWrapperImg = {url: string}[];
+export type CarouselWrapperImg = {url: string; alt: string}[];

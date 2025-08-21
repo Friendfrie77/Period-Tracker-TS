@@ -7,7 +7,7 @@ const Footer: React.FC = () =>{
     const year: number = new Date().getFullYear();
     const footer = (
         <footer aria-label="Main Footer">
-            {!isAuth() && location.pathname === '/'  &&(
+            {/* {!isAuth() && location.pathname === '/'  &&(
                 <div className="footer-info">
                     <div className="footer-info-section">
                         <span>App</span>
@@ -19,7 +19,7 @@ const Footer: React.FC = () =>{
                         </ul>
                     </div>
                 </div>
-            )}
+            )} */}
             <span>&copy; {year} <a href='albertfriend.dev' target='_blank' rel = 'noopener noreferrer'>Red Moon Diary</a></span>
         </footer>
     )

@@ -5,42 +5,20 @@ import LocalModal from "../../components/modal/LocalModal";
 import IndexInfoCard from "../../components/indexPageCard/InfoCard";
 import { useOpenModals } from "../../hooks/useOpenModals";
 import CarouselWrapper from "../../components/carousel/Carousel";
-import Phone from "../../assets/images/phone-test.webp";
-import Phone2 from "../../assets/images/phone-test2.webp";
-import Phone3 from "../../assets/images/phone-test3.webp"
 import Laptop from '../../assets/images/laptop.jpg';
 import {useNavigate} from 'react-router-dom';
 import AlertMessage from "../../components/alertMessage/AlertMessage";
 import { xShiftFadeIn } from "../../components/layout/layoutAnimations/animations";
-import { useEffect } from "react";
-import type { CarouselWrapperImg } from "../../types/components.types";
+import {useEffect } from "react";
 
+import {indexCardColors} from "../../assets/contentObjects/indexPage/other"
+import {carouselImgs} from "../../assets/contentObjects/indexPage/imgs"
 const LandingPage: React.FC = () =>{
     useEffect(() =>{
         xShiftFadeIn(".hero-wrapper")
     })
     const navigate = useNavigate();
     const {loginModalOpen, registerModalOpen, localModalOpen, toggleLocalModal, toggleRegisterCall, toggleNavCall} = useOpenModals();
-    const carouselImgs:CarouselWrapperImg = [
-        {url: Phone},
-        {url: Phone2},
-        {url: Phone3}
-    ]
-    const indexCardColors : {
-        color1: string,
-        color2: string,
-        color4: string,
-        color5: string,
-        color6: string,
-        textColor: string
-    } = {
-        color1: '#8FDDC3',
-        color2: '#241E4E',
-        color4: '#5C0F47',
-        color5: '#8FDDC3',
-        color6: '#5CFFC9',
-        textColor:'#EAE8FF',
-    }
     const demoAccount = () =>{
         toggleNavCall();
         navigate('/accountsetup',{state: {fromApp: true}} )
@@ -48,6 +26,20 @@ const LandingPage: React.FC = () =>{
     const localAccountInfo = () =>{
         console.log('test')
     }
+
+    const highlightDiv = (imgKey:number) =>{
+        const isActive = document.querySelector('.outline-feature')
+        const featuresText = document.querySelectorAll(".feature")
+        if(isActive){
+            isActive.classList.remove('outline-feature')
+            featuresText[imgKey].classList.add('outline-feature')
+        }else{
+            featuresText[imgKey].classList.add('outline-feature')
+        }
+    }
+    useEffect(() =>{
+        highlightDiv(0)
+    })
     const content = (
         <>
         <title>Red Mood Diary</title>
@@ -90,11 +82,20 @@ const LandingPage: React.FC = () =>{
                 <section className = 'feature-section'>
                     <h1>What can Red Moon Diary do for you?</h1>
                     <div className = 'content-flex-row'>
-                        <CarouselWrapper imgs={carouselImgs}/>
+                        <CarouselWrapper imgs={carouselImgs} onSlideChange={highlightDiv}/>
                         <div className="features-wrapper flex-col flex-col-gap-1rem flex-space-even feature-col-full">
                             <div className="feature">
                                 <div className="feature-img">
-                                    <img src={Phone2} width='100%' height='auto'/>
+                                    <img src={carouselImgs[0].url} alt={carouselImgs[0].alt} width='100%' height='auto'/>
+                                </div>
+                                <div className='feature-text'>
+                                    <h1>Easily see when your period is near</h1>
+                                    <p>With our simple UI, you can see at a glance how many days are left until your next period or when your period is ending.</p>
+                                </div>
+                            </div>
+                            <div className="feature">
+                                <div className="feature-img">
+                                    <img src={carouselImgs[1].url} alt={carouselImgs[1].alt} width='100%' height='auto'/>
                                 </div>
                                 <div className="feature-text">
                                     <h1>Easily import and export your information</h1>
@@ -103,16 +104,7 @@ const LandingPage: React.FC = () =>{
                             </div>
                             <div className="feature">
                                 <div className="feature-img">
-                                    <img src={Phone} width='100%' height='auto'/>
-                                </div>
-                                <div className="feature-text">
-                                    <h1>Easily see when your period is near</h1>
-                                    <p>With our simple UI, you can see at a glance how many days are left until your next period or when your period is ending.</p>
-                                </div>
-                            </div>
-                            <div className="feature">
-                                <div className="feature-img">
-                                    <img src={Phone3} width='100%' height='auto'/>
+                                    <img src={carouselImgs[2].url} alt={carouselImgs[2].alt} width='100%' height='auto'/>
                                 </div>
                                 <div className="feature-text">
                                     <h1>Alerts when your period is near</h1>

@@ -2392,6 +2392,13 @@ input[type=date] {
   font-size: var(--fs-subheader);
 }
 
+.outline-feature {
+  background-color: hsla(162, 100%, 68%, 0.2);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0px 5px 0px hsl(248, 44%, 21%);
+}
+
 .img-carousel-wrapper {
   min-width: 30%;
   max-width: 720px;
@@ -2437,7 +2444,7 @@ input[type=date] {
   display: flex;
   margin-bottom: 15px;
 }
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .feature {
     flex-direction: column;
     justify-content: center;
