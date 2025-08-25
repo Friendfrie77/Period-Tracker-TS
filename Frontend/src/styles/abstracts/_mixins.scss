@@ -1,3 +1,4 @@
+@use './variables' as *;
 @mixin for-size($size) {
     @if $size == tablet-only {
       @media (max-width: 768px) {

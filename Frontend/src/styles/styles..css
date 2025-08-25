@@ -1,13 +1,14 @@
-@import "./abstracts/abstracts";
-@import "./base/base";
-@import "./common/common";
-// @import "./animations/animations";
-@import "./vendors/vendors";
-@import "./components/components";
-@import "./mainLayout/mainLayout";
-@import "./userInputs/userInputs";
-@import "./pages/pages";
-@import "./animations/animations";
+@use "./abstracts/abstracts";
+@use "./base/base";
+@use "./common/common";
+// @use "./animations/animations";
+@use "./vendors/vendors";
+@use "./components/components";
+@use "./mainLayout/mainLayout";
+@use "./userInputs/userInputs";
+@use "./pages/pages";
+@use "./animations/animations";
+@use "./components/components";
 *{
   color:$textcolor;
 }
@@ -82,7 +83,4 @@
   }
 }
 
-
-
-@import "./components/components";
 

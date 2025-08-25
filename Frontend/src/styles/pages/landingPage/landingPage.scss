@@ -1,7 +1,7 @@
+@forward "./hero";
+@forward "./featureCard";
 .landing-page-conent-wrapper{
     display: flex;
     flex-direction: column;
     
 }
-@import "./hero";
-@import "./featureCard";

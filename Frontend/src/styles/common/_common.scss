@@ -1,7 +1,7 @@
-@import "./flex";
-@import "./text";
-@import "./alignmentPadding";
-
+@forward "./flex";
+@forward "./text";
+@forward "./alignmentPadding";
+@use '../abstracts/abstracts' as *;
 .display-none{
     display: none !important;
   }

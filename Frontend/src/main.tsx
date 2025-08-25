@@ -5,7 +5,7 @@ import {store} from './state/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import {persistStore} from 'redux-persist'
-import './syles/syles.css'
+import './styles/styles.css'
 
 
 

@@ -1,3 +1,4 @@
+@use '../../abstracts/abstracts' as *;
 .hero{
     display: flex;
     flex-direction: row;
@@ -36,6 +37,9 @@
         text-shadow: $drop-shadow-wrappers;
         color: $color2;
     }
+    @include for-size(large-phone-only){
+        
+    }
 }
 .cta-statement, .cta-new-account{
     width: 75%;
@@ -50,6 +54,9 @@
     width: 40%;
     height: 4rem;
     font-size: var(--fs-hero-button);
+    @include for-size(small-desktop){
+        width: 60%;
+    }
     @include for-size(large-phone-only){
         height: 2.5rem;
         width: 60%;
@@ -59,20 +66,23 @@
     flex: 1;
     background:
         linear-gradient(to left, transparent 20%, $color5 80%),
-        url('../assets/images/hero-test.webp') no-repeat right center;
+        url('/src/assets/images/hero-test.webp') no-repeat right center;
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
     height: auto;
     width: 100%;
     @include for-size(small-desktop){
+    // background:
+    //     linear-gradient(to left, transparent 10%, $color5 80%),
+    //     url('../assets/images/hero-test.webp') no-repeat right center;
     background:
-        linear-gradient(to left, transparent 40%, $color5 80%),
-        url('../assets/images/hero-test.webp') no-repeat right center;
+        linear-gradient(to left, transparent 70%, $color5 80%),
+        url('/src/assets/images/hero-test.webp') no-repeat right center;
     background-size: cover;
     }
     @include for-size(tablet-only){
-        background: url('../assets/images/hero-test.webp') no-repeat right center;
+        background: url('/src/assets/images/hero-test.webp') no-repeat right center;
         background-size: cover;
         height: 50%;
     }
