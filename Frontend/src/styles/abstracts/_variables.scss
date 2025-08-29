@@ -16,15 +16,17 @@ $drop-shadow-wrappers: (rgba(0, 0, 0, 0.4) 0px 5px 10px);
 $radius: 5px;
 $box-padding: 1rem;
 $Copy-Font: "Varela_Round", Sans-Serif;
-$Header-Font: "Varela_Round", Sans-Serif;
+// $Header-Font: "Varela_Round", Sans-Serif;
+$Header-Font: "Bebas Neue", Sans-Serif;
 $margin-content: 10px;
+$navWidth: 170px;
 
 :root {
     --fs-welcome: clamp(2.5rem, calc(6vw + 1rem), 4.5rem);
     --fs-header: clamp(2rem, calc(5vw + 0.5rem), 4.5rem);
     --fs-subheader: clamp(1.6rem, calc(3vw + 0.2rem), 2rem);
     --fs-horizontal-cal: clamp(1rem, calc(3vw + 0.5rem), 3rem);
-    --fs-hero: clamp(2rem, calc(3vw + 0.2rem), 3.25rem);
+    --fs-hero: clamp(1.8rem, calc(3vw + 0.2rem), 3.25rem);
     --fs-hero-button: clamp(1rem, calc(3vw + 0.5rem), 2.5rem);
     --fs-info-card: clamp(1.5rem, calc(2vw + 0.2rem), 2rem);
     --fs-body: 1.5rem;

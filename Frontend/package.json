@@ -14,7 +14,8 @@
     "checkUpdates": "ncu",
     "upgradeDeps": "ncu -u && npm install",
     "migrate-sass": "sass-migrator module --migrate-deps styles.scss",
-    "test-migrate-sass": "sass-migrator module --migrate-deps --dry-run --verbose styles.scss"
+    "test-migrate-sass": "sass-migrator module --migrate-deps --dry-run --verbose styles.scss",
+    "watch": "sass --watch --verbose src/styles/styles.scss:src/styles"
   },
   "dependencies": {
     "@e965/xlsx": "^0.20.3",

@@ -7,6 +7,7 @@ import LoggedInUserIndex from "./pages/loggedInUserIndex/LoggedInUserIndex";
 import AccountSetup from "./pages/newAccountDatePicker/AccountSetup";
 import UserProfile from "./pages/userProfile/UserProfile";
 import PrivacyPage from "./pages/additionalInfoPages/Privacy";
+import LocalAccount from "./pages/additionalInfoPages/LocalAccount"
 import './styles/styles.css';
 import { useAppSelector } from "./hooks/useRedux";
 import { MessageProvider } from "./context/MessageContext/MessageContext";
@@ -23,6 +24,8 @@ function App() {
           ): null}
             <Routes>
               <Route path = '/' element = {isAuth() ?  <LoggedInUserIndex /> : <LandingPage />} />
+              <Route path = '/privacy' element = {<PrivacyPage/>} />
+              <Route path = '/localaccountinfo' element = {<LocalAccount />} />
               <Route path ='/accountsetup' element = {isNewAccount ? <AccountSetup /> : <Navigate to='/' />} />
               <Route path='/profile' element = {isAuth() ? <UserProfile /> : <Navigate to='/' />} />
               {/* <Route path='/privacy ' element = {<PrivacyPage />} /> */}

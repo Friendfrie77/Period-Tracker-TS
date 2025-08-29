@@ -1,4 +1,4 @@
-$navWidth: 170px;
+@use '../../abstracts/abstracts' as *;
 .profile-page-content{
     display: flex;
     flex-direction: column;

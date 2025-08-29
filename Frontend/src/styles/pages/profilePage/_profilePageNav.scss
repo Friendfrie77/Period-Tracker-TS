@@ -1,3 +1,4 @@
+@use '../../abstracts/abstracts' as *;
 .profile-nav-container{ 
     margin-right: 15px;
     @include for-size(tablet-only){

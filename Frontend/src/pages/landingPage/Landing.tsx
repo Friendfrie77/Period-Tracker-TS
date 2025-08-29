@@ -12,7 +12,7 @@ import { xShiftFadeIn } from "../../components/layout/layoutAnimations/animation
 import {useEffect } from "react";
 import {indexCardColors} from "../../assets/contentObjects/indexPage/other"
 import {carouselImgs} from "../../assets/contentObjects/indexPage/imgs"
-import '../../styles/pages/landingPage/landingPage.scss'
+
 const LandingPage: React.FC = () =>{
     useEffect(() =>{
         xShiftFadeIn(".hero-wrapper")

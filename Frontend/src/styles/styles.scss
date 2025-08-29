@@ -1,7 +1,13 @@
-@use './abstracts/abstracts' as *;
-@use "./base/base";
-@use "./common/common";
-@use "./userInputs/userInputs";
-@use "./vendors/vendors";
-@use "./mainLayout/mainLayout";
+// @use './abstracts/abstracts' as *;
+// @use "./base/base";
 
+// @use "./userInputs/userInputs";
+
+
+@use "./base/reset";
+@use "./mainLayout/mainLayout";
+@use "./common/common";
+@use "./vendors/vendors";
+@use "./userInputs/userInputs";
+@use "./components/components";
+@use "./pages/pages";
